@@ -2,6 +2,9 @@ language: android
 sudo: required
 jdk: oraclejdk8
 
+before_install:
+ - chmod +x gradlew
+
 android:
  components:
  - tools
