@@ -20,7 +20,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        sharedPreferences = getSharedPreferences(getString(R.string.AppName), MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("DroidInfo", MODE_PRIVATE);
 
         Window window = getWindow();
         window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));

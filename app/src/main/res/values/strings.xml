@@ -12,4 +12,9 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="ThirdIntroTitle">Who develop this app?</string>
     <string name="ThirdIntroDescription">This app is developed by k4ppaj (DevLab Inc.) and this project is open-source (you can find it on github.com)</string>
     <string name="Updating">Updating…</string>
+
+    <string name="Resolution">Resolution</string>
+    <string name="DPI">DPI</string>
+    <string name="ScreenSize">Screen size</string>
+    <string name="RefreshValue">Refresh value</string>
 </resources>
