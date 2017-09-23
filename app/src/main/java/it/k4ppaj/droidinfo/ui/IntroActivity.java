@@ -46,7 +46,7 @@ public class IntroActivity extends AppIntro {
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
-        sharedPreferences.edit().putBoolean("FIRST_RUN", false);
+        sharedPreferences.edit().putBoolean("FIRST_RUN", false).apply();
         startActivity(new Intent(IntroActivity.this, MainActivity.class));
         finish();
     }
@@ -54,7 +54,7 @@ public class IntroActivity extends AppIntro {
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
-        sharedPreferences.edit().putBoolean("FIRST_RUN", false);
+        sharedPreferences.edit().putBoolean("FIRST_RUN", false).apply();
         startActivity(new Intent(IntroActivity.this, MainActivity.class));
         finish();
     }

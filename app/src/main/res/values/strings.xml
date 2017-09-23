@@ -17,4 +17,17 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="DPI">DPI</string>
     <string name="ScreenSize">Screen size</string>
     <string name="RefreshValue">Refresh value</string>
+
+    <string name="Health">Health</string>
+    <string name="Percentage">Percentage</string>
+    <string name="PowerSource">Power source</string>
+    <string name="Status">Status</string>
+    <string name="Temperature">Temperature</string>
+    <string name="Voltage">Voltage</string>
+    <string name="Cold">Cold</string>
+    <string name="Dead">Dead</string>
+    <string name="Good">Good</string>
+    <string name="OverVoltage">Over voltage</string>
+    <string name="OverHeat">Over heat</string>
+    <string name="Unknown">Unknown</string>
 </resources>

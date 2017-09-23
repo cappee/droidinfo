@@ -4,6 +4,7 @@
     package="it.k4ppaj.droidinfo">
 
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name=""
 
     <application
         tools:replace="android:label"

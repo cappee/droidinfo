@@ -26,9 +26,11 @@ public class DisplayHelper {
     public static String getScreenSize(Activity context) {
         DisplayMetrics dm = new DisplayMetrics();
         context.getWindowManager().getDefaultDisplay().getMetrics(dm);
-        double x = Math.pow(dm.widthPixels / dm.xdpi, 2);
-        double y = Math.pow(dm.heightPixels / dm.ydpi, 2);
+        double density = dm.density * 160;
+        double x = Math.pow(dm.widthPixels / density, 2);
+        double y = Math.pow(dm.heightPixels / density, 2);
         double screenSize = Math.sqrt(x + y);
+        screenSize = (double) Math.round(screenSize * 10) / 10;
         return String.valueOf(screenSize);
     }
 
