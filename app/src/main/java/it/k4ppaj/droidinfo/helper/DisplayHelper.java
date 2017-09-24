@@ -2,9 +2,12 @@ package it.k4ppaj.droidinfo.helper;
 
 import android.app.Activity;
 import android.content.Context;
+import java.text.DecimalFormat;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
+
+import java.util.Locale;
 
 public class DisplayHelper {
 
@@ -26,18 +29,14 @@ public class DisplayHelper {
     public static String getScreenSize(Activity context) {
         DisplayMetrics dm = new DisplayMetrics();
         context.getWindowManager().getDefaultDisplay().getMetrics(dm);
-        double density = dm.density * 160;
-        double x = Math.pow(dm.widthPixels / density, 2);
-        double y = Math.pow(dm.heightPixels / density, 2);
-        double screenSize = Math.sqrt(x + y);
-        screenSize = (double) Math.round(screenSize * 10) / 10;
+        String screenSize = new DecimalFormat("##.##").format(Math.sqrt(((dm.widthPixels / dm.xdpi) * (dm.widthPixels / dm.xdpi)) + ((dm.heightPixels / dm.ydpi) * (dm.heightPixels / dm.ydpi))));
         return String.valueOf(screenSize);
     }
 
     public static String getRefreshValue(Activity context) {
         Display display = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
         float refreshValue = display.getRefreshRate();
-        return String.valueOf(refreshValue) + "Hz";
+        return String.format(Locale.ENGLISH, "%.2f", refreshValue) + "Hz";
     }
 
 }

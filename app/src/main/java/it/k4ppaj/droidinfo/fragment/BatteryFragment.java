@@ -13,7 +13,6 @@ import android.widget.ListView;
 
 import it.k4ppaj.droidinfo.R;
 import it.k4ppaj.droidinfo.adapter.ClassicAdapter;
-import it.k4ppaj.droidinfo.helper.BatteryHelper;
 
 public class BatteryFragment extends Fragment {
 
@@ -38,7 +37,7 @@ public class BatteryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View layoutView = inflater.inflate(R.layout.fragment_battery, container, false);
 
-        ListView listViewBattery = (ListView) layoutView.findViewById(R.id.listViewBattery);
+        //ListView listViewBattery = (ListView) layoutView.findViewById(R.id.listViewBattery);
 
         String[] stringInformation = new String[] {
                 getString(R.string.Health),
@@ -49,17 +48,12 @@ public class BatteryFragment extends Fragment {
                 getString(R.string.Voltage)
         };
 
-        String[] stringValues = new String[] {
-                BatteryHelper.newInstance(context).getHealth(),
-                BatteryHelper.newInstance(context).getPercentage(),
-                "null",
-                "null",
-                BatteryHelper.newInstance(context).getTemperature(),
-                "null"
-        };
+        /*String[] stringValues = new String[] {
 
-        ClassicAdapter adapter = new ClassicAdapter(context, stringInformation, stringValues);
-        listViewBattery.setAdapter(adapter);
+        };*/
+
+        //ClassicAdapter adapter = new ClassicAdapter(context, stringInformation, stringValues);
+        //listViewBattery.setAdapter(adapter);
         return layoutView;
     }
 
