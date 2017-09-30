@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Random;
 
 import it.k4ppaj.droidinfo.R;
+import it.k4ppaj.droidinfo.fragment.AndroidFragment;
 import it.k4ppaj.droidinfo.fragment.BatteryFragment;
 import it.k4ppaj.droidinfo.fragment.DeviceFragment;
 import it.k4ppaj.droidinfo.fragment.DisplayFragment;
@@ -29,40 +30,41 @@ import it.k4ppaj.droidinfo.fragment.SoCFragment;
 @SuppressWarnings("static-access")
 public class MainActivity extends AppCompatActivity {
 
-    private int[] intTabIcons = new int[] { R.drawable.ic_memory_white_24dp, R.drawable.ic_smartphone_white_24dp, R.drawable.ic_display_white_24dp, R.drawable.ic_battery_charging_full_white_24dp};
+    private int[] intTabIcons = new int[] { R.drawable.ic_android_white_24dp, R.drawable.ic_memory_white_24dp, R.drawable.ic_smartphone_white_24dp, R.drawable.ic_display_white_24dp, R.drawable.ic_battery_charging_full_white_24dp};
+
+    private String[] stringTitleToolbar = new String[] {};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarMain);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarMain);
         setSupportActionBar(toolbar);
+
+        stringTitleToolbar = new String[] { "Android", "SoC", getString(R.string.Device), getString(R.string.Display), getString(R.string.Battery) };
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
         setupViewPager(viewPager);
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                toolbar.setTitle(stringTitleToolbar[position]);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons(tabLayout);
-
-        final FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.fabMain);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (getRandomNumber() == 1 || getRandomNumber() == 3 || getRandomNumber() == 5 || getRandomNumber() == 7 || getRandomNumber() == 9) {
-                    floatingActionButton.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_backward));
-                } else {
-                    floatingActionButton.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_forward));
-                }
-                //TODO: Refresh data
-                Toast.makeText(MainActivity.this, R.string.Updating, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private int getRandomNumber() {
-        Random random = new Random();
-        return random.nextInt(8) + 1;
     }
 
     private void setupTabIcons(TabLayout tabLayout) {
@@ -70,10 +72,12 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(1).setIcon(intTabIcons[1]);
         tabLayout.getTabAt(2).setIcon(intTabIcons[2]);
         tabLayout.getTabAt(3).setIcon(intTabIcons[3]);
+        tabLayout.getTabAt(4).setIcon(intTabIcons[4]);
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPagerAdapter.addFragment(new AndroidFragment(), "Android");
         viewPagerAdapter.addFragment(new SoCFragment(), "SoC");
         viewPagerAdapter.addFragment(new DeviceFragment(), "Device");
         viewPagerAdapter.addFragment(new DisplayFragment(), "Display");
@@ -133,4 +137,4 @@ public class MainActivity extends AppCompatActivity {
             //return stringList.get(position);
         }
     }
-    }
+}

@@ -40,8 +40,6 @@ public class DeviceFragment extends Fragment {
         ListView listView = layoutView.findViewById(R.id.listViewDevice);
 
         String[] stringInformation = new String[] {
-                getString(R.string.AndroidVersion),
-                getString(R.string.APILevel),
                 getString(R.string.Model),
                 getString(R.string.Manufacturer),
                 getString(R.string.RAM),
@@ -49,8 +47,6 @@ public class DeviceFragment extends Fragment {
         };
 
         String[] stringValues = new String[] {
-                DeviceHelper.getAndroidVersion(),
-                DeviceHelper.getAPILevel(),
                 DeviceHelper.getModel(),
                 DeviceHelper.getManufacturer(),
                 DeviceHelper.getRAM(),

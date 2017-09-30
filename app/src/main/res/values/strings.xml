@@ -13,6 +13,10 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="ThirdIntroDescription">This app is developed by k4ppaj (DevLab Inc.) and this project is open-source (you can find it on github.com)</string>
     <string name="Updating">Updating…</string>
 
+    <string name="Device">Device</string>
+    <string name="Display">Display</string>
+    <string name="Battery">Battery</string>
+
     <string name="Resolution">Resolution</string>
     <string name="DPI">DPI</string>
     <string name="ScreenSize">Screen size</string>
@@ -33,6 +37,10 @@ processor architecture, RAM available, GPU Model)</string>
 
     <string name="AndroidVersion">Android Version</string>
     <string name="APILevel"> API Level</string>
+    <string name="SecurityPatch">Security Patch</string>
+    <string name="KernelVersion">Kernel Version</string>
+    <string name="KernelArch">Kernel Arch</string>
+
     <string name="Model">Model</string>
     <string name="Manufacturer">Manufacturer</string>
     <string name="RAM">RAM</string>

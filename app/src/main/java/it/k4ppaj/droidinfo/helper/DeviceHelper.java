@@ -13,16 +13,6 @@ import java.util.regex.Pattern;
 
 public class DeviceHelper {
 
-    public static String getAndroidVersion() {
-        Field[] fields = Build.VERSION_CODES.class.getFields();
-        String versionName = fields[Build.VERSION.SDK_INT + 1].getName();
-        return Build.VERSION.RELEASE + " - " + versionName;
-    }
-
-    public static String getAPILevel() {
-        return String.valueOf(Build.VERSION.SDK_INT);
-    }
-
     public static String getModel() {
         return Build.MODEL;
     }

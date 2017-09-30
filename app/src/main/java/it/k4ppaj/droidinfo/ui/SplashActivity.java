@@ -12,6 +12,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import it.k4ppaj.droidinfo.R;
+import it.k4ppaj.droidinfo.helper.AndroidHelper;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -27,6 +28,8 @@ public class SplashActivity extends AppCompatActivity {
         Window window = getWindow();
         window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         window.setNavigationBarColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        System.out.println(AndroidHelper.getSecurityPatch());
 
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
