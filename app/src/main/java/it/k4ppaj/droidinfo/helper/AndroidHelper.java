@@ -3,6 +3,7 @@ package it.k4ppaj.droidinfo.helper;
 import android.app.Activity;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.annotation.RequiresApi;
 
 public class AndroidHelper {
 
@@ -35,7 +36,7 @@ public class AndroidHelper {
         return String.valueOf(Build.VERSION.SDK_INT);
     }
 
-    // This requires API 23
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static String getSecurityPatch() {
         return Build.VERSION.SECURITY_PATCH;
     }

@@ -29,8 +29,6 @@ public class SplashActivity extends AppCompatActivity {
         window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         window.setNavigationBarColor(getResources().getColor(R.color.colorPrimaryDark));
 
-        System.out.println(AndroidHelper.getSecurityPatch());
-
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override

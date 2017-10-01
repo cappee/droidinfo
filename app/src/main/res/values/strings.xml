@@ -11,6 +11,8 @@
 processor architecture, RAM available, GPU Model)</string>
     <string name="ThirdIntroTitle">Who develop this app?</string>
     <string name="ThirdIntroDescription">This app is developed by k4ppaj (DevLab Inc.) and this project is open-source (you can find it on github.com)</string>
+    <string name="FourthIntroTitle">Getting Permission</string>
+    <string name="FourthIntroDescription">This app for work well need permission, please agree it.</string>
     <string name="Updating">Updating…</string>
 
     <string name="Device">Device</string>
@@ -43,8 +45,11 @@ processor architecture, RAM available, GPU Model)</string>
 
     <string name="Model">Model</string>
     <string name="Manufacturer">Manufacturer</string>
+    <string name="IMEI">IMEI</string>
     <string name="RAM">RAM</string>
     <string name="InternalStorage">Internal Storage</string>
+    <string name="ExternalStorage">External Storage</string>
 
+    <string name="NotMounted">Not mounted</string>
     <string name="NotAvailable">Not available. xD</string>
 </resources>

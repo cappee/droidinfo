@@ -1,5 +1,6 @@
 package it.k4ppaj.droidinfo.ui;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -31,6 +32,10 @@ public class IntroActivity extends AppIntro {
         addSlide(AppIntroFragment.newInstance(getResources().getString(R.string.SecondIntroTitle), stringFontType, getResources().getString(R.string.SecondIntroDescription), stringFontType, R.drawable.ic_live_help_white_24dp, getResources().getColor(intColorBG)));
 
         addSlide(AppIntroFragment.newInstance(getResources().getString(R.string.ThirdIntroTitle), stringFontType, getResources().getString(R.string.ThirdIntroDescription), stringFontType, R.drawable.ic_person_pin_white_24dp, getResources().getColor(intColorBG)));
+
+        addSlide(AppIntroFragment.newInstance(getResources().getString(R.string.FourthIntroTitle), stringFontType, getResources().getString(R.string.FourthIntroDescription), stringFontType, R.drawable.ic_developer_mode_white_24dp, getResources().getColor(intColorBG)));
+
+        askForPermissions(new String[] { Manifest.permission.READ_PHONE_STATE }, 4);
 
         setBarColor(getResources().getColor(R.color.colorPrimaryDark));
 
