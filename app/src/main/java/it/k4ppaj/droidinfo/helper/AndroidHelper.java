@@ -46,7 +46,13 @@ public class AndroidHelper {
     }
 
     public static String getKernelArch() {
-        return System.getProperty("os.arch");
+        String arch = System.getProperty("os.arch");
+        switch (arch) {
+            case "armv7l":
+                return "ARMv7l";
+            default:
+                return arch;
+        }
     }
 
 }

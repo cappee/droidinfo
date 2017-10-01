@@ -45,7 +45,8 @@ public class DeviceFragment extends Fragment {
                 getString(R.string.IMEI),
                 getString(R.string.RAM),
                 getString(R.string.InternalStorage),
-                getString(R.string.ExternalStorage)
+                getString(R.string.ExternalStorage),
+                getString(R.string.RootAccess)
         };
 
         String[] stringValues = new String[] {
@@ -54,7 +55,8 @@ public class DeviceFragment extends Fragment {
                 DeviceHelper.getIMEI(context),
                 DeviceHelper.getRAM(),
                 DeviceHelper.getInternalStorage(),
-                DeviceHelper.getExternalStorage(context)
+                DeviceHelper.getExternalStorage(context),
+                DeviceHelper.getRootAccess()
         };
 
         ClassicAdapter classicAdapter = new ClassicAdapter(context, stringInformation, stringValues);

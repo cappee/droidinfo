@@ -49,6 +49,14 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="RAM">RAM</string>
     <string name="InternalStorage">Internal Storage</string>
     <string name="ExternalStorage">External Storage</string>
+    <string name="RootAccess">Root Access</string>
+
+    <string name="CPUModel">CPU Model</string>
+    <string name="CPUCores">CPU Cores</string>
+    <string name="CPUFreq">CPU Freq</string>
+    <string name="GPUVendor">GPU Vendor</string>
+    <string name="GPURenderer">GPU Renderer</string>
+    <string name="OpenGLVersion">OpenGL Version</string>
 
     <string name="NotMounted">Not mounted</string>
     <string name="NotAvailable">Not available. xD</string>

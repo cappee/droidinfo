@@ -13,6 +13,7 @@ import java.util.TimerTask;
 
 import it.k4ppaj.droidinfo.R;
 import it.k4ppaj.droidinfo.helper.AndroidHelper;
+import it.k4ppaj.droidinfo.helper.SoCHelper;
 
 public class SplashActivity extends AppCompatActivity {
 
