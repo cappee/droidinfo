@@ -20,6 +20,12 @@ public class DisplayHelper {
         return stringResolution;
     }
 
+    public static String getPixelAmount(Activity context) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        context.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        return String.valueOf(metrics.heightPixels * metrics.widthPixels) + "px";
+    }
+
     public static String getDPI(Activity context) {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         int densityDPI = (int)(metrics.density * 160f);
@@ -29,8 +35,8 @@ public class DisplayHelper {
     public static String getScreenSize(Activity context) {
         DisplayMetrics dm = new DisplayMetrics();
         context.getWindowManager().getDefaultDisplay().getMetrics(dm);
-        String screenSize = new DecimalFormat("##.##").format(Math.sqrt(((dm.widthPixels / dm.xdpi) * (dm.widthPixels / dm.xdpi)) + ((dm.heightPixels / dm.ydpi) * (dm.heightPixels / dm.ydpi))));
-        return String.valueOf(screenSize);
+        String screenSize = new DecimalFormat("##.##").format(Math.sqrt(Math.pow(dm.widthPixels / dm.xdpi, 2) + Math.pow(dm.heightPixels / dm.ydpi, 2)));
+        return String.valueOf(screenSize) + "\"";
     }
 
     public static String getRefreshValue(Activity context) {

@@ -39,7 +39,7 @@ public class IntroActivity extends AppIntro {
 
         setBarColor(getResources().getColor(R.color.colorPrimaryDark));
 
-        showSkipButton(true);
+        showSkipButton(false);
         showPagerIndicator(true);
 
         setImageNextButton(getResources().getDrawable(R.drawable.ic_arrow_forward_white_24dp));

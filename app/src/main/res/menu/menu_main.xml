@@ -3,8 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="it.k4ppaj.droidinfo.ui.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/MenuBenchmark"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/Benchmark"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/MenuSettings"
+        android:orderInCategory="200"
+        android:title="@string/Settings"
         app:showAsAction="never" />
 </menu>

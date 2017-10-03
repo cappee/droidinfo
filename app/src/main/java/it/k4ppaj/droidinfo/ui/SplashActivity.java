@@ -13,6 +13,7 @@ import java.util.TimerTask;
 
 import it.k4ppaj.droidinfo.R;
 import it.k4ppaj.droidinfo.helper.AndroidHelper;
+import it.k4ppaj.droidinfo.helper.DisplayHelper;
 import it.k4ppaj.droidinfo.helper.SoCHelper;
 
 public class SplashActivity extends AppCompatActivity {
@@ -29,6 +30,13 @@ public class SplashActivity extends AppCompatActivity {
         Window window = getWindow();
         window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         window.setNavigationBarColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        sharedPreferences
+                .edit()
+                .putString("SCREEN_INCHES", DisplayHelper.getScreenSize(SplashActivity.this))
+                .putString("PIXEL_AMOUNT", DisplayHelper.getPixelAmount(SplashActivity.this))
+                .putString("RESOLUTION", DisplayHelper.getResolution(SplashActivity.this))
+                .apply();
 
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {

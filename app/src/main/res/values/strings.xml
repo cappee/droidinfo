@@ -1,6 +1,7 @@
 <resources>
     <string name="AppName">DroidInfo</string>
-    <string name="action_settings">Settings</string>
+    <string name="Benchmark">Benchmark</string>
+    <string name="Settings">Settings</string>
 
     <string name="Close">Close</string>
 
@@ -10,7 +11,7 @@
     <string name="SecondIntroDescription">This app can give you more technical information (e.g.
 processor architecture, RAM available, GPU Model)</string>
     <string name="ThirdIntroTitle">Who develop this app?</string>
-    <string name="ThirdIntroDescription">This app is developed by k4ppaj (DevLab Inc.) and this project is open-source (you can find it on github.com)</string>
+    <string name="ThirdIntroDescription">This app is developed by k4ppaj (Woodstock Inc.) and this project is open-source (you can find it on github.com)</string>
     <string name="FourthIntroTitle">Getting Permission</string>
     <string name="FourthIntroDescription">This app for work well need permission, please agree it.</string>
     <string name="Updating">Updating…</string>
@@ -20,6 +21,7 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="Battery">Battery</string>
 
     <string name="Resolution">Resolution</string>
+    <string name="PixelAmount">Pixel amount</string>
     <string name="DPI">DPI</string>
     <string name="ScreenSize">Screen size</string>
     <string name="RefreshValue">Refresh value</string>

@@ -30,7 +30,7 @@ public class SoCHelper {
     }
 
     public static String getCPUModel() {
-        return getCPUInfoMap().get("model name");
+        return getCPUInfoMap().get("Hardware");
     }
 
     public static String getCPUCores() {
@@ -38,9 +38,13 @@ public class SoCHelper {
     }
 
     public static String getCPUFreq() {
-        int maxFreq = -1;
+        return String.valueOf(getMinCPUFreq(0)) + " - " + String.valueOf(getMaxCPUFreq(0)) + " MHz";
+    }
+
+    private static int getMinCPUFreq(int core) {
+        int minFreq = -1;
         try {
-            RandomAccessFile randomAccessFile = new RandomAccessFile("/sys/devices/system/cpu/cpu0/cpufreq/stats/time_in_state", "r");
+            RandomAccessFile randomAccessFile = new RandomAccessFile("/sys/devices/system/cpu/cpu" + core + "/cpufreq/cpuinfo_min_freq", "r");
             boolean done = false;
             while (!done) {
                 String line = randomAccessFile.readLine();
@@ -48,11 +52,34 @@ public class SoCHelper {
                     done = true;
                     break;
                 }
-                String[] splits = line.split("\\s+");
-                assert (splits.length == 2);
-                int timeInState = Integer.parseInt(splits[1]);
+                int timeInState = Integer.parseInt(line);
                 if (timeInState > 0) {
-                    int freq = Integer.parseInt(splits[0]) / 1000;
+                    int freq = timeInState / 1000;
+                    if (freq > minFreq) {
+                        minFreq = freq;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return minFreq;
+    }
+
+    private static int getMaxCPUFreq(int core) {
+        int maxFreq = -1;
+        try {
+            RandomAccessFile randomAccessFile = new RandomAccessFile("/sys/devices/system/cpu/cpu" + core + "/cpufreq/cpuinfo_max_freq", "r");
+            boolean done = false;
+            while (!done) {
+                String line = randomAccessFile.readLine();
+                if (null == line) {
+                    done = true;
+                    break;
+                }
+                int timeInState = Integer.parseInt(line);
+                if (timeInState > 0) {
+                    int freq = timeInState / 1000;
                     if (freq > maxFreq) {
                         maxFreq = freq;
                     }
@@ -61,7 +88,7 @@ public class SoCHelper {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return String.valueOf(maxFreq) + " MHz";
+        return maxFreq;
     }
 
     public static String getGPUVendor() {

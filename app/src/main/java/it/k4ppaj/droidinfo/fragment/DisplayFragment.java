@@ -18,6 +18,9 @@ import it.k4ppaj.droidinfo.helper.DisplayHelper;
 public class DisplayFragment extends Fragment {
 
     private Activity activity;
+    private String SCREEN_INCHES = "SCREEN_INCHES";
+    private String RESOLUTION = "RESOLUTION";
+    private String PIXEL_AMOUNT = "PIXEL_AMOUNT";
 
     public DisplayFragment() {
     }
@@ -39,16 +42,20 @@ public class DisplayFragment extends Fragment {
         View layoutView = inflater.inflate(R.layout.fragment_display, container, false);
         ListView listView = layoutView.findViewById(R.id.listViewDisplay);
 
+        SharedPreferences sharedPreferences = activity.getSharedPreferences("DroidInfo", Context.MODE_PRIVATE);
+
         String[] stringInformation = new String[] {
                 getString(R.string.Resolution),
+                getString(R.string.PixelAmount),
                 getString(R.string.DPI),
                 getString(R.string.ScreenSize),
                 getString(R.string.RefreshValue)
         };
         String[] stringValues = new String[] {
-                DisplayHelper.getResolution(activity),
+                sharedPreferences.getString(RESOLUTION, getString(R.string.Unknown)),
+                sharedPreferences.getString(PIXEL_AMOUNT, getString(R.string.Unknown)),
                 DisplayHelper.getDPI(activity),
-                DisplayHelper.getScreenSize(activity),
+                sharedPreferences.getString(SCREEN_INCHES, getString(R.string.Unknown)),
                 DisplayHelper.getRefreshValue(activity)
         };
 
