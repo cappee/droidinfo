@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import javax.microedition.khronos.opengles.GL10;
+
 public class SoCHelper {
 
     public static Map<String, String> getCPUInfoMap() {
@@ -91,12 +93,12 @@ public class SoCHelper {
         return maxFreq;
     }
 
-    public static String getGPUVendor() {
-        return GLES30.glGetString(GLES30.GL_VENDOR);
+    public static String getGPUVendor(GL10 gl10) {
+        return gl10.glGetString(GL10.GL_VENDOR);
     }
 
-    public static String getGPURenderer() {
-        return GLES30.glGetString(GLES30.GL_RENDERER);
+    public static String getGPURenderer(GL10 gl10) {
+        return gl10.glGetString(GL10.GL_RENDERER);
     }
 
     public static String getOpenGLVersion(Context context) {

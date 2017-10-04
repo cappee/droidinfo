@@ -1,8 +1,6 @@
 package it.k4ppaj.droidinfo.ui;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,16 +8,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import it.k4ppaj.droidinfo.R;
 import it.k4ppaj.droidinfo.fragment.AndroidFragment;
@@ -27,11 +20,12 @@ import it.k4ppaj.droidinfo.fragment.BatteryFragment;
 import it.k4ppaj.droidinfo.fragment.DeviceFragment;
 import it.k4ppaj.droidinfo.fragment.DisplayFragment;
 import it.k4ppaj.droidinfo.fragment.SoCFragment;
+import it.k4ppaj.droidinfo.fragment.TelephonyFragment;
 
 @SuppressWarnings("static-access")
 public class MainActivity extends AppCompatActivity {
 
-    private int[] intTabIcons = new int[] { R.drawable.ic_android_white_24dp, R.drawable.ic_memory_white_24dp, R.drawable.ic_smartphone_white_24dp, R.drawable.ic_display_white_24dp, R.drawable.ic_battery_charging_full_white_24dp};
+    private int[] intTabIcons = new int[] { R.drawable.ic_android_white_24dp, R.drawable.ic_memory_white_24dp, R.drawable.ic_smartphone_white_24dp, R.drawable.ic_display_white_24dp, R.drawable.ic_battery_charging_full_white_24dp, R.drawable.ic_sim_card_white_24dp };
 
     private String[] stringTitleToolbar = new String[] {};
 
@@ -42,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarMain);
         setSupportActionBar(toolbar);
 
-        stringTitleToolbar = new String[] { "Android", "SoC", getString(R.string.Device), getString(R.string.Display), getString(R.string.Battery) };
+        stringTitleToolbar = new String[] { "Android", "SoC", getString(R.string.Device), getString(R.string.Display), getString(R.string.Battery), getString(R.string.Telephony) };
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
         setupViewPager(viewPager);
@@ -74,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(2).setIcon(intTabIcons[2]);
         tabLayout.getTabAt(3).setIcon(intTabIcons[3]);
         tabLayout.getTabAt(4).setIcon(intTabIcons[4]);
+        tabLayout.getTabAt(5).setIcon(intTabIcons[5]);
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -83,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         viewPagerAdapter.addFragment(new DeviceFragment(), "Device");
         viewPagerAdapter.addFragment(new DisplayFragment(), "Display");
         viewPagerAdapter.addFragment(new BatteryFragment(), "Battery");
+        viewPagerAdapter.addFragment(new TelephonyFragment(), "Telephony");
         viewPager.setAdapter(viewPagerAdapter);
     }
 
@@ -103,17 +99,19 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.MenuBenchmark) {
             return true;
+        } else if (id == R.id.MenuSettings) {
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
+    private class ViewPagerAdapter extends FragmentPagerAdapter {
 
         private final List<Fragment> fragmentList = new ArrayList<>();
         private final List<String> stringList = new ArrayList<>();
 
-        public ViewPagerAdapter(FragmentManager fragmentManager) {
+        ViewPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
         }
 
@@ -127,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             return fragmentList.size();
         }
 
-        public void addFragment(Fragment fragment, String title) {
+        void addFragment(Fragment fragment, String title) {
             fragmentList.add(fragment);
             stringList.add(title);
         }

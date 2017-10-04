@@ -29,11 +29,6 @@ public class DeviceHelper {
         return Build.MANUFACTURER;
     }
 
-    public static String getIMEI(Activity context) {
-        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        return telephonyManager.getDeviceId();
-    }
-
     public static String getRAM() {
         RandomAccessFile randomAccessFile = null;
         String load = null;

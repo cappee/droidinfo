@@ -20,7 +20,6 @@ public class DeviceFragment extends Fragment {
     public DeviceFragment() {
     }
 
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -42,7 +41,6 @@ public class DeviceFragment extends Fragment {
         String[] stringInformation = new String[] {
                 getString(R.string.Model),
                 getString(R.string.Manufacturer),
-                getString(R.string.IMEI),
                 getString(R.string.RAM),
                 getString(R.string.InternalStorage),
                 getString(R.string.ExternalStorage),
@@ -52,7 +50,6 @@ public class DeviceFragment extends Fragment {
         String[] stringValues = new String[] {
                 DeviceHelper.getModel(),
                 DeviceHelper.getManufacturer(),
-                DeviceHelper.getIMEI(context),
                 DeviceHelper.getRAM(),
                 DeviceHelper.getInternalStorage(),
                 DeviceHelper.getExternalStorage(context),

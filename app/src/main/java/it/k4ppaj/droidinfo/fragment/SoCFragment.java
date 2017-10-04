@@ -2,6 +2,7 @@ package it.k4ppaj.droidinfo.fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,6 +21,8 @@ public class SoCFragment extends Fragment {
 
     private Activity activity;
     private Context context;
+    private String GPU_VENDOR = "GPU_VENDOR";
+    private String GPU_RENDERER = "GPU_RENDERER";
 
     public SoCFragment() {
     }
@@ -45,8 +48,9 @@ public class SoCFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View layoutView = inflater.inflate(R.layout.fragment_soc, container, false);
-
         ListView listView = layoutView.findViewById(R.id.listViewSoC);
+
+        SharedPreferences sharedPreferences = activity.getSharedPreferences("DroidInfo", Context.MODE_PRIVATE);
 
         String[] stringInformation = new String[] {
                 getString(R.string.CPUModel),
@@ -61,8 +65,8 @@ public class SoCFragment extends Fragment {
                 SoCHelper.getCPUModel(),
                 SoCHelper.getCPUCores(),
                 SoCHelper.getCPUFreq(),
-                SoCHelper.getGPUVendor(),
-                SoCHelper.getGPURenderer(),
+                sharedPreferences.getString(GPU_VENDOR, getString(R.string.Unknown)),
+                sharedPreferences.getString(GPU_RENDERER, getString(R.string.Unknown)),
                 SoCHelper.getOpenGLVersion(context)
         };
 

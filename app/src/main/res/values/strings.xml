@@ -14,14 +14,13 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="ThirdIntroDescription">This app is developed by k4ppaj (Woodstock Inc.) and this project is open-source (you can find it on github.com)</string>
     <string name="FourthIntroTitle">Getting Permission</string>
     <string name="FourthIntroDescription">This app for work well need permission, please agree it.</string>
-    <string name="Updating">Updating…</string>
 
     <string name="Device">Device</string>
     <string name="Display">Display</string>
     <string name="Battery">Battery</string>
+    <string name="Telephony">Telephony</string>
 
     <string name="Resolution">Resolution</string>
-    <string name="PixelAmount">Pixel amount</string>
     <string name="DPI">DPI</string>
     <string name="ScreenSize">Screen size</string>
     <string name="RefreshValue">Refresh value</string>
@@ -32,12 +31,12 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="Status">Status</string>
     <string name="Temperature">Temperature</string>
     <string name="Voltage">Voltage</string>
+
     <string name="Cold">Cold</string>
     <string name="Dead">Dead</string>
     <string name="Good">Good</string>
     <string name="OverVoltage">Over voltage</string>
     <string name="OverHeat">Over heat</string>
-    <string name="Unknown">Unknown</string>
 
     <string name="AndroidVersion">Android Version</string>
     <string name="APILevel"> API Level</string>
@@ -47,7 +46,6 @@ processor architecture, RAM available, GPU Model)</string>
 
     <string name="Model">Model</string>
     <string name="Manufacturer">Manufacturer</string>
-    <string name="IMEI">IMEI</string>
     <string name="RAM">RAM</string>
     <string name="InternalStorage">Internal Storage</string>
     <string name="ExternalStorage">External Storage</string>
@@ -60,6 +58,26 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="GPURenderer">GPU Renderer</string>
     <string name="OpenGLVersion">OpenGL Version</string>
 
+    <string name="DualSIM">Dual SIM</string>
+    <string name="IMEI">IMEI</string>
+    <!--<string name="Status">Status</string>-->
+    <string name="PhoneType">Phone type</string>
+    <string name="Operator">Operator</string>
+    <string name="PhoneNumber">Phone Number</string>
+    <string name="NetworkType">Network type</string>
+    <string name="SignalStrength">Signal strength</string>
+
+    <string name="Absent">SIM is Absent</string>
+    <string name="CardIOError">Card I/O Error</string>
+    <string name="CardRestricted">Card Restricted</string>
+    <string name="NetworkLocked">Network Locked</string>
+    <string name="NotReady">SIM isn\'t ready</string>
+    <string name="Ready">SIM is ready</string>
+    <string name="PermDisabled">Permanent Disabled</string>
+    <string name="PinRequired">Pin Required</string>
+    <string name="PukRequired">Puk Required</string>
+
     <string name="NotMounted">Not mounted</string>
     <string name="NotAvailable">Not available. xD</string>
+    <string name="Unknown">Unknown</string>
 </resources>
