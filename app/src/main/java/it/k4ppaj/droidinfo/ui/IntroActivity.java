@@ -35,7 +35,7 @@ public class IntroActivity extends AppIntro {
 
         addSlide(AppIntroFragment.newInstance(getResources().getString(R.string.FourthIntroTitle), stringFontType, getResources().getString(R.string.FourthIntroDescription), stringFontType, R.drawable.ic_developer_mode_white_24dp, getResources().getColor(intColorBG)));
 
-        askForPermissions(new String[] { Manifest.permission.READ_PHONE_STATE }, 4);
+        askForPermissions(new String[] { Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_COARSE_LOCATION }, 4);
 
         setBarColor(getResources().getColor(R.color.colorPrimaryDark));
 

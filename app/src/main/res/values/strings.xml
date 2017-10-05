@@ -30,13 +30,26 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="PowerSource">Power source</string>
     <string name="Status">Status</string>
     <string name="Temperature">Temperature</string>
+    <string name="Technology">Technology</string>
     <string name="Voltage">Voltage</string>
+    <string name="Capacity">Capacity</string>
 
     <string name="Cold">Cold</string>
     <string name="Dead">Dead</string>
     <string name="Good">Good</string>
     <string name="OverVoltage">Over voltage</string>
     <string name="OverHeat">Over heat</string>
+    <string name="UnspecifiedFailure">Unspecified failure</string>
+
+    <string name="Charging">Charging</string>
+    <string name="Discharging">Discharging</string>
+    <string name="Full">Full</string>
+    <string name="NotCharging">Not charging</string>
+
+    <string name="Wireless">Wireless Charging</string>
+    <string name="USB">USB Source</string>
+    <string name="AC">AC Power Source</string>
+    <string name="Disconnected">Disconnected</string>
 
     <string name="AndroidVersion">Android Version</string>
     <string name="APILevel"> API Level</string>
@@ -77,7 +90,9 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="PinRequired">Pin Required</string>
     <string name="PukRequired">Puk Required</string>
 
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
     <string name="NotMounted">Not mounted</string>
-    <string name="NotAvailable">Not available. xD</string>
+    <string name="NotPresent">Not present</string>
     <string name="Unknown">Unknown</string>
 </resources>

@@ -2,6 +2,7 @@ package it.k4ppaj.droidinfo.fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.BatteryManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,6 +18,15 @@ import it.k4ppaj.droidinfo.adapter.ClassicAdapter;
 public class BatteryFragment extends Fragment {
 
     private Activity context;
+
+    private String BATTERY_HEALTH = "BATTERY_HEALTH";
+    private String BATTERY_PERCENTAGE = "BATTERY_PERCENTAGE";
+    private String BATTERY_POWER_SOURCE = "BATTERY_PLUGGED_SOURCE";
+    private String BATTERY_STATUS = "BATTERY_STATUS";
+    private String BATTERY_TEMPERATURE = "BATTERY_TEMPERATURE";
+    private String BATTERY_TECHNOLOGY = "BATTERY_TECHNOLOGY";
+    private String BATTERY_VOLTAGE = "BATTERY_VOLTAGE";
+    private String BATTERY_CAPACITY = "BATTERY_CAPACITY";
 
     public BatteryFragment() {
     }
@@ -36,8 +46,9 @@ public class BatteryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View layoutView = inflater.inflate(R.layout.fragment_battery, container, false);
+        ListView listViewBattery = (ListView) layoutView.findViewById(R.id.listViewBattery);
 
-        //ListView listViewBattery = (ListView) layoutView.findViewById(R.id.listViewBattery);
+        SharedPreferences sharedPreferences = context.getSharedPreferences("DroidInfo", Context.MODE_PRIVATE);
 
         String[] stringInformation = new String[] {
                 getString(R.string.Health),
@@ -45,15 +56,24 @@ public class BatteryFragment extends Fragment {
                 getString(R.string.PowerSource),
                 getString(R.string.Status),
                 getString(R.string.Temperature),
-                getString(R.string.Voltage)
+                getString(R.string.Technology),
+                getString(R.string.Voltage),
+                getString(R.string.Capacity)
         };
 
-        /*String[] stringValues = new String[] {
+        String[] stringValues = new String[] {
+                sharedPreferences.getString(BATTERY_HEALTH, ""),
+                sharedPreferences.getString(BATTERY_PERCENTAGE, ""),
+                sharedPreferences.getString(BATTERY_POWER_SOURCE, ""),
+                sharedPreferences.getString(BATTERY_STATUS, ""),
+                sharedPreferences.getString(BATTERY_TEMPERATURE, ""),
+                sharedPreferences.getString(BATTERY_TECHNOLOGY, ""),
+                sharedPreferences.getString(BATTERY_VOLTAGE, ""),
+                sharedPreferences.getString(BATTERY_CAPACITY, "")
+        };
 
-        };*/
-
-        //ClassicAdapter adapter = new ClassicAdapter(context, stringInformation, stringValues);
-        //listViewBattery.setAdapter(adapter);
+        ClassicAdapter adapter = new ClassicAdapter(context, stringInformation, stringValues);
+        listViewBattery.setAdapter(adapter);
         return layoutView;
     }
 

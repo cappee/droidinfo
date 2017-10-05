@@ -50,6 +50,10 @@ public class AndroidHelper {
         switch (arch) {
             case "armv7l":
                 return "ARMv7l";
+            case "aarch64": // 64 bit (Arch?)
+                return "Arch64";
+            case "32":
+                return "Unknown arch wtf u use xD";
             default:
                 return arch;
         }

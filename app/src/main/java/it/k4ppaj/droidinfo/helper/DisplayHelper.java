@@ -3,6 +3,8 @@ package it.k4ppaj.droidinfo.helper;
 import android.app.Activity;
 import android.content.Context;
 import java.text.DecimalFormat;
+
+import android.graphics.Point;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
@@ -12,12 +14,12 @@ import java.util.Locale;
 public class DisplayHelper {
 
     public static String getResolution(Activity context) {
-        DisplayMetrics metrics = new DisplayMetrics();
-        context.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        int height = metrics.heightPixels;
-        int width = metrics.widthPixels;
-        String stringResolution = width + "x" + height;
-        return stringResolution;
+        Display display = context.getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getRealSize(size);
+        int screenWidth = size.x;
+        int screenHeight = size.y;
+        return String.valueOf(screenWidth + "x" + screenHeight);
     }
 
     public static String getDPI(Activity context) {
@@ -27,10 +29,24 @@ public class DisplayHelper {
     }
 
     public static String getScreenSize(Activity context) {
-        DisplayMetrics dm = new DisplayMetrics();
-        context.getWindowManager().getDefaultDisplay().getMetrics(dm);
-        String screenSize = new DecimalFormat("##.##").format(Math.sqrt(Math.pow(dm.widthPixels / dm.xdpi, 2) + Math.pow(dm.heightPixels / dm.ydpi, 2)));
-        return String.valueOf(screenSize) + "\"";
+        int widthPixels = 0;
+        int heightPixels = 0;
+        WindowManager windowManager = context.getWindowManager();
+        Display display = windowManager.getDefaultDisplay();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        display.getMetrics(displayMetrics);
+        try {
+            Point realSize = new Point();
+            Display.class.getMethod("getRealSize", Point.class).invoke(display, realSize);
+            widthPixels = realSize.x;
+            heightPixels = realSize.y;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        double x = Math.pow(widthPixels / displayMetrics.xdpi, 2);
+        double y = Math.pow(heightPixels / displayMetrics.ydpi, 2);
+        double screenSize = Math.sqrt(x + y);
+        return String.format(Locale.ENGLISH, "%.2f", screenSize) + "\"";
     }
 
     public static String getRefreshValue(Activity context) {
