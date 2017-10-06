@@ -76,4 +76,6 @@
     <string name="Yes">Sì</string>
     <string name="DPI">Densità dei pixel</string>
     <string name="SoC">Hardware</string>
+    <string name="WorkInProgress">Questo è ancora sotto svilupo! xD</string>
+    <string name="Refresh">Aggiorna</string>
 </resources>

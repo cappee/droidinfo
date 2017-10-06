@@ -95,4 +95,6 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="NotMounted">Not mounted</string>
     <string name="NotPresent">Not present</string>
     <string name="Unknown">Unknown</string>
+    <string name="WorkInProgress">This is a work in progress! xD</string>
+    <string name="Refresh">Refresh</string>
 </resources>

@@ -1,5 +1,6 @@
 package it.k4ppaj.droidinfo.helper;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.provider.Telephony;
@@ -24,13 +25,18 @@ public class TelephonyHelper {
     public static String getDualSIM(Context context) {
         Activity activity = (Activity) context;
         DualSIMInfo dualSIMInfo = DualSIMInfo.getInstance(context);
-        if (dualSIMInfo.isDualSIM()) {
-            return activity.getString(R.string.Yes);
+        if (dualSIMInfo != null) {
+            if (dualSIMInfo.isDualSIM()) {
+                return activity.getString(R.string.Yes);
+            } else {
+                return activity.getString(R.string.No);
+            }
         } else {
             return activity.getString(R.string.No);
         }
     }
 
+    @SuppressLint("MissingPermission")
     public static String getIMEI(Activity context) {
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return telephonyManager.getDeviceId();

@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
     private String[] stringTitleToolbar = new String[] {};
 
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +41,12 @@ public class MainActivity extends AppCompatActivity {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarMain);
         setSupportActionBar(toolbar);
 
-        stringTitleToolbar = new String[] { "Android", "SoC", getString(R.string.Device), getString(R.string.Display), getString(R.string.Battery), getString(R.string.Telephony) };
+        Window window = getWindow();
+        window.setNavigationBarColor(getResources().getColor(android.R.color.background_dark));
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        stringTitleToolbar = new String[] { "Android", getString(R.string.SoC), getString(R.string.Device), getString(R.string.Display), getString(R.string.Battery), getString(R.string.Telephony) };
+
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
         setupViewPager(viewPager);
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -57,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons(tabLayout);
     }
@@ -83,6 +91,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        // setupViewPager(viewPager);
+        // tabLayout.setupWithViewPager(viewPager);
+        super.onResume();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -97,9 +112,13 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.MenuBenchmark) {
+        if (id == R.id.MenuRefresh) {
+            Toast.makeText(MainActivity.this, R.string.WorkInProgress, Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.MenuBenchmark) {
+            Toast.makeText(MainActivity.this, R.string.WorkInProgress, Toast.LENGTH_SHORT).show();
             return true;
         } else if (id == R.id.MenuSettings) {
+            Toast.makeText(MainActivity.this, R.string.WorkInProgress, Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -133,7 +152,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             return null;
-            //return stringList.get(position);
+            //return stringList.get(position)
         }
+
     }
 }

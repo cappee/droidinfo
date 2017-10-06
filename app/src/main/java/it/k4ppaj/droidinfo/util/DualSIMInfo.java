@@ -1,5 +1,6 @@
 package it.k4ppaj.droidinfo.util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.telephony.TelephonyManager;
 
@@ -31,15 +32,33 @@ public final class DualSIMInfo {
 
     public boolean isDualSIM() {
         return isSIM2Ready;
-    }
+     }
 
     public DualSIMInfo() {
     }
 
+    @SuppressLint("MissingPermission")
     public static DualSIMInfo getInstance(Context context) {
         if (dualSIMInfo == null) {
             dualSIMInfo = new DualSIMInfo();
             TelephonyManager telephonyManager = ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE));
+            dualSIMInfo.isSIM1Ready = telephonyManager.getSimState() == TelephonyManager.SIM_STATE_READY;
+            dualSIMInfo.isSIM2Ready = false;
+
+            try {
+                dualSIMInfo.isSIM1Ready = getSIMStateBySlot(context, "getSimStateGemini", 0);
+                dualSIMInfo.isSIM2Ready = getSIMStateBySlot(context, "getSimStateGemini", 1);
+            } catch (GeminiMethodNotFoundException e) {
+                e.printStackTrace();
+
+                try {
+                    dualSIMInfo.isSIM1Ready = getSIMStateBySlot(context, "getSimState", 0);
+                    dualSIMInfo.isSIM2Ready = getSIMStateBySlot(context, "getSimState", 1);
+                } catch (GeminiMethodNotFoundException e1) {
+                    e1.printStackTrace();
+                }
+            }
+
             dualSIMInfo.imeiSIM1 = telephonyManager.getDeviceId();
             dualSIMInfo.imeiSIM2 = null;
 
@@ -52,23 +71,6 @@ public final class DualSIMInfo {
                 try {
                     dualSIMInfo.imeiSIM1 = getDeviceIdBySlot(context, "getDeviceId", 0);
                     dualSIMInfo.imeiSIM2 = getDeviceIdBySlot(context, "getDeviceId", 1);
-                } catch (GeminiMethodNotFoundException e1) {
-                    e1.printStackTrace();
-                }
-            }
-
-            dualSIMInfo.isSIM1Ready = telephonyManager.getSimState() == TelephonyManager.SIM_STATE_READY;
-            dualSIMInfo.isSIM2Ready = false;
-
-            try {
-                dualSIMInfo.isSIM1Ready = getSIMStateBySlot(context, "getSimStateGemini", 0);
-                dualSIMInfo.isSIM2Ready = getSIMStateBySlot(context, "getSimStateGemini", 1);
-            } catch (GeminiMethodNotFoundException e) {
-                e.printStackTrace();
-
-                try {
-                    dualSIMInfo.isSIM1Ready = getSIMStateBySlot(context, "getSimState", 0);
-                    dualSIMInfo.isSIM2Ready = getSIMStateBySlot(context, "getSImState", 1);
                 } catch (GeminiMethodNotFoundException e1) {
                     e1.printStackTrace();
                 }

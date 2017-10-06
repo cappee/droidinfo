@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DroidInfo.iml" filepath="$PROJECT_DIR$/DroidInfo.iml" />
+      <module fileurl="file://D:\External Documents\StudioProjects\DroidInfo\DroidInfo.iml" filepath="D:\External Documents\StudioProjects\DroidInfo\DroidInfo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\External Documents\StudioProjects\DroidInfo\app\app.iml" filepath="D:\External Documents\StudioProjects\DroidInfo\app\app.iml" />
     </modules>
   </component>
 </project>

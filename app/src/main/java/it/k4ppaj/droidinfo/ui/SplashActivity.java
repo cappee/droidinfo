@@ -118,4 +118,10 @@ public class SplashActivity extends AppCompatActivity implements GLSurfaceView.R
                     .apply();
         }
     };
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(batteryInfoReceiver);
+    }
 }
