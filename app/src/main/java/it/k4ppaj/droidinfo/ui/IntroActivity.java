@@ -28,7 +28,7 @@ public class IntroActivity extends AppIntro {
 
         String stringFontType = "Roboto/Roboto-Regular.ttf";
 
-        //Use this: getResources().getColor(intColorChoose)
+        // Use this: getResources().getColor(intColorChoose)
         int intColorBG = R.color.colorPrimaryDark;
 
         addSlide(AppIntroFragment.newInstance(getResources().getString(R.string.AppName), stringFontType, getResources().getString(R.string.FirstIntroDescription), stringFontType, R.drawable.ic_smartphone_white_24dp, getResources().getColor(intColorBG)));

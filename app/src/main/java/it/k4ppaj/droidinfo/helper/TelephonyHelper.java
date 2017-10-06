@@ -99,8 +99,7 @@ public class TelephonyHelper {
         TelephonyManager telephonyManager = (TelephonyManager) activity.getSystemService(Context.TELEPHONY_SERVICE);
         String phoneNumber = telephonyManager.getLine1Number();
         if (!phoneNumber.equals("")) return phoneNumber;
-        else activity.getString(R.string.Unknown);
-        return activity.getString(R.string.Unknown);
+        else activity.getString(R.string.Unknown); return activity.getString(R.string.Unknown);
     }
 
     public static String getNetworkType(Activity activity) {

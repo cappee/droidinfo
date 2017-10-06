@@ -57,16 +57,32 @@ public class TelephonyFragment extends Fragment {
                 //getString(R.string.SignalStrength)
         };
 
-        String[] stringValues = new String[] {
-                TelephonyHelper.getDualSIM(context),
-                TelephonyHelper.getIMEI(activity),
-                TelephonyHelper.getStatus(activity),
-                TelephonyHelper.getPhoneType(activity),
-                TelephonyHelper.getOperator(context),
-                TelephonyHelper.getPhoneNumber(activity),
-                TelephonyHelper.getNetworkType(activity),
-                //TelephonyHelper.getSisgnalStength(activity)
-        };
+        /* Late init - P4ndaJ */
+        String[] stringValues;
+
+        if (TelephonyHelper.getStatus(activity).equals(activity.getString(R.string.Absent))) {
+            stringValues = new String[] {
+                    TelephonyHelper.getDualSIM(context),
+                    TelephonyHelper.getIMEI(activity),
+                    TelephonyHelper.getStatus(activity),
+                    getString(R.string.Unknown),
+                    getString(R.string.Unknown),
+                    getString(R.string.Unknown),
+                    getString(R.string.Unknown),
+                    //TelephonyHelper.getSisgnalStength(activity)
+            };
+        } else {
+            stringValues = new String[]{
+                    TelephonyHelper.getDualSIM(context),
+                    TelephonyHelper.getIMEI(activity),
+                    TelephonyHelper.getStatus(activity),
+                    TelephonyHelper.getPhoneType(activity),
+                    TelephonyHelper.getOperator(context),
+                    TelephonyHelper.getPhoneNumber(activity),
+                    TelephonyHelper.getNetworkType(activity),
+                    //TelephonyHelper.getSisgnalStength(activity)
+            };
+        }
 
         ClassicAdapter classicAdapter = new ClassicAdapter(activity, stringInformation, stringValues);
         listView.setAdapter(classicAdapter);
