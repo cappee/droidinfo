@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/k4ppaj/DroidInfo.svg)](https://travis-ci.org/Glucosio/glucosio-android)
+[![Build Status](https://travis-ci.com/k4ppaj/DroidInfo.svg)](https://travis-ci.com/k4ppaj/DroidInfo.svg)
 
 # DroidInfo
 
