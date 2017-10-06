@@ -25,7 +25,7 @@ public class DisplayHelper {
     public static String getDPI(Activity context) {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         int densityDPI = (int)(metrics.density * 160f);
-        return String.valueOf(densityDPI);
+        return String.valueOf(densityDPI) + " dpi";
     }
 
     public static String getScreenSize(Activity context) {

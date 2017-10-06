@@ -53,7 +53,7 @@ public class DeviceFragment extends Fragment {
                 DeviceHelper.getRAM(),
                 DeviceHelper.getInternalStorage(),
                 DeviceHelper.getExternalStorage(context),
-                DeviceHelper.getRootAccess()
+                DeviceHelper.getRootAccess(context)
         };
 
         ClassicAdapter classicAdapter = new ClassicAdapter(context, stringInformation, stringValues);

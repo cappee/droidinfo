@@ -1,6 +1,6 @@
 <resources>
-    <string name="AppName">DroidInfo</string>
-    <string name="Benchmark">Benchmark</string>
+    <string name="AppName" translatable="false">DroidInfo</string>
+    <string name="Benchmark" translatable="false">Benchmark</string>
     <string name="Settings">Settings</string>
 
     <string name="Close">Close</string>
@@ -15,6 +15,7 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="FourthIntroTitle">Getting Permission</string>
     <string name="FourthIntroDescription">This app for work well need permission, please agree it.</string>
 
+    <string name="SoC">SoC</string>
     <string name="Device">Device</string>
     <string name="Display">Display</string>
     <string name="Battery">Battery</string>
@@ -52,14 +53,14 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="Disconnected">Disconnected</string>
 
     <string name="AndroidVersion">Android Version</string>
-    <string name="APILevel"> API Level</string>
+    <string name="APILevel">API Level</string>
     <string name="SecurityPatch">Security Patch</string>
     <string name="KernelVersion">Kernel Version</string>
     <string name="KernelArch">Kernel Arch</string>
 
     <string name="Model">Model</string>
     <string name="Manufacturer">Manufacturer</string>
-    <string name="RAM">RAM</string>
+    <string name="RAM" translatable="false">RAM</string>
     <string name="InternalStorage">Internal Storage</string>
     <string name="ExternalStorage">External Storage</string>
     <string name="RootAccess">Root Access</string>
@@ -72,13 +73,12 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="OpenGLVersion">OpenGL Version</string>
 
     <string name="DualSIM">Dual SIM</string>
-    <string name="IMEI">IMEI</string>
+    <string name="IMEI" translatable="false">IMEI</string>
     <!--<string name="Status">Status</string>-->
     <string name="PhoneType">Phone type</string>
     <string name="Operator">Operator</string>
     <string name="PhoneNumber">Phone Number</string>
     <string name="NetworkType">Network type</string>
-    <string name="SignalStrength">Signal strength</string>
 
     <string name="Absent">SIM is Absent</string>
     <string name="CardIOError">Card I/O Error</string>

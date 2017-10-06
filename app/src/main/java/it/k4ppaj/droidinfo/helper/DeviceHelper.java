@@ -123,12 +123,12 @@ public class DeviceHelper {
         }
     }
 
-    public static String getRootAccess() {
+    public static String getRootAccess(Activity context) {
         boolean isRooted = checkRootMethod1() || checkRootMethod2() || checkRootMethod3();
         if (isRooted) {
-            return "Yes";
+            return context.getString(R.string.Yes);
         } else {
-            return "No";
+            return context.getString(R.string.No);
         }
     }
 

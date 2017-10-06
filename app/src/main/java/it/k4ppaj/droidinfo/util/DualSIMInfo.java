@@ -30,7 +30,7 @@ public final class DualSIMInfo {
     }
 
     public boolean isDualSIM() {
-        return imeiSIM2 != null;
+        return isSIM2Ready;
     }
 
     public DualSIMInfo() {
@@ -76,7 +76,7 @@ public final class DualSIMInfo {
 
             return dualSIMInfo;
         } else {
-            return dualSIMInfo;
+            return null;
         }
     }
 
