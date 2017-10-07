@@ -4,4 +4,4 @@ A powerful and material design, phone status checker!
 
 ## Download Nightly!
 
-Use [this link](woodstockinc.github.io/DroidInfo/download.html) for download latest, (Highly unstable) apk!
+Use [this link](https://woodstockinc.github.io/DroidInfo/download.html) for download latest, (Highly unstable) apk!
