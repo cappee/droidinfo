@@ -14,7 +14,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
 
 
   # clone gh-pages branch
-  git clone --quiet --branch=master https://PusherWoodstock:$GH_TOKENgithub.com/k4ppaj/DroidInfo.git  master > /dev/null
+  git clone --quiet --branch=master https://github.com/k4ppaj/DroidInfo.git  master > /dev/null
 
   # go into directory and copy data we're interested
   cd master
