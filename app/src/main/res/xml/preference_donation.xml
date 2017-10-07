@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference
+        android:key="linkk4ppaj"
+        android:title="@string/Link"
+        android:summary="https://paypal.me/k4ppaj" />
+    <Preference
+        android:key="linkSimonePandolfi"
+        android:title="@string/Link"
+        android:summary="https://paypal.me/SimonePandolfi" />
+    </PreferenceScreen>

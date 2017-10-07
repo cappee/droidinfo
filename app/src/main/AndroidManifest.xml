@@ -3,32 +3,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="it.k4ppaj.droidinfo">
 
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
-        tools:replace="android:label"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/AppName"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".ui.MainActivity"
+        android:theme="@style/AppTheme"
+        tools:replace="android:label">
+        <activity
+            android:name=".ui.MainActivity"
             android:label="@string/AppName"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait" />
-        <activity android:name=".ui.SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.IntroActivity"
+        <activity
+            android:name=".ui.IntroActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.SettingsActivity" />
+        <activity
+            android:name=".ui.SettingsActivity$GeneralPreferenceFragment"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.SettingsActivity$DonationPreferenceFragment"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.SettingsActivity$InfoPreferenceFragment"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
