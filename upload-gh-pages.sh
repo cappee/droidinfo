@@ -17,6 +17,8 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
 
   # go into directory and copy data we're interested
   cd master
+  rm -rf docs/apk
+  mkdir docs/apk
   cp -Rf $HOME/android/* docs/apk/app-debug.apk
 
   # add, commit and push files
