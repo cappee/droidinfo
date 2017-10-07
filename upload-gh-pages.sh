@@ -22,6 +22,13 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   cp -Rf $HOME/android/* docs/apk/app-debug.apk
 
   # add, commit and push files
+  string=git log -1
+    
+    if [[ $string == *"PusherWoodstock"* ]]; then
+      echo -e "All Apk's are up to date!\n"
+      exit 0
+    fi
+     
   git add -f .
   git remote rm origin
   git remote add origin https://PusherWoodstock:$GH_TOKEN@github.com/k4ppaj/DroidInfo.git
@@ -29,5 +36,5 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages!"
   git push -fq origin master > /dev/null
 
-  echo -e "All Apk's are up to date!\n"
+  echo -e "Update Apk!\n"
 fi
