@@ -12,7 +12,6 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   git config --global user.email    "fuck.soc@protonmail.com"
   git config --global user.name     "PusherWoodstock"
 
-
   # clone gh-pages branch
   git clone --quiet --branch=master https://PusherWoodstock:$GH_TOKEN@github.com/k4ppaj/DroidInfo.git  master > /dev/null
 
