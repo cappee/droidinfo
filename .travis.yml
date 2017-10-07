@@ -26,6 +26,8 @@ script:
  - cd $TRAVIS_BUILD_DIR/
  - chmod +x gradlew 
  - ./gradlew testDebugUnitTest assembleDebug 
+ - chmod +x ./upload-gh-pages.sh
+ - ./upload-gh-pages.sh
 
 notifications:
   slack: woodstockinc:IwQvvRPS5KTN1TS3T6fNLfce
