@@ -2,14 +2,6 @@
 
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
 
-  # Check if latest commit was done by PusherWoodstock
-  string=$(git log -1)
-    
-  if [[ $string == *"PusherWoodstock"* ]]; then
-    echo -e "All Apk's are up to date!\n"
-    exit 0
-  fi
-
   echo -e "Starting to update gh-pages\n"
 
   mkdir $HOME/android/
@@ -31,6 +23,14 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   cp -Rf $HOME/android/* docs/apk/app-debug.apk
 
   # add, commit and push files
+
+  # Check if latest commit was done by PusherWoodstock
+  string=$(git log -1)
+    
+  if [[ $string == *"PusherWoodstock"* ]]; then
+    echo -e "All Apk's are up to date!\n"
+    exit 0
+  fi
   
   git add -f .
   git remote rm origin
