@@ -150,8 +150,7 @@ public class DeviceHelper {
         try {
             process = Runtime.getRuntime().exec(new String[] {"/system/xbin/which", "su"});
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            if (bufferedReader.readLine() != null) return true;
-            return false;
+            return bufferedReader.readLine() != null;
         } catch (Throwable t) {
             return false;
         } finally {

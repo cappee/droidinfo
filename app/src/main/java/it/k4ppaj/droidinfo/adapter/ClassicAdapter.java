@@ -32,8 +32,8 @@ public class ClassicAdapter extends ArrayAdapter<String> {
         LayoutInflater layoutInflater = context.getLayoutInflater();
         View itemView = layoutInflater.inflate(R.layout.layout_listview, null, true);
 
-        TextView textViewInformation = (TextView) itemView.findViewById(R.id.textViewListInformation);
-        TextView textViewValues = (TextView) itemView.findViewById(R.id.textViewListValues);
+        TextView textViewInformation = itemView.findViewById(R.id.textViewListInformation);
+        TextView textViewValues = itemView.findViewById(R.id.textViewListValues);
 
         textViewInformation.setText(stringInformation[position]);
         textViewValues.setText(stringValues[position]);
