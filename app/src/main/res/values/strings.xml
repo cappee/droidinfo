@@ -97,4 +97,12 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="Unknown">Unknown</string>
     <string name="WorkInProgress">This is a work in progress! xD</string>
     <string name="Refresh">Refresh</string>
+    <string name="General">General</string>
+    <string name="AppNameSettings">Settings</string>
+    <string name="Information">Information</string>
+    <string name="Author">Author</string>
+    <string name="Collaborators">Collaborators</string>
+    <string name="Version">Version</string>
+    <string name="Donation">Donation</string>
+    <string name="Link" translatable="false">Link</string>
 </resources>

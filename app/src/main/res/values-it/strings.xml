@@ -78,4 +78,11 @@
     <string name="SoC">Hardware</string>
     <string name="WorkInProgress">Questo è ancora sotto svilupo! xD</string>
     <string name="Refresh">Aggiorna</string>
+    <string name="General">Generale</string>
+    <string name="AppNameSettings">Impostazioni</string>
+    <string name="Information">Informazioni</string>
+    <string name="Author">Autore</string>
+    <string name="Collaborators">Collaboratori</string>
+    <string name="Version">Versione</string>
+    <string name="Donation">Donazione</string>
 </resources>

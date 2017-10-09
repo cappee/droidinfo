@@ -120,6 +120,7 @@ public class BatteryHelper {
     }
 
     public static String getCapacity(Context context) {
+        Activity activity = (Activity) context;
         Object powerProfile_ = null;
 
         final String POWER_PROFILE_CLASS = "com.android.internal.os.PowerProfile";
@@ -137,7 +138,12 @@ public class BatteryHelper {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return String.valueOf(batteryCapacity) + " mAh";
+        System.out.println(batteryCapacity);
+        if (batteryCapacity == 1000.0) {
+            return activity.getString(R.string.Unknown);
+        } else {
+            return String.valueOf(batteryCapacity) + " mAh";
+        }
     }
 
 }

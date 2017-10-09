@@ -1,5 +1,6 @@
 package it.k4ppaj.droidinfo.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -118,7 +119,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, R.string.WorkInProgress, Toast.LENGTH_SHORT).show();
             return true;
         } else if (id == R.id.MenuSettings) {
-            Toast.makeText(MainActivity.this, R.string.WorkInProgress, Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+            finish();
             return true;
         }
 
