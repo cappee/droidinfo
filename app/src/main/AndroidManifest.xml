@@ -44,6 +44,9 @@
         <activity
             android:name=".ui.SettingsActivity$InfoPreferenceFragment"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.SettingsActivity$DebugPreferenceFragment"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

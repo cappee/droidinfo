@@ -7,7 +7,7 @@ import android.support.annotation.RequiresApi;
 
 public class AndroidHelper {
 
-    public static String getAndroidVersion(Activity context) {
+    public static String getAndroidVersion() {
         String versionName = "";
         switch (Build.VERSION.SDK_INT) {
             case 21:

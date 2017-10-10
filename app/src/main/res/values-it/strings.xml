@@ -25,7 +25,7 @@
     <string name="FirstIntroDescription">Benvenuto in DroidInfo, segui questo tutorial per conoscere meglio quest\'applicazione!</string>
     <string name="FourthIntroDescription">Per lavorare bene questa applicazione ha bisogno dei permessi, per favore aggiungili.</string>
     <string name="FourthIntroTitle">Dare i permessi</string>
-    <string name="Full">Completata</string>
+    <string name="Full">Carico, stacca l\'alimentazione</string>
     <string name="GPURenderer">Modello della GPU</string>
     <string name="GPUVendor">Produttore della GPU</string>
     <string name="Good">Buona</string>
@@ -85,4 +85,8 @@
     <string name="Collaborators">Collaboratori</string>
     <string name="Version">Versione</string>
     <string name="Donation">Donazione</string>
+    <string name="DefaultInformation">Usa informazioni di default</string>
+    <string name="DefaultInformationOn">Usa informazioni prefissate</string>
+    <string name="DefaultInformationOff">Usa le vere informazioni del dispositivo</string>
+    <string name="UnlockDebug">Sblocca le opzioni di Debug</string>
 </resources>

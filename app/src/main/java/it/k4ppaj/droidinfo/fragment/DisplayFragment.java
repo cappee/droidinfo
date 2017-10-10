@@ -18,8 +18,12 @@ import it.k4ppaj.droidinfo.helper.DisplayHelper;
 public class DisplayFragment extends Fragment {
 
     private Activity activity;
+
     private String SCREEN_INCHES = "SCREEN_INCHES";
     private String RESOLUTION = "RESOLUTION";
+
+    private String USE_DEFAULT_INFORMATION = "USE_DEFAULT_INFORMATION";
+
 
     public DisplayFragment() {
     }
@@ -39,22 +43,43 @@ public class DisplayFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View layoutView = inflater.inflate(R.layout.fragment_display, container, false);
-        ListView listView = layoutView.findViewById(R.id.listViewDisplay);
 
         SharedPreferences sharedPreferences = activity.getSharedPreferences("DroidInfo", Context.MODE_PRIVATE);
 
-        String[] stringInformation = new String[] {
-                getString(R.string.Resolution),
-                getString(R.string.DPI),
-                getString(R.string.ScreenSize),
-                getString(R.string.RefreshValue)
-        };
-        String[] stringValues = new String[] {
-                sharedPreferences.getString(RESOLUTION, getString(R.string.Unknown)),
-                DisplayHelper.getDPI(activity),
-                sharedPreferences.getString(SCREEN_INCHES, getString(R.string.Unknown)),
-                DisplayHelper.getRefreshValue(activity)
-        };
+        ListView listView = layoutView.findViewById(R.id.listViewDisplay);
+
+        String[] stringInformation;
+        String[] stringValues;
+
+        if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
+            stringInformation = new String[] {
+                    getString(R.string.Resolution),
+                    getString(R.string.DPI),
+                    getString(R.string.ScreenSize),
+                    getString(R.string.RefreshValue)
+            };
+            stringValues = new String[] {
+                    sharedPreferences.getString(RESOLUTION, getString(R.string.Unknown)),
+                    DisplayHelper.getDPI(activity),
+                    sharedPreferences.getString(SCREEN_INCHES, getString(R.string.Unknown)),
+                    DisplayHelper.getRefreshValue(activity)
+            };
+        } else {
+            stringInformation = new String[] {
+                    getString(R.string.Resolution),
+                    getString(R.string.DPI),
+                    getString(R.string.ScreenSize),
+                    getString(R.string.RefreshValue)
+            };
+            stringValues = new String[] {
+                    "1440x2880",
+                    "538 dpi",
+                    "6.00\"",
+                    "60Hz"
+            };
+        }
+
+
 
         ClassicAdapter adapter = new ClassicAdapter(activity, stringInformation, stringValues);
         listView.setAdapter(adapter);

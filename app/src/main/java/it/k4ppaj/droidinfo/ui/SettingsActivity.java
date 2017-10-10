@@ -1,8 +1,10 @@
 package it.k4ppaj.droidinfo.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.preference.Preference;
+import android.preference.SwitchPreference;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,7 +27,8 @@ public class SettingsActivity extends AppCompatActivity {
     int[] intHeadersIcon = new int[] {
             R.drawable.ic_settings_black_24dp,
             R.drawable.ic_attach_money_black_24dp,
-            R.drawable.ic_info_black_24dp
+            R.drawable.ic_info_black_24dp,
+            R.drawable.ic_bug_report_black_24dp
     };
 
     @Override
@@ -45,7 +48,8 @@ public class SettingsActivity extends AppCompatActivity {
         stringHeadersTitle = new String[] {
                 getString(R.string.General),
                 getString(R.string.Donation),
-                getString(R.string.Information)
+                getString(R.string.Information),
+                getString(R.string.Debug)
         };
 
         ListView listView = (ListView) findViewById(R.id.listViewSettings);
@@ -69,9 +73,20 @@ public class SettingsActivity extends AppCompatActivity {
                         startActivity(new Intent(SettingsActivity.this, InfoPreferenceFragment.class));
                         finish();
                         break;
+                    case 3:
+                        startActivity(new Intent(SettingsActivity.this, DebugPreferenceFragment.class));
+                        finish();
+                        break;
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(SettingsActivity.this, MainActivity.class));
+        finish();
+        super.onBackPressed();
     }
 
     public static class GeneralPreferenceFragment extends PreferenceActivity {
@@ -200,6 +215,62 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(new Intent(InfoPreferenceFragment.this, SettingsActivity.class));
             finish();
             super.onBackPressed();
+        }
+    }
+
+    public static class DebugPreferenceFragment extends PreferenceActivity {
+
+        private String USE_DEFAULT_INFORMATION = "USE_DEFAULT_INFORMATION";
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.preference_debug);
+
+            final SharedPreferences sharedPreferences = getSharedPreferences("DroidInfo", MODE_PRIVATE);
+
+            final SwitchPreference switchPreferenceDefaultInformation = (SwitchPreference) findPreference("preferenceDefaultInformation");
+            Preference preferenceUnlockDebug = findPreference("preferenceUnlockDebug");
+
+            switchPreferenceDefaultInformation.setChecked(sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false));
+
+            preferenceUnlockDebug.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    //TODO: Add dialog for insert PIN
+                    switchPreferenceDefaultInformation.setEnabled(true);
+                    return false;
+                }
+            });
+
+            switchPreferenceDefaultInformation.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    sharedPreferences
+                            .edit()
+                            .putBoolean(USE_DEFAULT_INFORMATION, switchPreferenceDefaultInformation.isChecked())
+                            .apply();
+                    return false;
+                }
+            });
+        }
+
+        @Override
+        protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+            super.onPostCreate(savedInstanceState);
+
+            LinearLayout root = (LinearLayout)findViewById(android.R.id.list).getParent().getParent().getParent();
+            Toolbar bar = (Toolbar) LayoutInflater.from(this).inflate(R.layout.layout_toolbar, root, false);
+            bar.setTitle(R.string.Debug);
+            root.addView(bar, 0);
+            bar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intentBack = new Intent(DebugPreferenceFragment.this, SettingsActivity.class);
+                    startActivity(intentBack);
+                    finish();
+                }
+            });
         }
     }
 }

@@ -1,6 +1,8 @@
 package it.k4ppaj.droidinfo.fragment;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -18,6 +20,8 @@ import it.k4ppaj.droidinfo.helper.DeviceHelper;
 public class AndroidFragment extends Fragment {
 
     private Activity context;
+
+    private String USE_DEFAULT_INFORMATION = "USE_DEFAULT_INFORMATION";
 
     public AndroidFragment() {
     }
@@ -39,27 +43,45 @@ public class AndroidFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View layoutView = inflater.inflate(R.layout.fragment_android, container, false);
 
+        SharedPreferences sharedPreferences = context.getSharedPreferences("DroidInfo", Context.MODE_PRIVATE);
+
         ListView listView = layoutView.findViewById(R.id.listViewAndroid);
 
         String[] stringInformation;
         String[] stringValues;
 
-        if (Build.VERSION.SDK_INT >= 23) {
-            stringInformation = new String[] {
-                    getString(R.string.AndroidVersion),
-                    getString(R.string.APILevel),
-                    getString(R.string.SecurityPatch),
-                    getString(R.string.KernelVersion),
-                    getString(R.string.KernelArch)
-            };
+        if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
+            if (Build.VERSION.SDK_INT >= 23) {
+                stringInformation = new String[] {
+                        getString(R.string.AndroidVersion),
+                        getString(R.string.APILevel),
+                        getString(R.string.SecurityPatch),
+                        getString(R.string.KernelVersion),
+                        getString(R.string.KernelArch)
+                };
 
-            stringValues = new String[] {
-                    AndroidHelper.getAndroidVersion(context),
-                    AndroidHelper.getAPILevel(),
-                    AndroidHelper.getSecurityPatch(),
-                    AndroidHelper.getKernelVersion(),
-                    AndroidHelper.getKernelArch()
-            };
+                stringValues = new String[] {
+                        AndroidHelper.getAndroidVersion(),
+                        AndroidHelper.getAPILevel(),
+                        AndroidHelper.getSecurityPatch(),
+                        AndroidHelper.getKernelVersion(),
+                        AndroidHelper.getKernelArch()
+                };
+            } else {
+                stringInformation = new String[] {
+                        getString(R.string.AndroidVersion),
+                        getString(R.string.APILevel),
+                        getString(R.string.KernelVersion),
+                        getString(R.string.KernelArch)
+                };
+
+                stringValues = new String[] {
+                        AndroidHelper.getAndroidVersion(),
+                        AndroidHelper.getAPILevel(),
+                        AndroidHelper.getKernelVersion(),
+                        AndroidHelper.getKernelArch()
+                };
+            }
         } else {
             stringInformation = new String[] {
                     getString(R.string.AndroidVersion),
@@ -69,10 +91,10 @@ public class AndroidFragment extends Fragment {
             };
 
             stringValues = new String[] {
-                    AndroidHelper.getAndroidVersion(context),
-                    AndroidHelper.getAPILevel(),
-                    AndroidHelper.getKernelVersion(),
-                    AndroidHelper.getKernelArch()
+                    "Oreo (8.0.1)",
+                    "26",
+                    "Linux 3.18.48+",
+                    "Arm64"
             };
         }
 

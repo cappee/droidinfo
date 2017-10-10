@@ -105,4 +105,9 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="Version">Version</string>
     <string name="Donation">Donation</string>
     <string name="Link" translatable="false">Link</string>
+    <string name="Debug" translatable="false">Debug</string>
+    <string name="DefaultInformation">Use default information</string>
+    <string name="DefaultInformationOn">Use pre-set information</string>
+    <string name="DefaultInformationOff">Use real device information</string>
+    <string name="UnlockDebug">Unlock Debug option</string>
 </resources>

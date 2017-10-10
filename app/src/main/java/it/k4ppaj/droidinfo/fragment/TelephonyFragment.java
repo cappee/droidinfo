@@ -20,6 +20,8 @@ public class TelephonyFragment extends Fragment {
     private Activity activity;
     private Context context;
 
+    private String USE_DEFAULT_INFORMATION = "USE_DEFAULT_INFORMATION";
+
     public TelephonyFragment() {
     }
 
@@ -46,7 +48,12 @@ public class TelephonyFragment extends Fragment {
         View layoutView = inflater.inflate(R.layout.fragment_telephony, container, false);
         ListView listView = layoutView.findViewById(R.id.listViewTelephony);
 
-        String[] stringInformation = new String[] {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("DroidInfo", Context.MODE_PRIVATE);
+
+        String[] stringInformation;
+        String[] stringValues;
+
+        stringInformation = new String[] {
                 getString(R.string.DualSIM),
                 getString(R.string.IMEI),
                 getString(R.string.Status),
@@ -57,30 +64,39 @@ public class TelephonyFragment extends Fragment {
                 //getString(R.string.SignalStrength)
         };
 
-        /* Late init - P4ndaJ */
-        String[] stringValues;
-
-        if (TelephonyHelper.getStatus(activity).equals(activity.getString(R.string.Absent))) {
-            stringValues = new String[] {
-                    TelephonyHelper.getDualSIM(context),
-                    TelephonyHelper.getIMEI(activity),
-                    TelephonyHelper.getStatus(activity),
-                    getString(R.string.Unknown),
-                    getString(R.string.Unknown),
-                    getString(R.string.Unknown),
-                    getString(R.string.Unknown),
-                    //TelephonyHelper.getSisgnalStength(activity)
-            };
+        if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
+            if (TelephonyHelper.getStatus(activity).equals(activity.getString(R.string.Absent))) {
+                stringValues = new String[] {
+                        TelephonyHelper.getDualSIM(context),
+                        TelephonyHelper.getIMEI(activity),
+                        TelephonyHelper.getStatus(activity),
+                        getString(R.string.Unknown),
+                        getString(R.string.Unknown),
+                        getString(R.string.Unknown),
+                        getString(R.string.Unknown),
+                        //TelephonyHelper.getSisgnalStength(activity)
+                };
+            } else {
+                stringValues = new String[]{
+                        TelephonyHelper.getDualSIM(context),
+                        TelephonyHelper.getIMEI(activity),
+                        TelephonyHelper.getStatus(activity),
+                        TelephonyHelper.getPhoneType(activity),
+                        TelephonyHelper.getOperator(context),
+                        TelephonyHelper.getPhoneNumber(activity),
+                        TelephonyHelper.getNetworkType(activity),
+                        //TelephonyHelper.getSisgnalStength(activity)
+                };
+            }
         } else {
-            stringValues = new String[]{
-                    TelephonyHelper.getDualSIM(context),
-                    TelephonyHelper.getIMEI(activity),
-                    TelephonyHelper.getStatus(activity),
-                    TelephonyHelper.getPhoneType(activity),
-                    TelephonyHelper.getOperator(context),
-                    TelephonyHelper.getPhoneNumber(activity),
-                    TelephonyHelper.getNetworkType(activity),
-                    //TelephonyHelper.getSisgnalStength(activity)
+            stringValues = new String[] {
+                    "No",
+                    getString(R.string.Unknown),
+                    getString(R.string.NotReady),
+                    "GSM",
+                    getString(R.string.Unknown),
+                    getString(R.string.Unknown),
+                    getString(R.string.Unknown)
             };
         }
 

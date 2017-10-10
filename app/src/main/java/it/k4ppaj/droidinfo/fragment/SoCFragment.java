@@ -21,8 +21,11 @@ public class SoCFragment extends Fragment {
 
     private Activity activity;
     private Context context;
+
     private String GPU_VENDOR = "GPU_VENDOR";
     private String GPU_RENDERER = "GPU_RENDERER";
+
+    private String USE_DEFAULT_INFORMATION = "USE_DEFAULT_INFORMATION";
 
     public SoCFragment() {
     }
@@ -48,27 +51,51 @@ public class SoCFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View layoutView = inflater.inflate(R.layout.fragment_soc, container, false);
-        ListView listView = layoutView.findViewById(R.id.listViewSoC);
 
         SharedPreferences sharedPreferences = activity.getSharedPreferences("DroidInfo", Context.MODE_PRIVATE);
 
-        String[] stringInformation = new String[] {
-                getString(R.string.CPUModel),
-                getString(R.string.CPUCores),
-                getString(R.string.CPUFreq),
-                getString(R.string.GPUVendor),
-                getString(R.string.GPURenderer),
-                getString(R.string.OpenGLVersion)
-        };
+        ListView listView = layoutView.findViewById(R.id.listViewSoC);
 
-        String[] stringValues = new String[] {
-                SoCHelper.getCPUModel(),
-                SoCHelper.getCPUCores(),
-                SoCHelper.getCPUFreq(),
-                sharedPreferences.getString(GPU_VENDOR, getString(R.string.Unknown)),
-                sharedPreferences.getString(GPU_RENDERER, getString(R.string.Unknown)),
-                SoCHelper.getOpenGLVersion(context)
-        };
+        String[] stringInformation;
+        String[] stringValues;
+
+        if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
+            stringInformation = new String[] {
+                    getString(R.string.CPUModel),
+                    getString(R.string.CPUCores),
+                    getString(R.string.CPUFreq),
+                    getString(R.string.GPUVendor),
+                    getString(R.string.GPURenderer),
+                    getString(R.string.OpenGLVersion)
+            };
+            stringValues = new String[] {
+                    SoCHelper.getCPUModel(),
+                    SoCHelper.getCPUCores(),
+                    SoCHelper.getCPUFreq(),
+                    sharedPreferences.getString(GPU_VENDOR, getString(R.string.Unknown)),
+                    sharedPreferences.getString(GPU_RENDERER, getString(R.string.Unknown)),
+                    SoCHelper.getOpenGLVersion(context)
+            };
+        } else {
+            stringInformation = new String[] {
+                    getString(R.string.CPUModel),
+                    getString(R.string.CPUCores),
+                    getString(R.string.CPUFreq),
+                    getString(R.string.GPUVendor),
+                    getString(R.string.GPURenderer),
+                    getString(R.string.OpenGLVersion)
+            };
+            stringValues = new String[] {
+                    "Qualcomm® Snapdragon™ 835",
+                    "8 cores",
+                    "1.9 - 2.35 Ghz",
+                    "Qualcomm®",
+                    "Adreno 540",
+                    getString(R.string.Unknown)
+            };
+        }
+
+
 
         ClassicAdapter classicAdapter = new ClassicAdapter(activity, stringInformation, stringValues);
         listView.setAdapter(classicAdapter);

@@ -1,6 +1,8 @@
 package it.k4ppaj.droidinfo.fragment;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,6 +18,8 @@ import it.k4ppaj.droidinfo.helper.DeviceHelper;
 public class DeviceFragment extends Fragment {
 
     private Activity context;
+
+    private String USE_DEFAULT_INFORMATION = "USE_DEFAULT_INFORMATION";
 
     public DeviceFragment() {
     }
@@ -36,25 +40,51 @@ public class DeviceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View layoutView = inflater.inflate(R.layout.fragment_device, container, false);
 
+        SharedPreferences sharedPreferences = context.getSharedPreferences("DroidInfo", Context.MODE_PRIVATE);
+
         ListView listView = layoutView.findViewById(R.id.listViewDevice);
 
-        String[] stringInformation = new String[] {
-                getString(R.string.Model),
-                getString(R.string.Manufacturer),
-                getString(R.string.RAM),
-                getString(R.string.InternalStorage),
-                getString(R.string.ExternalStorage),
-                getString(R.string.RootAccess)
-        };
+        String[] stringInformation;
+        String[] stringValues;
 
-        String[] stringValues = new String[] {
-                DeviceHelper.getModel(),
-                DeviceHelper.getManufacturer(),
-                DeviceHelper.getRAM(),
-                DeviceHelper.getInternalStorage(),
-                DeviceHelper.getExternalStorage(context),
-                DeviceHelper.getRootAccess(context)
-        };
+        if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
+            stringInformation = new String[] {
+                    getString(R.string.Model),
+                    getString(R.string.Manufacturer),
+                    getString(R.string.RAM),
+                    getString(R.string.InternalStorage),
+                    getString(R.string.ExternalStorage),
+                    getString(R.string.RootAccess)
+            };
+
+            stringValues = new String[] {
+                    DeviceHelper.getModel(),
+                    DeviceHelper.getManufacturer(),
+                    DeviceHelper.getRAM(),
+                    DeviceHelper.getInternalStorage(),
+                    DeviceHelper.getExternalStorage(context),
+                    DeviceHelper.getRootAccess(context)
+            };
+        } else {
+            stringInformation = new String[] {
+                    getString(R.string.Model),
+                    getString(R.string.Manufacturer),
+                    getString(R.string.RAM),
+                    getString(R.string.InternalStorage),
+                    getString(R.string.ExternalStorage),
+                    getString(R.string.RootAccess)
+            };
+            stringValues = new String[] {
+                    "Pixel 2 XL",
+                    "Google LLC",
+                    "4 GB",
+                    "64 GB",
+                    getString(R.string.NotMounted),
+                    getString(R.string.Yes)
+            };
+        }
+
+
 
         ClassicAdapter classicAdapter = new ClassicAdapter(context, stringInformation, stringValues);
         listView.setAdapter(classicAdapter);

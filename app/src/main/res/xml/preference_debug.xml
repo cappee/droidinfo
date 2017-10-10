@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference
+        android:key="preferenceUnlockDebug"
+        android:title="@string/UnlockDebug"/>
+    <SwitchPreference
+        android:enabled="false"
+        android:key="preferenceDefaultInformation"
+        android:title="@string/DefaultInformation"
+        android:summaryOff="@string/DefaultInformationOff"
+        android:summaryOn="@string/DefaultInformationOn"/>
+</PreferenceScreen>
