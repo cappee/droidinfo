@@ -89,4 +89,9 @@
     <string name="DefaultInformationOn">Usa informazioni prefissate</string>
     <string name="DefaultInformationOff">Usa le vere informazioni del dispositivo</string>
     <string name="UnlockDebug">Sblocca le opzioni di Debug</string>
+    <string name="UnlockDebugSummary">Inserisci il PIN per usare le opzioni di debug</string>
+    <string name="ChooseBenchmarkMode">Scegli la modalità del benckmark</string>
+    <string name="RunBenchmark">Comincia il benckmark</string>
+    <string name="Score">Punteggio</string>
+    <string name="InsertPIN">Inserisci il PIN</string>
 </resources>

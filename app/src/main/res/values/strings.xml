@@ -110,4 +110,9 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="DefaultInformationOn">Use pre-set information</string>
     <string name="DefaultInformationOff">Use real device information</string>
     <string name="UnlockDebug">Unlock Debug option</string>
+    <string name="UnlockDebugSummary">Enter PIN for use debug option</string>
+    <string name="ChooseBenchmarkMode">Choose benckmark mode</string>
+    <string name="RunBenchmark">Run benckmark</string>
+    <string name="Score">Score</string>
+    <string name="InsertPIN">Insert PIN</string>
 </resources>

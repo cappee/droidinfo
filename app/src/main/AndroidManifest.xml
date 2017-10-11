@@ -26,7 +26,6 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -34,7 +33,10 @@
             android:name=".ui.IntroActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.SettingsActivity" />
+            android:name=".ui.BenchmarkActivity"
+            android:label="@string/Benchmark"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.SettingsActivity" />
         <activity
             android:name=".ui.SettingsActivity$GeneralPreferenceFragment"
             android:theme="@style/AppTheme.NoActionBar" />

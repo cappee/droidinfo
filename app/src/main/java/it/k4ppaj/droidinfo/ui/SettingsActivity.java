@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.preference.Preference;
 import android.preference.SwitchPreference;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -271,6 +272,13 @@ public class SettingsActivity extends AppCompatActivity {
                     finish();
                 }
             });
+        }
+
+        @Override
+        public void onBackPressed() {
+            startActivity(new Intent(DebugPreferenceFragment.this, SettingsActivity.class));
+            finish();
+            super.onBackPressed();
         }
     }
 }
