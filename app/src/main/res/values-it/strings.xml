@@ -94,4 +94,9 @@
     <string name="RunBenchmark">Comincia il benckmark</string>
     <string name="Score">Punteggio</string>
     <string name="InsertPIN">Inserisci il PIN</string>
+    <string name="StartTestBeforeShare">Comincia il benchmark prima di condividerlo!</string>
+    <string name="Benchmarking">Eseguendo il benchmark</string>
+    <string name="TimeTaken">Tempo trascorso</string>
+    <string name="HashValue">Valore criptato</string>
+    <string name="Second">secondi</string>
 </resources>

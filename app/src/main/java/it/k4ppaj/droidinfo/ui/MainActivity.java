@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, R.string.WorkInProgress, Toast.LENGTH_SHORT).show();
         } else if (id == R.id.MenuBenchmark) {
             startActivity(new Intent(MainActivity.this, BenchmarkActivity.class));
+            finish();
             return true;
         } else if (id == R.id.MenuSettings) {
             startActivity(new Intent(MainActivity.this, SettingsActivity.class));

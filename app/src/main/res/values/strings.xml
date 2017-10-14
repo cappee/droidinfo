@@ -115,4 +115,11 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="RunBenchmark">Run benckmark</string>
     <string name="Score">Score</string>
     <string name="InsertPIN">Insert PIN</string>
+    <string name="CPUSHA1" translatable="false">CPU (SHA-256)</string>
+    <string name="GPUOpenGL" translatable="false">GPU (OpenGL)</string>
+    <string name="StartTestBeforeShare">Please, start benchmark before share it!</string>
+    <string name="Benchmarking">Running benchmark</string>
+    <string name="TimeTaken">Time taken</string>
+    <string name="HashValue">Hash value</string>
+    <string name="Second">second</string>
 </resources>
