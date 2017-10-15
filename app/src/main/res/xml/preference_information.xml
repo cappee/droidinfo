@@ -6,7 +6,7 @@
         android:summary="k4ppaj" />
     <Preference
         android:title="@string/Version"
-        android:summary="1.0 (Polonium)" />
+        android:summary="0.1 (Hydrogen)" />
     <Preference
         android:title="Package Name"
         android:summary="it.k4ppaj.droidinfo" />
