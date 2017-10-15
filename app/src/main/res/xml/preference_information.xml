@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <Preference
+        android:key="preferenceAuthor"
         android:title="@string/Author"
-        android:summary="• k4ppaj" />
+        android:summary="k4ppaj" />
     <Preference
-        android:title="@string/Collaborators"
-        android:summary="• P4ndaJ" />
+        android:title="@string/Version"
+        android:summary="1.0 (Polonium)" />
+    <Preference
+        android:title="Package Name"
+        android:summary="it.k4ppaj.droidinfo" />
+    <Preference
+        android:key="preferenceVoteApplication"
+        android:title="@string/VoteApplication" />
 </PreferenceScreen>

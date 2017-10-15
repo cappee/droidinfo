@@ -1,8 +1,11 @@
 package it.k4ppaj.droidinfo.ui;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.StrictMode;
+import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.SwitchPreference;
 import android.support.annotation.Nullable;
@@ -13,10 +16,24 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.preference.PreferenceActivity;
 import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.math.BigInteger;
+import java.net.URL;
+import java.net.URLConnection;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Scanner;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import it.k4ppaj.droidinfo.R;
 import it.k4ppaj.droidinfo.adapter.HeadersAdapter;
@@ -36,6 +53,10 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preference);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarSettings);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -94,7 +115,7 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.prefercence_general);
+            addPreferencesFromResource(R.xml.preference_general);
 
             // Bind the summaries of EditText/List/Dialog/Ringtone preferences
             // to their values. When their values change, their summaries are
@@ -135,20 +156,11 @@ public class SettingsActivity extends AppCompatActivity {
             addPreferencesFromResource(R.xml.preference_donation);
 
             Preference preferenceLinkk4ppaj = findPreference("linkk4ppaj");
-            Preference preferenceLinkSimonePandolfi = findPreference("linkSimonePandolfi");
 
             preferenceLinkk4ppaj.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.me/k4ppaj"));
-                    startActivity(browserIntent);
-                    return false;
-                }
-            });
-            preferenceLinkSimonePandolfi.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.me/SimonePandolfi"));
                     startActivity(browserIntent);
                     return false;
                 }
@@ -187,10 +199,53 @@ public class SettingsActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preference_information);
 
-            // Bind the summaries of EditText/List/Dialog/Ringtone preferences
-            // to their values. When their values change, their summaries are
-            // updated to reflect the new value, per the Android Design
-            // guidelines.
+            Preference preferenceAuthor = findPreference("preferenceAuthor");
+            Preference preferenceVoteApplication = findPreference("preferenceVoteApplication");
+
+            preferenceAuthor.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(InfoPreferenceFragment.this);
+                    builder.setMessage(R.string.OpenLinks);
+                    builder.setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/k4ppaj")));
+                        }
+                    });
+                    builder.setNegativeButton(R.string.No, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.show();
+                    return false;
+                }
+            });
+
+            preferenceVoteApplication.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(InfoPreferenceFragment.this);
+                    builder.setMessage(R.string.OpenLinks);
+                    builder.setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("")));
+                        }
+                    });
+                    builder.setNegativeButton(R.string.No, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    Toast.makeText(InfoPreferenceFragment.this, R.string.WorkInProgress, Toast.LENGTH_SHORT).show();
+                    //builder.show();
+                    return false;
+                }
+            });
         }
 
         @Override
@@ -222,6 +277,7 @@ public class SettingsActivity extends AppCompatActivity {
     public static class DebugPreferenceFragment extends PreferenceActivity {
 
         private String USE_DEFAULT_INFORMATION = "USE_DEFAULT_INFORMATION";
+        private boolean IS_UNLOCKED = false;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -238,8 +294,53 @@ public class SettingsActivity extends AppCompatActivity {
             preferenceUnlockDebug.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    //TODO: Add dialog for insert PIN
-                    switchPreferenceDefaultInformation.setEnabled(true);
+                    if (!IS_UNLOCKED) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(DebugPreferenceFragment.this);
+                        builder.setTitle(R.string.UnlockDebug);
+                        builder.setMessage(R.string.UnlockDebugSummary);
+                        View layoutView = getLayoutInflater().inflate(R.layout.layout_pin_dialog, null, true);
+                        final EditText editTextPIN = (EditText) layoutView.findViewById(R.id.editTextPIN);
+                        builder.setView(layoutView);
+                        builder.setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String SHA256Hash = "";
+                                try {
+                                    URL url = new URL("https://k4ppaj.github.io/DroidInfo/debug/pin.dinfo");
+                                    HttpsURLConnection httpsURLConnection = (HttpsURLConnection) url.openConnection();
+                                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpsURLConnection.getInputStream()));
+
+                                    String line = null;
+                                    while ((line = bufferedReader.readLine()) != null)
+                                        SHA256Hash = line;
+                                    bufferedReader.close();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                if (SHA256Hash.equals(computeSHAHash(editTextPIN.getText().toString()))) {
+                                    switchPreferenceDefaultInformation.setEnabled(true);
+                                    IS_UNLOCKED = true;
+                                    dialog.dismiss();
+                                } else {
+                                    Toast.makeText(DebugPreferenceFragment.this, R.string.PINIsIncorrect, Toast.LENGTH_SHORT).show();
+                                    switchPreferenceDefaultInformation.setEnabled(false);
+                                    IS_UNLOCKED = false;
+                                    dialog.dismiss();
+                                }
+                            }
+                        });
+                        builder.setNegativeButton(R.string.No, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        builder.show();
+                    } else {
+                        switchPreferenceDefaultInformation.setEnabled(false);
+                        IS_UNLOCKED = false;
+                        Toast.makeText(DebugPreferenceFragment.this, R.string.OptionsLocked, Toast.LENGTH_SHORT).show();
+                    }
                     return false;
                 }
             });
@@ -254,6 +355,21 @@ public class SettingsActivity extends AppCompatActivity {
                     return false;
                 }
             });
+        }
+
+        private String computeSHAHash(String password) {
+            MessageDigest messageDigest = null;
+            try {
+                messageDigest = MessageDigest.getInstance("SHA-256");
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
+            messageDigest.reset();
+            return bin2hex(messageDigest.digest(password.getBytes()));
+        }
+
+        private String bin2hex(byte[] data) {
+            return String.format("%0" + (data.length * 2) + "X", new BigInteger(1, data));
         }
 
         @Override

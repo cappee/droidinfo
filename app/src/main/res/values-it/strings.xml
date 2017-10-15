@@ -99,4 +99,8 @@
     <string name="TimeTaken">Tempo trascorso</string>
     <string name="HashValue">Valore criptato</string>
     <string name="Second">secondi</string>
+    <string name="PINIsIncorrect">Il PIN è sbagliato, riprova.</string>
+    <string name="OptionsLocked">Ora le opzioni sono bloccate.</string>
+    <string name="VoteApplication">Vota l\'applicazione nel PlayStore!</string>
+    <string name="OpenLinks">Vuoi aprire il link suggerito?</string>
 </resources>

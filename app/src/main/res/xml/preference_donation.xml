@@ -4,8 +4,4 @@
         android:key="linkk4ppaj"
         android:title="@string/Link"
         android:summary="https://paypal.me/k4ppaj" />
-    <Preference
-        android:key="linkSimonePandolfi"
-        android:title="@string/Link"
-        android:summary="https://paypal.me/SimonePandolfi" />
     </PreferenceScreen>

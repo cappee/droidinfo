@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <EditTextPreference
+    <Preference
         android:key="preferenceUnlockDebug"
-        android:summary="@string/UnlockDebugSummary"
-        android:inputType="numberPassword"
-        android:hint="@string/InsertPIN"
-        android:title="@string/UnlockDebug"/>
+        android:layout="@layout/layout_pin"/>
     <SwitchPreference
         android:enabled="false"
         android:key="preferenceDefaultInformation"
