@@ -24,6 +24,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
 
 import it.k4ppaj.droidinfo.R;
+import it.k4ppaj.droidinfo.adapter.BenchmarkAdapter;
 import it.k4ppaj.droidinfo.adapter.ClassicAdapter;
 
 public class BenchmarkActivity extends AppCompatActivity {
@@ -113,7 +114,7 @@ public class BenchmarkActivity extends AppCompatActivity {
                         score,
                         String.format(Locale.ENGLISH, "%.2f", timeTaken) + " " + getString(R.string.Second)
                 };
-                ClassicAdapter classicAdapter = new ClassicAdapter(BenchmarkActivity.this, stringInformation, stringValues);
+                BenchmarkAdapter classicAdapter = new BenchmarkAdapter(BenchmarkActivity.this, stringInformation, stringValues);
                 listView.setAdapter(classicAdapter);
                 IS_COMPLETED = true;
             }

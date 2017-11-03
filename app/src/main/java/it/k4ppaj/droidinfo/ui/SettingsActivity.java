@@ -232,7 +232,7 @@ public class SettingsActivity extends AppCompatActivity {
                     builder.setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("")));
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=it.k4ppaj.droidinfo")));
                         }
                     });
                     builder.setNegativeButton(R.string.No, new DialogInterface.OnClickListener() {
@@ -241,8 +241,7 @@ public class SettingsActivity extends AppCompatActivity {
                             dialog.dismiss();
                         }
                     });
-                    Toast.makeText(InfoPreferenceFragment.this, R.string.WorkInProgress, Toast.LENGTH_SHORT).show();
-                    //builder.show();
+                    builder.show();
                     return false;
                 }
             });

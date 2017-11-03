@@ -56,18 +56,25 @@ public class SoCFragment extends Fragment {
 
         ListView listView = layoutView.findViewById(R.id.listViewSoC);
 
-        String[] stringInformation;
+        String[] stringInformation = new String[] {
+                getString(R.string.CPUModel),
+                getString(R.string.CPUCores),
+                getString(R.string.CPUFreq),
+                getString(R.string.GPUVendor),
+                getString(R.string.GPURenderer),
+                getString(R.string.OpenGLVersion)
+        };
         String[] stringValues;
+        int[] intIcon = new int[] {
+                R.drawable.ic_memory_white_24dp,
+                R.drawable.ic_memory_white_24dp,
+                R.drawable.ic_memory_white_24dp,
+                R.drawable.ic_video_card_white_24dp,
+                R.drawable.ic_video_card_white_24dp,
+                R.drawable.ic_video_card_white_24dp
+        };
 
         if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
-            stringInformation = new String[] {
-                    getString(R.string.CPUModel),
-                    getString(R.string.CPUCores),
-                    getString(R.string.CPUFreq),
-                    getString(R.string.GPUVendor),
-                    getString(R.string.GPURenderer),
-                    getString(R.string.OpenGLVersion)
-            };
             stringValues = new String[] {
                     SoCHelper.getCPUModel(),
                     SoCHelper.getCPUCores(),
@@ -77,14 +84,6 @@ public class SoCFragment extends Fragment {
                     SoCHelper.getOpenGLVersion(context)
             };
         } else {
-            stringInformation = new String[] {
-                    getString(R.string.CPUModel),
-                    getString(R.string.CPUCores),
-                    getString(R.string.CPUFreq),
-                    getString(R.string.GPUVendor),
-                    getString(R.string.GPURenderer),
-                    getString(R.string.OpenGLVersion)
-            };
             stringValues = new String[] {
                     "Qualcomm® Snapdragon™ 835",
                     "8 cores",
@@ -97,7 +96,7 @@ public class SoCFragment extends Fragment {
 
 
 
-        ClassicAdapter classicAdapter = new ClassicAdapter(activity, stringInformation, stringValues);
+        ClassicAdapter classicAdapter = new ClassicAdapter(activity, stringInformation, stringValues, intIcon);
         listView.setAdapter(classicAdapter);
 
         return layoutView;

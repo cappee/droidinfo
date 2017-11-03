@@ -3,34 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="64dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:paddingLeft="12dp">
-
-        <ImageView
-            android:id="@+id/imageViewListIcon"
-            android:tint="#FFFFFF"
-            android:layout_width="24dp"
-            android:layout_height="24dp" />
-
-    </LinearLayout>
-
     <TextView
-        android:id="@+id/textViewListInformation"
+        android:id="@+id/textViewListBenchmarkInformation"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:text="Resolution"
-        android:paddingLeft="46dp"
+        android:paddingLeft="14dp"
         android:paddingTop="14dp"/>
 
     <TextView
-        android:id="@+id/textViewListValues"
+        android:id="@+id/textViewListBenchmarkValues"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:text="Full HD (1920x1080)"
-        android:paddingLeft="46dp"
+        android:paddingLeft="14dp"
         android:paddingBottom="14dp"
         android:gravity="bottom"
         android:textColor="#FFFFFF"/>

@@ -44,19 +44,25 @@ public class DeviceFragment extends Fragment {
 
         ListView listView = layoutView.findViewById(R.id.listViewDevice);
 
-        String[] stringInformation;
+        String[] stringInformation = new String[] {
+                getString(R.string.Model),
+                getString(R.string.Manufacturer),
+                getString(R.string.RAM),
+                getString(R.string.InternalStorage),
+                getString(R.string.ExternalStorage),
+                getString(R.string.RootAccess)
+        };
         String[] stringValues;
+        int[] intIcon = new int[] {
+                R.drawable.ic_smartphone_white_24dp,
+                R.drawable.ic_smartphone_white_24dp,
+                R.drawable.ic_ram_white_24dp,
+                R.drawable.ic_storage_white_24dp,
+                R.drawable.ic_sd_storage_white_24dp,
+                R.drawable.ic_close_white_24dp
+        };
 
         if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
-            stringInformation = new String[] {
-                    getString(R.string.Model),
-                    getString(R.string.Manufacturer),
-                    getString(R.string.RAM),
-                    getString(R.string.InternalStorage),
-                    getString(R.string.ExternalStorage),
-                    getString(R.string.RootAccess)
-            };
-
             stringValues = new String[] {
                     DeviceHelper.getModel(),
                     DeviceHelper.getManufacturer(),
@@ -66,14 +72,6 @@ public class DeviceFragment extends Fragment {
                     DeviceHelper.getRootAccess(context)
             };
         } else {
-            stringInformation = new String[] {
-                    getString(R.string.Model),
-                    getString(R.string.Manufacturer),
-                    getString(R.string.RAM),
-                    getString(R.string.InternalStorage),
-                    getString(R.string.ExternalStorage),
-                    getString(R.string.RootAccess)
-            };
             stringValues = new String[] {
                     "Pixel 2 XL",
                     "Google LLC",
@@ -86,7 +84,7 @@ public class DeviceFragment extends Fragment {
 
 
 
-        ClassicAdapter classicAdapter = new ClassicAdapter(context, stringInformation, stringValues);
+        ClassicAdapter classicAdapter = new ClassicAdapter(context, stringInformation, stringValues, intIcon);
         listView.setAdapter(classicAdapter);
         return layoutView;
     }

@@ -52,21 +52,29 @@ public class BatteryFragment extends Fragment {
 
         SharedPreferences sharedPreferences = context.getSharedPreferences("DroidInfo", Context.MODE_PRIVATE);
 
-        String[] stringInformation;
+        String[] stringInformation = new String[] {
+                getString(R.string.Health),
+                getString(R.string.Percentage),
+                getString(R.string.PowerSource),
+                getString(R.string.Status),
+                getString(R.string.Temperature),
+                getString(R.string.Technology),
+                getString(R.string.Voltage),
+                getString(R.string.Capacity)
+        };
         String[] stringValues;
+        int[] intIcon = new int[] {
+                R.drawable.ic_healing_white_24dp,
+                R.drawable.ic_battery_std_white_24dp,
+                R.drawable.ic_power_white_24dp,
+                R.drawable.ic_battery_std_white_24dp,
+                R.drawable.ic_temp_white_24dp,
+                R.drawable.ic_battery_std_white_24dp,
+                R.drawable.ic_battery_std_white_24dp,
+                R.drawable.ic_battery_std_white_24dp,
+        };
 
         if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
-            stringInformation = new String[] {
-                    getString(R.string.Health),
-                    getString(R.string.Percentage),
-                    getString(R.string.PowerSource),
-                    getString(R.string.Status),
-                    getString(R.string.Temperature),
-                    getString(R.string.Technology),
-                    getString(R.string.Voltage),
-                    getString(R.string.Capacity)
-            };
-
             stringValues = new String[] {
                     sharedPreferences.getString(BATTERY_HEALTH, ""),
                     sharedPreferences.getString(BATTERY_PERCENTAGE, ""),
@@ -78,16 +86,6 @@ public class BatteryFragment extends Fragment {
                     sharedPreferences.getString(BATTERY_CAPACITY, "")
             };
         } else {
-            stringInformation = new String[] {
-                    getString(R.string.Health),
-                    getString(R.string.Percentage),
-                    getString(R.string.PowerSource),
-                    getString(R.string.Status),
-                    getString(R.string.Temperature),
-                    getString(R.string.Technology),
-                    getString(R.string.Voltage),
-                    getString(R.string.Capacity)
-            };
             stringValues = new String[] {
                     getString(R.string.Good),
                     "100%",
@@ -100,7 +98,7 @@ public class BatteryFragment extends Fragment {
             };
         }
 
-        ClassicAdapter adapter = new ClassicAdapter(context, stringInformation, stringValues);
+        ClassicAdapter adapter = new ClassicAdapter(context, stringInformation, stringValues, intIcon);
         listViewBattery.setAdapter(adapter);
         return layoutView;
     }

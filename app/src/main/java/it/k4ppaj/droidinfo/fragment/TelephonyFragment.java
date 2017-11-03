@@ -50,10 +50,7 @@ public class TelephonyFragment extends Fragment {
 
         SharedPreferences sharedPreferences = context.getSharedPreferences("DroidInfo", Context.MODE_PRIVATE);
 
-        String[] stringInformation;
-        String[] stringValues;
-
-        stringInformation = new String[] {
+        String[] stringInformation = new String[] {
                 getString(R.string.DualSIM),
                 getString(R.string.IMEI),
                 getString(R.string.Status),
@@ -62,6 +59,16 @@ public class TelephonyFragment extends Fragment {
                 getString(R.string.PhoneNumber),
                 getString(R.string.NetworkType),
                 //getString(R.string.SignalStrength)
+        };
+        String[] stringValues;
+        int[] intIcon = new int[] {
+                R.drawable.ic_close_white_24dp,
+                R.drawable.ic_close_white_24dp,
+                R.drawable.ic_sim_card_white_24dp,
+                R.drawable.ic_network_signal_white_24dp,
+                R.drawable.ic_sim_card_white_24dp,
+                R.drawable.ic_phone_white_24dp,
+                R.drawable.ic_network_signal_white_24dp,
         };
 
         if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
@@ -100,7 +107,7 @@ public class TelephonyFragment extends Fragment {
             };
         }
 
-        ClassicAdapter classicAdapter = new ClassicAdapter(activity, stringInformation, stringValues);
+        ClassicAdapter classicAdapter = new ClassicAdapter(activity, stringInformation, stringValues, intIcon);
         listView.setAdapter(classicAdapter);
 
         return layoutView;

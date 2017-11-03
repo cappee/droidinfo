@@ -48,16 +48,21 @@ public class DisplayFragment extends Fragment {
 
         ListView listView = layoutView.findViewById(R.id.listViewDisplay);
 
-        String[] stringInformation;
+        String[] stringInformation = new String[] {
+                getString(R.string.Resolution),
+                getString(R.string.DPI),
+                getString(R.string.ScreenSize),
+                getString(R.string.RefreshValue)
+        };
         String[] stringValues;
+        int[] intIcon = new int[] {
+                R.drawable.ic_hd_white_24dp,
+                R.drawable.ic_screen_size_white_24dp,
+                R.drawable.ic_screen_size_white_24dp,
+                R.drawable.ic_display_white_24dp
+        };
 
         if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
-            stringInformation = new String[] {
-                    getString(R.string.Resolution),
-                    getString(R.string.DPI),
-                    getString(R.string.ScreenSize),
-                    getString(R.string.RefreshValue)
-            };
             stringValues = new String[] {
                     sharedPreferences.getString(RESOLUTION, getString(R.string.Unknown)),
                     DisplayHelper.getDPI(activity),
@@ -65,12 +70,6 @@ public class DisplayFragment extends Fragment {
                     DisplayHelper.getRefreshValue(activity)
             };
         } else {
-            stringInformation = new String[] {
-                    getString(R.string.Resolution),
-                    getString(R.string.DPI),
-                    getString(R.string.ScreenSize),
-                    getString(R.string.RefreshValue)
-            };
             stringValues = new String[] {
                     "1440x2880",
                     "538 dpi",
@@ -81,7 +80,7 @@ public class DisplayFragment extends Fragment {
 
 
 
-        ClassicAdapter adapter = new ClassicAdapter(activity, stringInformation, stringValues);
+        ClassicAdapter adapter = new ClassicAdapter(activity, stringInformation, stringValues, intIcon);
         listView.setAdapter(adapter);
         return layoutView;
     }

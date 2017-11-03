@@ -14,34 +14,30 @@ import android.widget.TextView;
 
 import it.k4ppaj.droidinfo.R;
 
-public class ClassicAdapter extends ArrayAdapter<String> {
+public class BenchmarkAdapter extends ArrayAdapter<String> {
 
     private Activity context;
     private String[] stringInformation;
     private String[] stringValues;
-    private int[] intIcon;
 
-    public ClassicAdapter(@NonNull Activity context, String[] stringInformation, String[] stringValues, int[] intIcon) {
-        super(context, R.layout.layout_listview, stringInformation);
+    public BenchmarkAdapter(@NonNull Activity context, String[] stringInformation, String[] stringValues) {
+        super(context, R.layout.layout_benchmark, stringInformation);
         this.context = context;
         this.stringInformation = stringInformation;
         this.stringValues = stringValues;
-        this.intIcon = intIcon;
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater layoutInflater = context.getLayoutInflater();
-        View itemView = layoutInflater.inflate(R.layout.layout_listview, null, true);
+        View itemView = layoutInflater.inflate(R.layout.layout_benchmark, null, true);
 
-        TextView textViewInformation = itemView.findViewById(R.id.textViewListInformation);
-        TextView textViewValues = itemView.findViewById(R.id.textViewListValues);
-        ImageView imageViewIcon = itemView.findViewById(R.id.imageViewListIcon);
+        TextView textViewInformation = itemView.findViewById(R.id.textViewListBenchmarkInformation);
+        TextView textViewValues = itemView.findViewById(R.id.textViewListBenchmarkValues);
 
         textViewInformation.setText(stringInformation[position]);
         textViewValues.setText(stringValues[position]);
-        imageViewIcon.setImageResource(intIcon[position]);
 
         return itemView;
     }
