@@ -12,7 +12,7 @@ android:
     - extra-google-google_play_services
     - extra-android-m2repository
     - extra-google-m2repository
-    - addon-google_apis-google-25
+    - addon-google_apis-google-27
 
 before_install:
 - mkdir "$ANDROID_HOME/licenses" || true
