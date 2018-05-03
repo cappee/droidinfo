@@ -3,7 +3,6 @@ package it.k4ppaj.droidinfo.fragment;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.BatteryManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import it.k4ppaj.droidinfo.R;
-import it.k4ppaj.droidinfo.adapter.ClassicAdapter;
+import it.k4ppaj.droidinfo.adapter.SimpleAdapter;
 
 public class BatteryFragment extends Fragment {
 
@@ -63,16 +62,6 @@ public class BatteryFragment extends Fragment {
                 getString(R.string.Capacity)
         };
         String[] stringValues;
-        int[] intIcon = new int[] {
-                R.drawable.ic_healing_white_24dp,
-                R.drawable.ic_battery_std_white_24dp,
-                R.drawable.ic_power_white_24dp,
-                R.drawable.ic_battery_std_white_24dp,
-                R.drawable.ic_temp_white_24dp,
-                R.drawable.ic_battery_std_white_24dp,
-                R.drawable.ic_battery_std_white_24dp,
-                R.drawable.ic_battery_std_white_24dp,
-        };
 
         if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
             stringValues = new String[] {
@@ -98,7 +87,7 @@ public class BatteryFragment extends Fragment {
             };
         }
 
-        ClassicAdapter adapter = new ClassicAdapter(context, stringInformation, stringValues, intIcon);
+        SimpleAdapter adapter = new SimpleAdapter(context, stringInformation, stringValues);
         listViewBattery.setAdapter(adapter);
         return layoutView;
     }

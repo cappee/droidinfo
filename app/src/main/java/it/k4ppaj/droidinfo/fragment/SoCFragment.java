@@ -10,11 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import it.k4ppaj.droidinfo.R;
-import it.k4ppaj.droidinfo.adapter.ClassicAdapter;
-import it.k4ppaj.droidinfo.helper.DeviceHelper;
+import it.k4ppaj.droidinfo.adapter.SimpleAdapter;
 import it.k4ppaj.droidinfo.helper.SoCHelper;
 
 public class SoCFragment extends Fragment {
@@ -65,14 +63,6 @@ public class SoCFragment extends Fragment {
                 getString(R.string.OpenGLVersion)
         };
         String[] stringValues;
-        int[] intIcon = new int[] {
-                R.drawable.ic_memory_white_24dp,
-                R.drawable.ic_memory_white_24dp,
-                R.drawable.ic_memory_white_24dp,
-                R.drawable.ic_video_card_white_24dp,
-                R.drawable.ic_video_card_white_24dp,
-                R.drawable.ic_video_card_white_24dp
-        };
 
         if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
             stringValues = new String[] {
@@ -96,8 +86,8 @@ public class SoCFragment extends Fragment {
 
 
 
-        ClassicAdapter classicAdapter = new ClassicAdapter(activity, stringInformation, stringValues, intIcon);
-        listView.setAdapter(classicAdapter);
+        SimpleAdapter simpleAdapter = new SimpleAdapter(activity, stringInformation, stringValues);
+        listView.setAdapter(simpleAdapter);
 
         return layoutView;
     }

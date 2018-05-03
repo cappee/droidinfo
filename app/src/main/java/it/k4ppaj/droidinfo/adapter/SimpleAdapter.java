@@ -14,19 +14,16 @@ import android.widget.TextView;
 
 import it.k4ppaj.droidinfo.R;
 
-public class ClassicAdapter extends ArrayAdapter<String> {
+public class SimpleAdapter extends ArrayAdapter<String> {
 
     private Activity context;
     private String[] stringInformation;
     private String[] stringValues;
-    private int[] intIcon;
-
-    public ClassicAdapter(@NonNull Activity context, String[] stringInformation, String[] stringValues, int[] intIcon) {
+    public SimpleAdapter(@NonNull Activity context, String[] stringInformation, String[] stringValues) {
         super(context, R.layout.layout_listview, stringInformation);
         this.context = context;
         this.stringInformation = stringInformation;
         this.stringValues = stringValues;
-        this.intIcon = intIcon;
     }
 
     @NonNull
@@ -37,11 +34,8 @@ public class ClassicAdapter extends ArrayAdapter<String> {
 
         TextView textViewInformation = itemView.findViewById(R.id.textViewListInformation);
         TextView textViewValues = itemView.findViewById(R.id.textViewListValues);
-        ImageView imageViewIcon = itemView.findViewById(R.id.imageViewListIcon);
-
         textViewInformation.setText(stringInformation[position]);
         textViewValues.setText(stringValues[position]);
-        imageViewIcon.setImageResource(intIcon[position]);
 
         return itemView;
     }

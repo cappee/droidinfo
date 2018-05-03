@@ -89,6 +89,6 @@
         android:layout_margin="@dimen/fab_margin"
         android:tint="#FFFFFF"
         app:fabSize="normal"
-        app:srcCompat="@drawable/ic_share_black_24dp" />
+        app:srcCompat="@drawable/ic_share_white_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>

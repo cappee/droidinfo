@@ -1,7 +1,6 @@
 package it.k4ppaj.droidinfo.ui;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,7 +8,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -25,7 +23,6 @@ import java.util.Locale;
 
 import it.k4ppaj.droidinfo.R;
 import it.k4ppaj.droidinfo.adapter.BenchmarkAdapter;
-import it.k4ppaj.droidinfo.adapter.ClassicAdapter;
 
 public class BenchmarkActivity extends AppCompatActivity {
 

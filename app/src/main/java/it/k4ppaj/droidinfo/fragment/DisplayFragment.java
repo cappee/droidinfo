@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import it.k4ppaj.droidinfo.R;
-import it.k4ppaj.droidinfo.adapter.ClassicAdapter;
+import it.k4ppaj.droidinfo.adapter.SimpleAdapter;
 import it.k4ppaj.droidinfo.helper.DisplayHelper;
 
 public class DisplayFragment extends Fragment {
@@ -55,12 +55,6 @@ public class DisplayFragment extends Fragment {
                 getString(R.string.RefreshValue)
         };
         String[] stringValues;
-        int[] intIcon = new int[] {
-                R.drawable.ic_hd_white_24dp,
-                R.drawable.ic_screen_size_white_24dp,
-                R.drawable.ic_screen_size_white_24dp,
-                R.drawable.ic_display_white_24dp
-        };
 
         if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
             stringValues = new String[] {
@@ -80,7 +74,7 @@ public class DisplayFragment extends Fragment {
 
 
 
-        ClassicAdapter adapter = new ClassicAdapter(activity, stringInformation, stringValues, intIcon);
+        SimpleAdapter adapter = new SimpleAdapter(activity, stringInformation, stringValues);
         listView.setAdapter(adapter);
         return layoutView;
     }

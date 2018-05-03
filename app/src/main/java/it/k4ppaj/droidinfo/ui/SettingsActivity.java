@@ -43,10 +43,10 @@ public class SettingsActivity extends AppCompatActivity {
     String[] stringHeadersTitle = new String[] {};
 
     int[] intHeadersIcon = new int[] {
-            R.drawable.ic_settings_black_24dp,
-            R.drawable.ic_attach_money_black_24dp,
-            R.drawable.ic_info_black_24dp,
-            R.drawable.ic_bug_report_black_24dp
+            R.drawable.ic_settings_white_24dp,
+            R.drawable.ic_attach_money_white_24dp,
+            R.drawable.ic_info_white_24dp,
+            R.drawable.ic_bug_report_white_24dp
     };
 
     @Override

@@ -11,7 +11,7 @@
         android:layout_height="64dp"
         android:paddingLeft="16dp"
         android:tint="#F2F2F2"
-        app:srcCompat="@drawable/ic_settings_black_24dp" />
+        app:srcCompat="@drawable/ic_settings_white_24dp" />
 
     <TextView
         android:id="@+id/textViewHeaders"

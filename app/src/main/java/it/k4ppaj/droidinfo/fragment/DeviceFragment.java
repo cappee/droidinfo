@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import it.k4ppaj.droidinfo.R;
-import it.k4ppaj.droidinfo.adapter.ClassicAdapter;
+import it.k4ppaj.droidinfo.adapter.SimpleAdapter;
 import it.k4ppaj.droidinfo.helper.DeviceHelper;
 
 public class DeviceFragment extends Fragment {
@@ -53,14 +53,6 @@ public class DeviceFragment extends Fragment {
                 getString(R.string.RootAccess)
         };
         String[] stringValues;
-        int[] intIcon = new int[] {
-                R.drawable.ic_smartphone_white_24dp,
-                R.drawable.ic_smartphone_white_24dp,
-                R.drawable.ic_ram_white_24dp,
-                R.drawable.ic_storage_white_24dp,
-                R.drawable.ic_sd_storage_white_24dp,
-                R.drawable.ic_close_white_24dp
-        };
 
         if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
             stringValues = new String[] {
@@ -84,8 +76,8 @@ public class DeviceFragment extends Fragment {
 
 
 
-        ClassicAdapter classicAdapter = new ClassicAdapter(context, stringInformation, stringValues, intIcon);
-        listView.setAdapter(classicAdapter);
+        SimpleAdapter simpleAdapter = new SimpleAdapter(context, stringInformation, stringValues);
+        listView.setAdapter(simpleAdapter);
         return layoutView;
     }
 }

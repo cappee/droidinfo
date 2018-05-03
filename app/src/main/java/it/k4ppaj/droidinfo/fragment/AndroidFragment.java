@@ -13,9 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import it.k4ppaj.droidinfo.R;
-import it.k4ppaj.droidinfo.adapter.ClassicAdapter;
+import it.k4ppaj.droidinfo.adapter.SimpleAdapter;
 import it.k4ppaj.droidinfo.helper.AndroidHelper;
-import it.k4ppaj.droidinfo.helper.DeviceHelper;
 
 public class AndroidFragment extends Fragment {
 
@@ -49,7 +48,6 @@ public class AndroidFragment extends Fragment {
 
         String[] stringInformation;
         String[] stringValues;
-        int[] intIcon;
 
         if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
             if (Build.VERSION.SDK_INT >= 23) {
@@ -68,14 +66,6 @@ public class AndroidFragment extends Fragment {
                         AndroidHelper.getKernelVersion(),
                         AndroidHelper.getKernelArch()
                 };
-
-                intIcon = new int[] {
-                        R.drawable.ic_android_white_24dp,
-                        R.drawable.ic_adb_white_24dp,
-                        R.drawable.ic_security_white_24dp,
-                        R.drawable.ic_developer_board_white_24dp,
-                        R.drawable.ic_developer_board_white_24dp,
-                };
             } else {
                 stringInformation = new String[] {
                         getString(R.string.AndroidVersion),
@@ -89,13 +79,6 @@ public class AndroidFragment extends Fragment {
                         AndroidHelper.getAPILevel(),
                         AndroidHelper.getKernelVersion(),
                         AndroidHelper.getKernelArch()
-                };
-
-                intIcon = new int[] {
-                        R.drawable.ic_android_white_24dp,
-                        R.drawable.ic_adb_white_24dp,
-                        R.drawable.ic_developer_board_white_24dp,
-                        R.drawable.ic_developer_board_white_24dp,
                 };
             }
         } else {
@@ -112,19 +95,12 @@ public class AndroidFragment extends Fragment {
                     "Linux 3.18.48+",
                     "Arm64"
             };
-
-            intIcon = new int[] {
-                    R.drawable.ic_android_white_24dp,
-                    R.drawable.ic_adb_white_24dp,
-                    R.drawable.ic_developer_board_white_24dp,
-                    R.drawable.ic_developer_board_white_24dp,
-            };
         }
 
 
 
-        ClassicAdapter classicAdapter = new ClassicAdapter(context, stringInformation, stringValues, intIcon);
-        listView.setAdapter(classicAdapter);
+        SimpleAdapter simpleAdapter = new SimpleAdapter(context, stringInformation, stringValues);
+        listView.setAdapter(simpleAdapter);
         return layoutView;
     }
 }
