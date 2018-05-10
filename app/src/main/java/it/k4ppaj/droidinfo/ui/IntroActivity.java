@@ -27,7 +27,7 @@ public class IntroActivity extends AppIntro {
         sharedPreferences = getSharedPreferences("DroidInfo", MODE_PRIVATE);
 
         //Made by k4ppaj in Rome
-        String stringFontType = "Roboto/Roboto-Regular.ttf";
+        String stringFontType = "/fonts/GoogleSans-Regular.ttf";
 
         // Use this: getResources().getColor(intColorChoose)
         int intColorBG = R.color.colorPrimaryDark;
