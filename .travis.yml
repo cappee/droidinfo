@@ -28,9 +28,6 @@ script:
  - ./gradlew testDebugUnitTest assembleDebug 
  - chmod +x ./upload-gh-pages.sh
  - ./upload-gh-pages.sh
-
-notifications:
-  slack: woodstockinc:IwQvvRPS5KTN1TS3T6fNLfce
  
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
