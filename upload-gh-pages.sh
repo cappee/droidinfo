@@ -5,7 +5,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   
   ls -l # check something lel
   echo "#############"
-  cd app/build/outputs
+  cd app/build/outputs/apk
   ls -l 
   cd -
   echo "###########"
