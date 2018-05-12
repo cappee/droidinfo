@@ -2,7 +2,9 @@
 
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   echo -e "Starting to update gh-pages\n"
-
+  
+  ls -l # check something lel
+  
   mkdir $HOME/android/
 
   cp -R app/build/outputs/apk/app-debug.apk $HOME/android/
