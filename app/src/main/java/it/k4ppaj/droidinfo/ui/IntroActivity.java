@@ -3,6 +3,7 @@ package it.k4ppaj.droidinfo.ui;
 import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,16 +22,12 @@ public class IntroActivity extends AppIntro {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Window window = getWindow();
-        window.setNavigationBarColor(getResources().getColor(R.color.colorPrimaryDark));
-
         sharedPreferences = getSharedPreferences("DroidInfo", MODE_PRIVATE);
 
-        //Made by k4ppaj in Rome
         String stringFontType = "/fonts/GoogleSans-Regular.ttf";
 
         // Use this: getResources().getColor(intColorChoose)
-        int intColorBG = R.color.colorPrimaryDark;
+        int intColorBG = R.color.colorPrimary;
 
         addSlide(AppIntroFragment.newInstance(getResources().getString(R.string.AppName), stringFontType, getResources().getString(R.string.FirstIntroDescription), stringFontType, R.drawable.ic_smartphone_white_24dp, getResources().getColor(intColorBG)));
 
@@ -42,7 +39,8 @@ public class IntroActivity extends AppIntro {
 
         askForPermissions(new String[] { Manifest.permission.READ_PHONE_STATE }, 4);
 
-        setBarColor(getResources().getColor(R.color.colorPrimaryDark));
+        setBarColor(Color.parseColor("#F5F5F5"));
+        setSeparatorColor(Color.parseColor("#BDBDBD"));
 
         showSkipButton(false);
         showPagerIndicator(true);

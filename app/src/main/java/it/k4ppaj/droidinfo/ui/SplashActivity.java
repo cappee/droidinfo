@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.opengl.GLSurfaceView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,11 +38,13 @@ public class SplashActivity extends AppCompatActivity implements GLSurfaceView.R
 
         sharedPreferences = getSharedPreferences("DroidInfo", MODE_PRIVATE);
 
-        TextView textViewWelcomeTo = (TextView) findViewById(R.id.textViewWelcomeToSplash);
+        Typeface typefaceGoogleSans = Typeface.createFromAsset(getAssets(), "fonts/GoogleSans-Regular.ttf");
+
+        TextView textViewDroidInfo = findViewById(R.id.textViewDroidInfoSplash);
+        TextView textViewWelcomeTo = findViewById(R.id.textViewWelcomeToSplash);
 
         Window window = getWindow();
-        window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
-        window.setNavigationBarColor(getResources().getColor(R.color.colorPrimaryDark));
+        window.setStatusBarColor(getResources().getColor(R.color.colorPrimary));
 
         this.glSurfaceView = new GLSurfaceView(this);
         this.glSurfaceView.setRenderer(this);
@@ -52,6 +55,9 @@ public class SplashActivity extends AppCompatActivity implements GLSurfaceView.R
         intentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
         intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
         registerReceiver(batteryInfoReceiver, intentFilter);
+
+        textViewDroidInfo.setTypeface(typefaceGoogleSans);
+        textViewWelcomeTo.setTypeface(typefaceGoogleSans);
 
         sharedPreferences
                 .edit()
