@@ -99,7 +99,7 @@ public class SplashActivity extends AppCompatActivity implements GLSurfaceView.R
 
     @Override
     public void onSurfaceChanged(GL10 gl10, int i, int i1) {
-        
+
     }
 
     @Override

@@ -15,10 +15,10 @@
         android:id="@+id/textViewListValues"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:text="Full HD (1920x1080)"
-        android:paddingLeft="16dp"
-        android:paddingBottom="14dp"
         android:gravity="bottom"
-        android:textColor="#FFFFFF"/>
+        android:paddingBottom="14dp"
+        android:paddingLeft="16dp"
+        android:text="Full HD (1920x1080)"
+        android:textStyle="bold" />
 
 </FrameLayout>
