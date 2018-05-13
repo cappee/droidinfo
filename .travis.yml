@@ -6,6 +6,8 @@ jdk:
 android:
   components:
     - tools
+    - build-tools-26.0.0
+    - android-26
     - build-tools-27.0.3
     - android-27
     - extra-android-support
@@ -28,9 +30,6 @@ script:
  - ./gradlew testDebugUnitTest assembleDebug 
  - chmod +x ./upload-gh-pages.sh
  - ./upload-gh-pages.sh
-
-notifications:
-  slack: woodstockinc:IwQvvRPS5KTN1TS3T6fNLfce
  
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
