@@ -13,7 +13,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   git config --global user.name     "PusherWoodstock"
 
   # clone gh-pages branch
-  git clone --quiet --branch=master https://PusherWoodstock:$GH_TOKEN@github.com/k4ppaj/DroidInfo.git  master > /dev/null
+  git clone --quiet --branch=master https://PusherWoodstock:$GH_TOKEN@github.com/gabrielecappellaro/DroidInfo.git  master > /dev/null
 
   # go into directory and copy data we're interested
   cd master
@@ -33,7 +33,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   
   git add -f .
   git remote rm origin
-  git remote add origin https://PusherWoodstock:$GH_TOKEN@github.com/k4ppaj/DroidInfo.git
+  git remote add origin https://PusherWoodstock:$GH_TOKEN@github.com/gabrielecappellaro/DroidInfo.git
   git add -f .
   git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages!"
   git push -fq origin master > /dev/null
