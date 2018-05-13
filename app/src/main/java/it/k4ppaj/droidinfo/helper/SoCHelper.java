@@ -3,7 +3,6 @@ package it.k4ppaj.droidinfo.helper;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ConfigurationInfo;
-import android.opengl.GLES30;
 
 import java.io.File;
 import java.io.FileNotFoundException;

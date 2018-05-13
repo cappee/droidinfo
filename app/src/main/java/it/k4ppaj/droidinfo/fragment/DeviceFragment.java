@@ -21,9 +21,6 @@ public class DeviceFragment extends Fragment {
 
     private String USE_DEFAULT_INFORMATION = "USE_DEFAULT_INFORMATION";
 
-    public DeviceFragment() {
-    }
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);

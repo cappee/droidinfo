@@ -7,11 +7,9 @@ import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
-import android.telephony.TelephonyManager;
 
 import java.io.RandomAccessFile;
 import java.util.regex.Matcher;

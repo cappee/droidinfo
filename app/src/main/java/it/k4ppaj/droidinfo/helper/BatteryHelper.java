@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.BatteryManager;
 
-import java.text.DecimalFormat;
-
 import it.k4ppaj.droidinfo.R;
 
 public class BatteryHelper {

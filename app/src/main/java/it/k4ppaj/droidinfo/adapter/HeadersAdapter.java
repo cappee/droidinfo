@@ -28,8 +28,8 @@ public class HeadersAdapter extends ArrayAdapter<String> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.layout_headers, null, true);
-        TextView textViewHeaders = (TextView) listViewItem.findViewById(R.id.textViewHeaders);
-        ImageView imageViewIcon = (ImageView) listViewItem.findViewById(R.id.imageViewHeaders);
+        TextView textViewHeaders = listViewItem.findViewById(R.id.textViewHeaders);
+        ImageView imageViewIcon = listViewItem.findViewById(R.id.imageViewHeaders);
 
         textViewHeaders.setText(headers[position]);
         imageViewIcon.setImageResource(icon[position]);

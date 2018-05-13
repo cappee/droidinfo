@@ -1,8 +1,6 @@
 package it.k4ppaj.droidinfo.helper;
 
-import android.app.Activity;
 import android.os.Build;
-import android.provider.Settings;
 import android.support.annotation.RequiresApi;
 
 public class AndroidHelper {

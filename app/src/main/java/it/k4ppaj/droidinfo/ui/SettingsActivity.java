@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.StrictMode;
-import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.SwitchPreference;
 import android.support.annotation.Nullable;
@@ -24,14 +23,11 @@ import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.net.URL;
-import java.net.URLConnection;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Scanner;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -57,7 +53,7 @@ public class SettingsActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarSettings);
+        Toolbar toolbar = findViewById(R.id.toolbarSettings);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +70,7 @@ public class SettingsActivity extends AppCompatActivity {
                 getString(R.string.Debug)
         };
 
-        ListView listView = (ListView) findViewById(R.id.listViewSettings);
+        ListView listView = findViewById(R.id.listViewSettings);
         HeadersAdapter adapter = new HeadersAdapter(this, stringHeadersTitle, intHeadersIcon);
         listView.setAdapter(adapter);
 
@@ -298,7 +294,7 @@ public class SettingsActivity extends AppCompatActivity {
                         builder.setTitle(R.string.UnlockDebug);
                         builder.setMessage(R.string.UnlockDebugSummary);
                         View layoutView = getLayoutInflater().inflate(R.layout.layout_pin_dialog, null, true);
-                        final EditText editTextPIN = (EditText) layoutView.findViewById(R.id.editTextPIN);
+                        final EditText editTextPIN = layoutView.findViewById(R.id.editTextPIN);
                         builder.setView(layoutView);
                         builder.setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
                             @Override

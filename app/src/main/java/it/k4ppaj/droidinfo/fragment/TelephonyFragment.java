@@ -22,9 +22,6 @@ public class TelephonyFragment extends Fragment {
 
     private String USE_DEFAULT_INFORMATION = "USE_DEFAULT_INFORMATION";
 
-    public TelephonyFragment() {
-    }
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);

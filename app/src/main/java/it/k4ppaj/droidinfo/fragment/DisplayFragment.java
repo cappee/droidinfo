@@ -24,10 +24,6 @@ public class DisplayFragment extends Fragment {
 
     private String USE_DEFAULT_INFORMATION = "USE_DEFAULT_INFORMATION";
 
-
-    public DisplayFragment() {
-    }
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);

@@ -29,9 +29,6 @@ public class BatteryFragment extends Fragment {
 
     private String USE_DEFAULT_INFORMATION = "USE_DEFAULT_INFORMATION";
 
-    public BatteryFragment() {
-    }
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);

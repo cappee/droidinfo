@@ -36,7 +36,7 @@ public class BenchmarkActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_benckmark);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarBenchmark);
+        Toolbar toolbar = findViewById(R.id.toolbarBenchmark);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,10 +46,10 @@ public class BenchmarkActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.fabBenchmark);
-        Spinner spinner = (Spinner) findViewById(R.id.spinnerBenchmark);
-        Button buttonRunBenchmark = (Button) findViewById(R.id.buttonRunBenckmark);
-        final ListView listView = (ListView) findViewById(R.id.listViewBenchmarkResult);
+        FloatingActionButton floatingActionButton = findViewById(R.id.fabBenchmark);
+        Spinner spinner = findViewById(R.id.spinnerBenchmark);
+        Button buttonRunBenchmark = findViewById(R.id.buttonRunBenckmark);
+        final ListView listView = findViewById(R.id.listViewBenchmarkResult);
 
         stringInformation = new String[] {
                 getString(R.string.Score),

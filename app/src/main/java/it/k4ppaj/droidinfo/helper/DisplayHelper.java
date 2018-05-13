@@ -2,7 +2,6 @@ package it.k4ppaj.droidinfo.helper;
 
 import android.app.Activity;
 import android.content.Context;
-import java.text.DecimalFormat;
 
 import android.graphics.Point;
 import android.util.DisplayMetrics;
