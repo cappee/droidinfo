@@ -5,7 +5,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
  
   mkdir $HOME/android/
 
-  cp -R app/build/outputs/apk/app-debug.apk $HOME/android/
+  cp -R app/build/outputs/apk/debug/app-debug.apk $HOME/android/
 
   # go to home and setup git
   cd $HOME
@@ -27,7 +27,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   string=$(git log -1)
     
   if [[ $string == *"PusherWoodstock"* ]]; then
-    echo -e "All Apk's are up to date!\n"
+    echo -e "APK File is updated!\n"
     exit 0
   fi
   
@@ -38,5 +38,5 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages!"
   git push -fq origin master > /dev/null
 
-  echo -e "Update Apk!\n"
+  echo -e "Finished .sh script.\n"
 fi

@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
         final Toolbar toolbar = findViewById(R.id.toolbarMain);
         setSupportActionBar(toolbar);
 
-        Window window = getWindow();
-        window.setNavigationBarColor(getResources().getColor(android.R.color.background_dark));
+        //Window window = getWindow();
+        //window.setNavigationBarColor(getResources().getColor(android.R.color.background_dark));
 
         stringTitleToolbar = new String[] { "Android", getString(R.string.SoC), getString(R.string.Device), getString(R.string.Display), getString(R.string.Battery), getString(R.string.Telephony) };
 

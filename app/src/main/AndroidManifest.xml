@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="it.k4ppaj.droidinfo">
 
-    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -15,7 +14,8 @@
         android:label="@string/AppName"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:label">
+        tools:replace="android:label"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/AppName"
@@ -31,13 +31,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.IntroActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.BenchmarkActivity"
             android:label="@string/Benchmark"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.SettingsActivity" />
+        <activity
+            android:name=".ui.SettingsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.SettingsActivity$GeneralPreferenceFragment"
             android:theme="@style/AppTheme.NoActionBar" />

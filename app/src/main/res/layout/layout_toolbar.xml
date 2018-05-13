@@ -8,6 +8,7 @@
     android:background="@color/colorPrimary"
     app:elevation="5dp"
     android:elevation="3dp"
+    android:theme="@style/WhiteToolbarTheme"
     app:popupTheme="@style/AppTheme.PopupOverlay"
     app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
     app:title="@string/Settings" />

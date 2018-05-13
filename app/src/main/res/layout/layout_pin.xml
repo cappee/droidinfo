@@ -10,7 +10,7 @@
         android:gravity="center_vertical"
         android:paddingStart="16dp"
         android:text="@string/UnlockDebug"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="16dp"/>
 
 </LinearLayout>

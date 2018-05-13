@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <PreferenceCategory android:title="Aspect">
+        <Preference
+            android:key="preferenceFont"
+            android:icon="@drawable/ic_format_paint_white_24dp"
+            android:title="@string/Font"/>
+    </PreferenceCategory>
 </PreferenceScreen>

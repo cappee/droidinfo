@@ -79,9 +79,8 @@ public class SettingsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        Toast.makeText(SettingsActivity.this, R.string.WorkInProgress, Toast.LENGTH_SHORT).show();
-                        /*startActivity(new Intent(SettingsActivity.this, GeneralPreferenceFragment.class));
-                        finish();*/
+                        startActivity(new Intent(SettingsActivity.this, GeneralPreferenceFragment.class));
+                        finish();
                         break;
                     case 1:
                         startActivity(new Intent(SettingsActivity.this, DonationPreferenceFragment.class));
@@ -108,15 +107,66 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public static class GeneralPreferenceFragment extends PreferenceActivity {
+
+        private String FONT = "FONT";
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preference_general);
 
-            // Bind the summaries of EditText/List/Dialog/Ringtone preferences
-            // to their values. When their values change, their summaries are
-            // updated to reflect the new value, per the Android Design
-            // guidelines.
+            final SharedPreferences sharedPreferences = getSharedPreferences("DroidInfo", MODE_PRIVATE);
+
+            final Preference preferenceFont = findPreference("preferenceFont");
+            String fontSummary = "";
+            switch (sharedPreferences.getString(FONT, "Roboto")) {
+                case "Roboto": fontSummary = "Roboto";
+                    break;
+                case "GoogleSans": fontSummary = "Google Sans";
+                    break;
+                case "OpenDyslexic": fontSummary = "OpenDyslexic";
+                    break;
+            }
+            preferenceFont.setSummary(sharedPreferences.getString(FONT, "Roboto"));
+
+            final CharSequence[] charSequencesFont = new CharSequence[] {"Roboto", "Google Sans", "OpenDyslexic"};
+            preferenceFont.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(final Preference preference) {
+                    int itemChecked = 0;
+                    switch (sharedPreferences.getString(FONT, "Roboto")) {
+                        case "Roboto": itemChecked = 0;
+                            break;
+                        case "GoogleSans": itemChecked = 1;
+                            break;
+                        case "OpenDyslexic": itemChecked = 2;
+                            break;
+                    }
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(GeneralPreferenceFragment.this);
+                    builder.setSingleChoiceItems(charSequencesFont, itemChecked, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int checked) {
+                            switch (checked) {
+                                case 0: sharedPreferences.edit().putString(FONT, "Roboto").apply();
+                                    preferenceFont.setSummary("Roboto");
+                                    dialogInterface.dismiss();
+                                    break;
+                                case 1: sharedPreferences.edit().putString(FONT, "GoogleSans").apply();
+                                    preferenceFont.setSummary("Google Sans");
+                                    dialogInterface.dismiss();
+                                    break;
+                                case 2: sharedPreferences.edit().putString(FONT, "OpenDyslexic").apply();
+                                    preferenceFont.setSummary("OpenDyslexic");
+                                    dialogInterface.dismiss();
+                                    break;
+                            }
+                        }
+                    });
+                    builder.show();
+                    return false;
+                }
+            });
         }
 
         @Override
@@ -301,7 +351,7 @@ public class SettingsActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 String SHA256Hash = "";
                                 try {
-                                    URL url = new URL("https://k4ppaj.github.io/DroidInfo/debug/pin.dinfo");
+                                    URL url = new URL("https://droidinfo.app/debug/pin.dinfo");
                                     HttpsURLConnection httpsURLConnection = (HttpsURLConnection) url.openConnection();
                                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpsURLConnection.getInputStream()));
 

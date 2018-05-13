@@ -31,6 +31,8 @@ public class SplashActivity extends AppCompatActivity implements GLSurfaceView.R
     private SharedPreferences sharedPreferences;
     private GLSurfaceView glSurfaceView;
 
+    private String FONT = "FONT";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +40,7 @@ public class SplashActivity extends AppCompatActivity implements GLSurfaceView.R
 
         sharedPreferences = getSharedPreferences("DroidInfo", MODE_PRIVATE);
 
-        Typeface typefaceGoogleSans = Typeface.createFromAsset(getAssets(), "fonts/GoogleSans-Regular.ttf");
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/" + sharedPreferences.getString(FONT, "Roboto") + ".ttf");
 
         TextView textViewDroidInfo = findViewById(R.id.textViewDroidInfoSplash);
         TextView textViewWelcomeTo = findViewById(R.id.textViewWelcomeToSplash);
@@ -56,8 +58,8 @@ public class SplashActivity extends AppCompatActivity implements GLSurfaceView.R
         intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
         registerReceiver(batteryInfoReceiver, intentFilter);
 
-        textViewDroidInfo.setTypeface(typefaceGoogleSans);
-        textViewWelcomeTo.setTypeface(typefaceGoogleSans);
+        textViewDroidInfo.setTypeface(typeface);
+        textViewWelcomeTo.setTypeface(typeface);
 
         sharedPreferences
                 .edit()
@@ -69,15 +71,16 @@ public class SplashActivity extends AppCompatActivity implements GLSurfaceView.R
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                boolean firstRun = sharedPreferences.getBoolean("FIRST_RUN", true);
+                /*boolean firstRun = sharedPreferences.getBoolean("FIRST_RUN", true);
                 if (firstRun) {
                     startActivity(new Intent(SplashActivity.this, IntroActivity.class));
                     finish();
                 } else {
                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
                     finish();
-                }
-
+                }*/
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                finish();
             }
         }, 2000);
     }

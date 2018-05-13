@@ -103,4 +103,5 @@
     <string name="OptionsLocked">Ora le opzioni sono bloccate.</string>
     <string name="VoteApplication">Vota l\'applicazione nel PlayStore!</string>
     <string name="OpenLinks">Vuoi aprire il link suggerito?</string>
+    <string name="Font">Carattere</string>
 </resources>

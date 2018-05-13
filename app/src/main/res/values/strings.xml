@@ -126,4 +126,5 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="OptionsLocked">Now options are locked.</string>
     <string name="VoteApplication">Vote app in PlayStore</string>
     <string name="OpenLinks">Do you want open suggested link?</string>
+    <string name="Font">Font</string>
 </resources>

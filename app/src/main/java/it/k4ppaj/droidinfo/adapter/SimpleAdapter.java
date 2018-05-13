@@ -1,6 +1,8 @@
 package it.k4ppaj.droidinfo.adapter;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -11,11 +13,16 @@ import android.widget.TextView;
 
 import it.k4ppaj.droidinfo.R;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class SimpleAdapter extends ArrayAdapter<String> {
 
     private Activity context;
     private String[] stringInformation;
     private String[] stringValues;
+
+    private String FONT = "FONT";
+
     public SimpleAdapter(@NonNull Activity context, String[] stringInformation, String[] stringValues) {
         super(context, R.layout.layout_listview, stringInformation);
         this.context = context;
@@ -29,8 +36,17 @@ public class SimpleAdapter extends ArrayAdapter<String> {
         LayoutInflater layoutInflater = context.getLayoutInflater();
         View itemView = layoutInflater.inflate(R.layout.layout_listview, null, true);
 
+        SharedPreferences sharedPreferences = context.getSharedPreferences("DroidInfo", MODE_PRIVATE);
+
+        Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/" + sharedPreferences.getString(FONT, "Roboto") + ".ttf");
+        Typeface typefaceBold = Typeface.createFromAsset(context.getAssets(), "fonts/" + sharedPreferences.getString(FONT, "Roboto") + "-Bold.ttf");
+
         TextView textViewInformation = itemView.findViewById(R.id.textViewListInformation);
         TextView textViewValues = itemView.findViewById(R.id.textViewListValues);
+
+        textViewInformation.setTypeface(typeface);
+        textViewValues.setTypeface(typefaceBold);
+
         textViewInformation.setText(stringInformation[position]);
         textViewValues.setText(stringValues[position]);
 
