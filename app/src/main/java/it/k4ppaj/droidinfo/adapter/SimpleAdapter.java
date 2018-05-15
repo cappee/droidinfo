@@ -38,8 +38,21 @@ public class SimpleAdapter extends ArrayAdapter<String> {
 
         SharedPreferences sharedPreferences = context.getSharedPreferences("DroidInfo", MODE_PRIVATE);
 
-        Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/" + sharedPreferences.getString(FONT, "Roboto") + ".ttf");
-        Typeface typefaceBold = Typeface.createFromAsset(context.getAssets(), "fonts/" + sharedPreferences.getString(FONT, "Roboto") + "-Bold.ttf");
+        Typeface typeface;
+
+        if (sharedPreferences.getString(FONT, "Roboto").equals("Google Sans")) {
+            typeface = Typeface.createFromAsset(context.getAssets(), "fonts/" + "GoogleSans" + ".ttf");
+        } else {
+            typeface = Typeface.createFromAsset(context.getAssets(), "fonts/" + sharedPreferences.getString(FONT, "Roboto") + ".ttf");
+        }
+
+        Typeface typefaceBold;
+
+        if (sharedPreferences.getString(FONT, "Roboto").equals("Google Sans")) {
+            typefaceBold = Typeface.createFromAsset(context.getAssets(), "fonts/" + "GoogleSans" + "-Bold.ttf");
+        } else {
+            typefaceBold = Typeface.createFromAsset(context.getAssets(), "fonts/" + sharedPreferences.getString(FONT, "Roboto") + "-Bold.ttf");
+        }
 
         TextView textViewInformation = itemView.findViewById(R.id.textViewListInformation);
         TextView textViewValues = itemView.findViewById(R.id.textViewListValues);

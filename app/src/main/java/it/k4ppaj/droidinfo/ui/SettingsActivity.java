@@ -122,7 +122,7 @@ public class SettingsActivity extends AppCompatActivity {
             switch (sharedPreferences.getString(FONT, "Roboto")) {
                 case "Roboto": fontSummary = "Roboto";
                     break;
-                case "GoogleSans": fontSummary = "Google Sans";
+                case "Google Sans": fontSummary = "Google Sans";
                     break;
                 case "OpenDyslexic": fontSummary = "OpenDyslexic";
                     break;
@@ -137,7 +137,7 @@ public class SettingsActivity extends AppCompatActivity {
                     switch (sharedPreferences.getString(FONT, "Roboto")) {
                         case "Roboto": itemChecked = 0;
                             break;
-                        case "GoogleSans": itemChecked = 1;
+                        case "Google Sans": itemChecked = 1;
                             break;
                         case "OpenDyslexic": itemChecked = 2;
                             break;
@@ -152,7 +152,7 @@ public class SettingsActivity extends AppCompatActivity {
                                     preferenceFont.setSummary("Roboto");
                                     dialogInterface.dismiss();
                                     break;
-                                case 1: sharedPreferences.edit().putString(FONT, "GoogleSans").apply();
+                                case 1: sharedPreferences.edit().putString(FONT, "Google Sans").apply();
                                     preferenceFont.setSummary("Google Sans");
                                     dialogInterface.dismiss();
                                     break;

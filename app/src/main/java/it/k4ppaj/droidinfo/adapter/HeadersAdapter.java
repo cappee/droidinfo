@@ -37,7 +37,13 @@ public class HeadersAdapter extends ArrayAdapter<String> {
 
         SharedPreferences sharedPreferences = context.getSharedPreferences("DroidInfo", MODE_PRIVATE);
 
-        Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/" + sharedPreferences.getString(FONT, "Roboto") + ".ttf");
+        Typeface typeface;
+
+        if (sharedPreferences.getString(FONT, "Roboto").equals("Google Sans")) {
+            typeface = Typeface.createFromAsset(context.getAssets(), "fonts/" + "GoogleSans" + ".ttf");
+        } else {
+            typeface = Typeface.createFromAsset(context.getAssets(), "fonts/" + sharedPreferences.getString(FONT, "Roboto") + ".ttf");
+        }
 
         TextView textViewHeaders = listViewItem.findViewById(R.id.textViewHeaders);
         ImageView imageViewIcon = listViewItem.findViewById(R.id.imageViewHeaders);

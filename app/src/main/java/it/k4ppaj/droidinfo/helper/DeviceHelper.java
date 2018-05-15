@@ -92,9 +92,9 @@ public class DeviceHelper {
 
     public static String getExternalStorage(Activity context) {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            String lastValue;
-            File filePath = Environment.getExternalStorageDirectory();
-            StatFs statFs = new StatFs(filePath.getPath());
+            String lastValue1;
+
+            StatFs statFs = new StatFs(Environment.getExternalStorageDirectory().getPath());
             long blockSize = statFs.getBlockSizeLong();
             long totalBlocks = statFs.getBlockCountLong();
 
@@ -107,15 +107,15 @@ public class DeviceHelper {
             double gb = totalSize / 1073741824.0;
 
             if (gb > 1) {
-                lastValue = decimalFormat.format(gb).concat(" GB");
+                lastValue1 = decimalFormat.format(gb).concat(" GB");
             } else if (mb > 1) {
-                lastValue = decimalFormat.format(mb).concat(" MB");
+                lastValue1 = decimalFormat.format(mb).concat(" MB");
             } else if (kb > 1) {
-                lastValue = decimalFormat.format(kb).concat(" KB");
+                lastValue1 = decimalFormat.format(kb).concat(" KB");
             } else {
-                lastValue = decimalFormat.format(totalSize).concat(" bytes");
+                lastValue1 = decimalFormat.format(totalSize).concat(" bytes");
             }
-            return String.valueOf(lastValue);
+            return String.valueOf(lastValue1);
         } else {
             return context.getString(R.string.NotMounted);
         }

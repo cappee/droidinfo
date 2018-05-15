@@ -38,9 +38,15 @@ public class SplashActivity extends AppCompatActivity implements GLSurfaceView.R
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        Typeface typeface;
+
         sharedPreferences = getSharedPreferences("DroidInfo", MODE_PRIVATE);
 
-        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/" + sharedPreferences.getString(FONT, "Roboto") + ".ttf");
+        if (sharedPreferences.getString(FONT, "Roboto").equals("Google Sans")) {
+            typeface = Typeface.createFromAsset(getAssets(), "fonts/" + "GoogleSans" + ".ttf");
+        } else {
+            typeface = Typeface.createFromAsset(getAssets(), "fonts/" + sharedPreferences.getString(FONT, "Roboto") + ".ttf");
+        }
 
         TextView textViewDroidInfo = findViewById(R.id.textViewDroidInfoSplash);
         TextView textViewWelcomeTo = findViewById(R.id.textViewWelcomeToSplash);
