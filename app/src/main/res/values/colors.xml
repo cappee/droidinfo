@@ -6,6 +6,6 @@
 
     <color name="colorDivider">#494949</color>
 
-    <color name="tabSelectedIconColor">#4caf50</color>
+    <color name="tabSelectedIconColor">@color/colorAccent</color>
     <color name="tabUnselectedIconColor">#727272</color>
 </resources>

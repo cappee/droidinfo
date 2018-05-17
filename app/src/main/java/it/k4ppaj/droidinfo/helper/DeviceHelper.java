@@ -28,10 +28,10 @@ public class DeviceHelper {
     }
 
     public static String getRAM() {
-        RandomAccessFile randomAccessFile = null;
-        String load = null;
+        RandomAccessFile randomAccessFile;
+        String load;
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        double totRAM = 0;
+        double totRAM;
         String lastValue = "";
         try {
             randomAccessFile = new RandomAccessFile("/proc/meminfo", "r");
@@ -68,7 +68,7 @@ public class DeviceHelper {
 
     public static String getInternalStorage() {
         StatFs statFs = new StatFs(Environment.getDataDirectory().getPath());
-        String lastValue = "";
+        String lastValue;
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
         long blockSize = statFs.getBlockSize();
@@ -137,7 +137,7 @@ public class DeviceHelper {
 
     private static boolean checkRootMethod2() {
         String[] paths = { "/system/app/Superuser.apk", "/sbin/su", "/system/bin/su", "/system/xbin/su", "/data/local/xbin/su", "/data/local/bin/su", "/system/sd/xbin/su", "/system/bin/failsafe/su", "/data/local/su", "/su/bin/su" };
-        for (String path : paths) {
+        for (String path : paths) { // for each bitch hahahha joke man xD - StopCopyAnything
             if (new File(path).exists()) return true;
         }
         return false;
