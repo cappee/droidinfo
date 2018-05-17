@@ -34,6 +34,7 @@ public final class DualSIMInfo {
         return isSIM2Ready;
      }
 
+     // access can be private - AS
     public DualSIMInfo() {
     }
 
