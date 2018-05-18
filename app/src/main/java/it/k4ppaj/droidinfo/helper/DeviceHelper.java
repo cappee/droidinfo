@@ -3,6 +3,7 @@ package it.k4ppaj.droidinfo.helper;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 
@@ -10,8 +11,12 @@ import android.app.Activity;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
+import android.support.v4.os.EnvironmentCompat;
+import android.util.Log;
 
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -66,6 +71,72 @@ public class DeviceHelper {
         return lastValue;
     }
 
+    public static String getExternalStorageDirectories(Activity context) {
+
+        List<String> results = new ArrayList<>();
+
+        // Method 1 for KitKat & above
+        File[] externalDirs = context.getExternalFilesDirs(null);
+
+        for (File file : externalDirs) {
+            String path = file.getPath().split("/Android")[0];
+
+            boolean addPath;
+
+            addPath = Environment.isExternalStorageRemovable(file);
+
+            if(addPath){
+                results.add(path);
+            }
+        }
+
+        if(results.isEmpty()) { // Method 2 for all versions
+            // better variation of: http://stackoverflow.com/a/40123073/5002496
+            String output = "";
+            try {
+                final Process process = new ProcessBuilder().command("mount | grep /dev/block/vold")
+                        .redirectErrorStream(true).start();
+                process.waitFor();
+                final InputStream is = process.getInputStream();
+                final byte[] buffer = new byte[1024];
+                while (is.read(buffer) != -1) {
+                    output = output + new String(buffer);
+                }
+                is.close();
+            } catch (final Exception e) {
+                e.printStackTrace();
+            }
+            if(!output.trim().isEmpty()) {
+                String devicePoints[] = output.split("\n");
+                for(String voldPoint: devicePoints) {
+                    results.add(voldPoint.split(" ")[2]);
+                }
+            }
+        }
+
+        // Below few lines is to remove paths which may not be external memory card, like OTG (feel free to comment them out)
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            for (int i = 0; i < results.size(); i++) {
+                if (!results.get(i).toLowerCase().matches(".*[0-9a-f]{4}[-][0-9a-f]{4}")) {
+                    // Log.d(LOG_TAG, results.get(i) + " might not be extSDcard");
+                    results.remove(i--);
+                }
+            }
+        } else {
+            for (int i = 0; i < results.size(); i++) {
+                if (!results.get(i).toLowerCase().contains("ext") && !results.get(i).toLowerCase().contains("sdcard")) {
+                    // Log.d(LOG_TAG, results.get(i)+" might not be extSDcard");
+                    results.remove(i--);
+                }
+            }
+        }
+
+        String storageDirectories = "";
+        for(int i = 0; i < results.size(); ++i) storageDirectories = storageDirectories + results.get(i);
+
+        return storageDirectories;
+    }
+
     public static String getInternalStorage() {
         StatFs statFs = new StatFs(Environment.getDataDirectory().getPath());
         String lastValue;
@@ -94,7 +165,7 @@ public class DeviceHelper {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             String lastValue1;
 
-            StatFs statFs = new StatFs(Environment.getExternalStorageDirectory().getPath());
+            StatFs statFs = new StatFs(getExternalStorageDirectories(context));
             long blockSize = statFs.getBlockSizeLong();
             long totalBlocks = statFs.getBlockCountLong();
 
