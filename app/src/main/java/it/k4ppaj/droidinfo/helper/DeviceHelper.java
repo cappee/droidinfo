@@ -38,6 +38,7 @@ public class DeviceHelper {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         double totRAM;
         String lastValue = "";
+
         try {
             randomAccessFile = new RandomAccessFile("/proc/meminfo", "r");
             load = randomAccessFile.readLine();
