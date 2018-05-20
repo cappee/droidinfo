@@ -127,4 +127,13 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="VoteApplication">Vote app in PlayStore</string>
     <string name="OpenLinks">Do you want open suggested link?</string>
     <string name="Font">Font</string>
+    <string name="Aspect">Aspect</string>
+    <string name="Features">Features</string>
+    <string name="BogoMIPS" translatable="false">BogoMIPS</string>
+    <string name="SELinux" translatable="false">SELinux</string>
+    <string name="ClickOnItem">Click on item</string>
+    <string name="ClickOnItemSummary">Click on listview item to get more info of that (not available for all item)</string>
+    <string name="MoreFeature">More feature</string>
+    <string name="BogoMIPSInfoTitle">What\'s BogoMIPS?</string>
+    <string name="BogoMIPSInfoMessage">BogoMips (from \"bogus\" and MIPS) is an unscientific measurement of CPU speed made by the Linux kernel when it boots to calibrate an internal busy-loop. An often-quoted definition of the term is \"the number of million times per second a processor can do absolutely nothing\".\n\nSource: en.wikipedia.org</string>
 </resources>

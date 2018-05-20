@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.StrictMode;
+import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.SwitchPreference;
 import android.support.annotation.Nullable;
@@ -109,6 +110,7 @@ public class SettingsActivity extends AppCompatActivity {
     public static class GeneralPreferenceFragment extends PreferenceActivity {
 
         private String FONT = "FONT";
+        private String CLICKONITEM = "CLICKONITEM";
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -164,6 +166,33 @@ public class SettingsActivity extends AppCompatActivity {
                         }
                     });
                     builder.show();
+                    return false;
+                }
+            });
+
+            final SwitchPreference switchPreferenceMoreFeature = (SwitchPreference) findPreference("preferenceSwitchMoreFeature");
+            final CheckBoxPreference checkboxPreferenceClickOnItem = (CheckBoxPreference) findPreference("checkboxPreferenceClickOnItem");
+
+            switchPreferenceMoreFeature.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    if (switchPreferenceMoreFeature.isChecked()) {
+                        sharedPreferences.edit()
+                                .putBoolean(CLICKONITEM, checkboxPreferenceClickOnItem.isChecked())
+                                .apply();
+                    } else {
+                        sharedPreferences.edit()
+                                .putBoolean(CLICKONITEM, false)
+                                .apply();
+                    }
+                    return false;
+                }
+            });
+
+            checkboxPreferenceClickOnItem.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    sharedPreferences.edit().putBoolean(CLICKONITEM, checkboxPreferenceClickOnItem.isChecked()).apply();
                     return false;
                 }
             });

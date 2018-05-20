@@ -92,6 +92,10 @@ public class SoCHelper {
         return maxFreq;
     }
 
+    public static String getBogoMIPS() {
+        return String.valueOf(getCPUInfoMap().get("BogoMIPS"));
+    }
+
     public static String getGPUVendor(GL10 gl10) {
         return gl10.glGetString(GL10.GL_VENDOR);
     }

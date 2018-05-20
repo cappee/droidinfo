@@ -5,13 +5,18 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.text.DecimalFormat;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
-import android.support.v4.os.EnvironmentCompat;
+import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.io.RandomAccessFile;
@@ -21,6 +26,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import it.k4ppaj.droidinfo.R;
+
+import static android.content.ContentValues.TAG;
 
 public class DeviceHelper {
 
@@ -32,7 +39,7 @@ public class DeviceHelper {
         return Build.MANUFACTURER;
     }
 
-    public static String getRAM() {
+    public static String getRAM(Activity context) {
         RandomAccessFile randomAccessFile;
         String load;
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
@@ -163,8 +170,8 @@ public class DeviceHelper {
     }
 
     public static String getExternalStorage(Activity context) {
-        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            String lastValue1;
+        if (ContextCompat.getExternalFilesDirs(context, null).length >= 2) {
+            String lastValue;
 
             StatFs statFs = new StatFs(getExternalStorageDirectories(context));
             long blockSize = statFs.getBlockSizeLong();
@@ -179,17 +186,54 @@ public class DeviceHelper {
             double gb = totalSize / 1073741824.0;
 
             if (gb > 1) {
-                lastValue1 = decimalFormat.format(gb).concat(" GB");
+                lastValue = decimalFormat.format(gb).concat(" GB");
             } else if (mb > 1) {
-                lastValue1 = decimalFormat.format(mb).concat(" MB");
+                lastValue = decimalFormat.format(mb).concat(" MB");
             } else if (kb > 1) {
-                lastValue1 = decimalFormat.format(kb).concat(" KB");
+                lastValue = decimalFormat.format(kb).concat(" KB");
             } else {
-                lastValue1 = decimalFormat.format(totalSize).concat(" bytes");
+                lastValue = decimalFormat.format(totalSize).concat(" bytes");
             }
-            return String.valueOf(lastValue1);
+            return String.valueOf(lastValue);
         } else {
             return context.getString(R.string.NotMounted);
+        }
+    }
+
+    public static String getSELinuxStatus() {
+        if (isSELinuxEnforcing()) {
+            return "Enforcing";
+        } else {
+            return "Permissive";
+        }
+    }
+
+    public static boolean isSELinuxEnforcing() {
+        StringBuffer output = new StringBuffer();
+        Process process;
+        try {
+            process = Runtime.getRuntime().exec("getenforce");
+            process.waitFor();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line = "";
+            while ((line = reader.readLine())!= null) {
+                output.append(line);
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "OS does not support getenforce");
+            // If getenforce is not available to the device, assume the device is not enforcing
+            e.printStackTrace();
+            return false;
+        }
+        String response = output.toString();
+        if ("Enforcing".equals(response)) {
+            return true;
+        } else if ("Permissive".equals(response)) {
+            return false;
+        } else {
+            Log.e(TAG, "getenforce returned unexpected value, unable to determine selinux!");
+            // If getenforce is modified on this device, assume the device is not enforcing
+            return false;
         }
     }
 

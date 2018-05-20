@@ -2,13 +2,16 @@ package it.k4ppaj.droidinfo.fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import it.k4ppaj.droidinfo.R;
@@ -19,6 +22,8 @@ public class SoCFragment extends Fragment {
 
     private Activity activity;
     private Context context;
+
+    private String CLICKONITEM = "CLICKONITEM";
 
     private String GPU_VENDOR = "GPU_VENDOR";
     private String GPU_RENDERER = "GPU_RENDERER";
@@ -55,6 +60,7 @@ public class SoCFragment extends Fragment {
                 getString(R.string.CPUModel),
                 getString(R.string.CPUCores),
                 getString(R.string.CPUFreq),
+                getString(R.string.BogoMIPS),
                 getString(R.string.GPUVendor),
                 getString(R.string.GPURenderer),
                 getString(R.string.OpenGLVersion)
@@ -66,6 +72,7 @@ public class SoCFragment extends Fragment {
                     SoCHelper.getCPUModel(),
                     SoCHelper.getCPUCores(),
                     SoCHelper.getCPUFreq(),
+                    SoCHelper.getBogoMIPS(),
                     sharedPreferences.getString(GPU_VENDOR, getString(R.string.Unknown)),
                     sharedPreferences.getString(GPU_RENDERER, getString(R.string.Unknown)),
                     SoCHelper.getOpenGLVersion(context)
@@ -81,10 +88,29 @@ public class SoCFragment extends Fragment {
             };
         }
 
-
-
         SimpleAdapter simpleAdapter = new SimpleAdapter(activity, stringInformation, stringValues);
         listView.setAdapter(simpleAdapter);
+
+        if (sharedPreferences.getBoolean(CLICKONITEM, false)) {
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    switch (position) {
+                        case 3:
+                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                            builder.setTitle(R.string.BogoMIPSInfoTitle);
+                            builder.setMessage(R.string.BogoMIPSInfoMessage);
+                            builder.setNegativeButton(R.string.Close, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            builder.show();
+                    }
+                }
+            });
+        }
 
         return layoutView;
     }

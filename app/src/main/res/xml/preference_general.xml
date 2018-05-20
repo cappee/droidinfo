@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="Aspect">
+    <PreferenceCategory android:title="@string/Aspect">
         <Preference
             android:key="preferenceFont"
             android:icon="@drawable/ic_format_paint_white_24dp"
             android:title="@string/Font"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/Features">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:icon="@drawable/ic_tune_black_24dp"
+            android:key="preferenceSwitchMoreFeature"
+            android:title="@string/MoreFeature" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:dependency="preferenceSwitchMoreFeature"
+            android:key="checkboxPreferenceClickOnItem"
+            android:summary="@string/ClickOnItemSummary"
+            android:title="@string/ClickOnItem" />
     </PreferenceCategory>
 </PreferenceScreen>

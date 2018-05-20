@@ -47,7 +47,8 @@ public class DeviceFragment extends Fragment {
                 getString(R.string.RAM),
                 getString(R.string.InternalStorage),
                 getString(R.string.ExternalStorage),
-                getString(R.string.RootAccess)
+                getString(R.string.RootAccess),
+                getString(R.string.SELinux)
         };
         String[] stringValues;
 
@@ -55,10 +56,11 @@ public class DeviceFragment extends Fragment {
             stringValues = new String[] {
                     DeviceHelper.getModel(),
                     DeviceHelper.getManufacturer(),
-                    DeviceHelper.getRAM(),
+                    DeviceHelper.getRAM(context),
                     DeviceHelper.getInternalStorage(),
                     DeviceHelper.getExternalStorage(context),
-                    DeviceHelper.getRootAccess(context)
+                    DeviceHelper.getRootAccess(context),
+                    DeviceHelper.getSELinuxStatus()
             };
         } else {
             stringValues = new String[] {
