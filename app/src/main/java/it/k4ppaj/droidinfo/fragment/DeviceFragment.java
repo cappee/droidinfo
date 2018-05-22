@@ -69,7 +69,8 @@ public class DeviceFragment extends Fragment {
                     "4 GB",
                     "64 GB",
                     getString(R.string.NotMounted),
-                    getString(R.string.Yes)
+                    getString(R.string.Yes),
+                    "Enforcing"
             };
         }
 

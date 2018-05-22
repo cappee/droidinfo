@@ -4,8 +4,10 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ConfigurationInfo;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.HashMap;
@@ -90,6 +92,28 @@ public class SoCHelper {
             e.printStackTrace();
         }
         return maxFreq;
+    }
+
+    public static String getCPUGovernor(int core) {
+        StringBuffer sb = new StringBuffer();
+        String file = "/sys/devices/system/cpu/cpu" + core + "/cpufreq/scaling_governor";
+
+        if (new File(file).exists()) {
+            try {
+                BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(file)));
+                String aLine;
+                while ((aLine = bufferedReader.readLine()) != null)
+                    sb.append(aLine + "\n");
+
+                if (bufferedReader != null)
+                    bufferedReader.close();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println(sb.toString());
+        return sb.toString();
     }
 
     public static String getBogoMIPS() {

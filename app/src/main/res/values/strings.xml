@@ -136,4 +136,5 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="MoreFeature">More feature</string>
     <string name="BogoMIPSInfoTitle">What\'s BogoMIPS?</string>
     <string name="BogoMIPSInfoMessage">BogoMips (from \"bogus\" and MIPS) is an unscientific measurement of CPU speed made by the Linux kernel when it boots to calibrate an internal busy-loop. An often-quoted definition of the term is \"the number of million times per second a processor can do absolutely nothing\".\n\nSource: en.wikipedia.org</string>
+    <string name="CPUGovernor" translatable="false">CPU Governor</string>
 </resources>

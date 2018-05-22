@@ -60,6 +60,7 @@ public class SoCFragment extends Fragment {
                 getString(R.string.CPUModel),
                 getString(R.string.CPUCores),
                 getString(R.string.CPUFreq),
+                getString(R.string.CPUGovernor),
                 getString(R.string.BogoMIPS),
                 getString(R.string.GPUVendor),
                 getString(R.string.GPURenderer),
@@ -72,6 +73,7 @@ public class SoCFragment extends Fragment {
                     SoCHelper.getCPUModel(),
                     SoCHelper.getCPUCores(),
                     SoCHelper.getCPUFreq(),
+                    SoCHelper.getCPUGovernor(0),
                     SoCHelper.getBogoMIPS(),
                     sharedPreferences.getString(GPU_VENDOR, getString(R.string.Unknown)),
                     sharedPreferences.getString(GPU_RENDERER, getString(R.string.Unknown)),
@@ -82,6 +84,8 @@ public class SoCFragment extends Fragment {
                     "Qualcomm® Snapdragon™ 835",
                     "8 cores",
                     "1.9 - 2.35 Ghz",
+                    "interactive",
+                    getString(R.string.Unknown),
                     "Qualcomm®",
                     "Adreno 540",
                     getString(R.string.Unknown)
@@ -96,7 +100,7 @@ public class SoCFragment extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     switch (position) {
-                        case 3:
+                        case 4:
                             AlertDialog.Builder builder = new AlertDialog.Builder(context);
                             builder.setTitle(R.string.BogoMIPSInfoTitle);
                             builder.setMessage(R.string.BogoMIPSInfoMessage);
