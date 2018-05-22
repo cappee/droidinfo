@@ -53,9 +53,11 @@ public class DeviceHelper {
             Pattern pattern = Pattern.compile("(\\d+)");
             Matcher matcher = pattern.matcher(load);
             String value = "";
+
             while (matcher.find()) {
                 value = matcher.group(1);
             }
+
             randomAccessFile.close();
 
             totRAM = Double.parseDouble(value);
