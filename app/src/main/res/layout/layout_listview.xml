@@ -19,7 +19,7 @@
         android:paddingBottom="14dp"
         android:paddingLeft="16dp"
         android:text="Full HD (1920x1080)"
-        android:maxLines="1"
+        android:maxLines="0"
         android:textStyle="bold" />
 
 </FrameLayout>
