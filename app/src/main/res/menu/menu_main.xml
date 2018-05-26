@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="it.k4ppaj.droidinfo.ui.MainActivity">
+    tools:context="it.droidinfo.ui.MainActivity">
     <item
         android:id="@+id/MenuRefresh"
         android:orderInCategory="100"
