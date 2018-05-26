@@ -8,8 +8,8 @@
         android:title="@string/Version"
         android:summary="0.2 (Helium)" />
     <Preference
-        android:title="Package Name"
-        android:summary="it.k4ppaj.droidinfo" />
+        android:key="preferencePackageName"
+        android:title="Package Name" />
     <Preference
         android:key="preferenceVoteApplication"
         android:title="@string/VoteApplication" />
