@@ -13,7 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -133,12 +132,14 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.MenuRefresh) {
-            Toast.makeText(MainActivity.this, R.string.WorkInProgress, Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.MenuBenchmark) {
+            finish();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        } /*else if (id == R.id.MenuBenchmark) {
             startActivity(new Intent(MainActivity.this, BenchmarkActivity.class));
             finish();
             return true;
-        } else if (id == R.id.MenuSettings) {
+        }*/ else if (id == R.id.MenuSettings) {
             startActivity(new Intent(MainActivity.this, SettingsActivity.class));
             finish();
             return true;

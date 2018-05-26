@@ -44,6 +44,31 @@ public class SoCHelper {
         return String.valueOf(getMinCPUFreq(0)) + " - " + String.valueOf(getMaxCPUFreq(0)) + " MHz";
     }
 
+    private static int getCurCPUFreq(int core) {
+        int minFreq = -1;
+        try {
+            RandomAccessFile randomAccessFile = new RandomAccessFile("/sys/devices/system/cpu/cpu" + core + "/cpufreq/scaling_cur_freq", "r");
+            boolean done = false;
+            while (!done) {
+                String line = randomAccessFile.readLine();
+                if (null == line) {
+                    done = true;
+                    break;
+                }
+                int timeInState = Integer.parseInt(line);
+                if (timeInState > 0) {
+                    int freq = timeInState / 1000;
+                    if (freq > minFreq) {
+                        minFreq = freq;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return minFreq;
+    }
+
     private static int getMinCPUFreq(int core) {
         int minFreq = -1;
         try {

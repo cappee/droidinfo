@@ -1,20 +1,21 @@
 package app.droidinfo.helper;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.text.DecimalFormat;
-
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.RandomAccessFile;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -74,6 +75,15 @@ public class DeviceHelper {
             ex.printStackTrace();
         }
         return lastValue;
+    }
+
+    public static int getCurrentRam(Activity context) {
+        ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        activityManager.getMemoryInfo(mi);
+
+        long ramAvailable = mi.availMem / 0x100000L; // 0x100000L is a mebibyte - StopCopyAnything
+        return (int)ramAvailable;
     }
 
     public static String getExternalStorageDirectories(Activity context) {

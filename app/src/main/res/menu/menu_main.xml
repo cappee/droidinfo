@@ -8,11 +8,11 @@
         android:title="@string/Refresh"
         android:icon="@drawable/ic_refresh_white_24dp"
         app:showAsAction="always" />
-    <item
+    <!--<item
         android:id="@+id/MenuBenchmark"
         android:orderInCategory="200"
         android:title="@string/Benchmark"
-        app:showAsAction="never" />
+        app:showAsAction="never" />-->
     <item
         android:id="@+id/MenuSettings"
         android:orderInCategory="300"

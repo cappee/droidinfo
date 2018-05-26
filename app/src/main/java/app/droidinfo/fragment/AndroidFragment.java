@@ -93,8 +93,6 @@ public class AndroidFragment extends Fragment {
             };
         }
 
-
-
         SimpleAdapter simpleAdapter = new SimpleAdapter(context, stringInformation, stringValues);
         listView.setAdapter(simpleAdapter);
         return layoutView;

@@ -109,6 +109,6 @@
     <string name="ClickOnItem">Click sull\'elemento</string>
     <string name="ClickOnItemSummary">Esegui un click sull\'elemento per avere più informazioni su esso (non disponibile per tutti gli elementi)</string>
     <string name="MoreFeature">Più funzioni</string>
-    <string name="BogoMIPSInfoMessage">BogoMips (dai termini bogus dal significato di fasullo, inutile, e MIPS, million instructions per second) è un indice informale della velocità di una CPU, ideato da Linus Torvalds e calcolato dal kernel Linux durante la fase di boot, con lo scopo di calibrare i loop di temporizzazione interni (busy-loop).\n\nFonte: it.wikipedia.org</string>
+    <string name="BogoMIPSInfoMessage">BogoMips (dai termini bogus dal significato di fasullo, inutile, e MIPS, million instructions per second) è un indice informale della velocità di una CPU, ideato da Linus Torvalds e calcolato dal kernel Linux durante la fase di boot, con lo scopo di calibrare i loop di temporizzazione interni (busy-loop).\n\n// Più alto è meglio è.\n\nFonte: it.wikipedia.org</string>
     <string name="BogoMIPSInfoTitle">Cos\'è BogoMIPS?</string>
 </resources>
