@@ -48,7 +48,8 @@ public class DisplayFragment extends Fragment {
                 getString(R.string.Resolution),
                 getString(R.string.DPI),
                 getString(R.string.ScreenSize),
-                getString(R.string.RefreshValue)
+                getString(R.string.RefreshValue),
+                getString(R.string.Brightness)
         };
         String[] stringValues;
 
@@ -57,7 +58,8 @@ public class DisplayFragment extends Fragment {
                     sharedPreferences.getString(RESOLUTION, getString(R.string.Unknown)),
                     DisplayHelper.getDPI(activity),
                     sharedPreferences.getString(SCREEN_INCHES, getString(R.string.Unknown)),
-                    DisplayHelper.getRefreshValue(activity)
+                    DisplayHelper.getRefreshValue(activity),
+                    DisplayHelper.getCurrentBrightness()
             };
         } else {
             stringValues = new String[] {

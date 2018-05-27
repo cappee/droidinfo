@@ -1,5 +1,6 @@
 package app.droidinfo.ui;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -279,6 +280,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public static class InfoPreferenceFragment extends PreferenceActivity {
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -288,7 +290,7 @@ public class SettingsActivity extends AppCompatActivity {
             Preference preferenceVoteApplication = findPreference("preferenceVoteApplication");
             Preference preferencePackageName = findPreference("preferencePackageName");
 
-            preferencePackageName.setSummary("app.droidinfo");
+            preferencePackageName.setSummary(getApplicationContext().getPackageName());
 
             preferenceAuthor.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override

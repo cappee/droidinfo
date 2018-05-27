@@ -4,11 +4,16 @@ import android.app.Activity;
 import android.content.Context;
 
 import android.graphics.Point;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
 
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.Locale;
+
+import app.droidinfo.R;
 
 public class DisplayHelper {
 
@@ -53,5 +58,39 @@ public class DisplayHelper {
         float refreshValue = display.getRefreshRate();
         return String.format(Locale.ENGLISH, "%.2f", refreshValue) + "Hz";
     }
+
+    public static String getCurrentBrightness() {
+        int currentBrighness = 0;
+        int maxBrighness = 0;
+        try {
+            RandomAccessFile randomAccessFileCurrent = new RandomAccessFile("/sys/class/leds/lcd-backlight/brightness", "r");
+            boolean doneCurrent = false;
+            while (!doneCurrent) {
+                String line = randomAccessFileCurrent.readLine();
+                if (null == line) {
+                    doneCurrent = true;
+                    break;
+                }
+                currentBrighness = Integer.parseInt(line);
+            }
+            RandomAccessFile randomAccessFileMax = new RandomAccessFile("/sys/class/leds/lcd-backlight/max_brightness", "r");
+            boolean doneMax = false;
+            while (!doneMax) {
+                String line = randomAccessFileMax.readLine();
+                if (null == line) {
+                    doneMax = true;
+                    break;
+                }
+                maxBrighness = Integer.parseInt(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Curremt " + currentBrighness);
+        System.out.println("Mac " + maxBrighness);
+
+        return String.valueOf((currentBrighness*100)/maxBrighness) + "% (" + currentBrighness + " / " + maxBrighness +")";
+    }
+
 
 }
