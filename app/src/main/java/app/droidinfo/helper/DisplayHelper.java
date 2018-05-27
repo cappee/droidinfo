@@ -86,9 +86,6 @@ public class DisplayHelper {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Curremt " + currentBrighness);
-        System.out.println("Mac " + maxBrighness);
-
         return String.valueOf((currentBrighness*100)/maxBrighness) + "% (" + currentBrighness + " / " + maxBrighness +")";
     }
 

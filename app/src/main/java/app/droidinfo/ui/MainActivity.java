@@ -1,6 +1,7 @@
 package app.droidinfo.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -32,8 +33,13 @@ public class MainActivity extends AppCompatActivity {
 
     private String[] stringTitleToolbar = new String[] {};
 
+    private String IS_REFRESHED = "IS_REFRESHED";
+    private String POSITION_SELECTED_TAB = "POSITION_SELECTED_TAB";
+
     private ViewPager viewPager;
     private TabLayout tabLayout;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         //window.setNavigationBarColor(getResources().getColor(android.R.color.background_dark));
 
         stringTitleToolbar = new String[] { "Android", getString(R.string.SoC), getString(R.string.Device), getString(R.string.Display), getString(R.string.Battery), getString(R.string.Telephony) };
+
+        sharedPreferences = getSharedPreferences("DroidInfo", MODE_PRIVATE);
 
         viewPager = findViewById(R.id.viewPager);
         setupViewPager(viewPager);
@@ -87,6 +95,11 @@ public class MainActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
+
+        if (sharedPreferences.getBoolean(IS_REFRESHED, false)) {
+            tabLayout.getTabAt(sharedPreferences.getInt(POSITION_SELECTED_TAB, 1)).select();
+            sharedPreferences.edit().putBoolean(IS_REFRESHED, false).apply();
+        }
     }
 
     private void setupTabIcons(TabLayout tabLayout) {
@@ -132,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.MenuRefresh) {
+            sharedPreferences.edit().putBoolean(IS_REFRESHED, true).putInt(POSITION_SELECTED_TAB, tabLayout.getSelectedTabPosition()).apply();
             finish();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
