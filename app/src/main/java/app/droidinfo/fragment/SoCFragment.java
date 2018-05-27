@@ -72,7 +72,7 @@ public class SoCFragment extends Fragment {
             stringValues = new String[] {
                     SoCHelper.getCPUModel(),
                     SoCHelper.getCPUCores(),
-                    SoCHelper.getCPUFreq(),
+                    SoCHelper.getCPUFreq() /*+ " (min - MAX)"*/,
                     SoCHelper.getCPUGovernor(0),
                     SoCHelper.getBogoMIPS(),
                     sharedPreferences.getString(GPU_VENDOR, getString(R.string.Unknown)),
@@ -99,18 +99,55 @@ public class SoCFragment extends Fragment {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    System.out.println(position);
                     switch (position) {
+                        case 2:
+                            AlertDialog.Builder builder2 = new AlertDialog.Builder(context);
+                            CharSequence[] charSequencesCPUFreqCurrent;
+                            if (SoCHelper.getCPUCores().contains("2")) {
+                                charSequencesCPUFreqCurrent = new CharSequence[]{
+                                        "CPU0: " + SoCHelper.getCurrentCPUFreq(0) + " MHz",
+                                        "CPU1: " + SoCHelper.getCurrentCPUFreq(1) + " MHz"
+                                };
+                            } else if (SoCHelper.getCPUCores().contains("4")) {
+                                charSequencesCPUFreqCurrent = new CharSequence[]{
+                                        "CPU0: " + SoCHelper.getCurrentCPUFreq(0) + " MHz",
+                                        "CPU1: " + SoCHelper.getCurrentCPUFreq(1) + " MHz",
+                                        "CPU2: " + SoCHelper.getCurrentCPUFreq(2) + " MHz",
+                                        "CPU3: " + SoCHelper.getCurrentCPUFreq(3) + " MHz"
+                                };
+                            } else if (SoCHelper.getCPUCores().contains("8")) {
+                                charSequencesCPUFreqCurrent = new CharSequence[] {
+                                        "CPU0: " + SoCHelper.getCurrentCPUFreq(0) + " MHz",
+                                        "CPU1: " + SoCHelper.getCurrentCPUFreq(1) + " MHz",
+                                        "CPU2: " + SoCHelper.getCurrentCPUFreq(2) + " MHz",
+                                        "CPU3: " + SoCHelper.getCurrentCPUFreq(3) + " MHz",
+                                        "CPU4: " + SoCHelper.getCurrentCPUFreq(4) + " MHz",
+                                        "CPU5: " + SoCHelper.getCurrentCPUFreq(5) + " MHz",
+                                        "CPU6: " + SoCHelper.getCurrentCPUFreq(6) + " MHz",
+                                        "CPU7: " + SoCHelper.getCurrentCPUFreq(7) + " MHz"
+                                };
+                            } else
+                                break;
+                            builder2.setItems(charSequencesCPUFreqCurrent, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //Don't do anything - gabrielecappellaro
+                                }
+                            });
+                            builder2.show();
+                            break;
                         case 4:
-                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                            builder.setTitle(R.string.BogoMIPSInfoTitle);
-                            builder.setMessage(R.string.BogoMIPSInfoMessage);
-                            builder.setNegativeButton(R.string.Close, new DialogInterface.OnClickListener() {
+                            AlertDialog.Builder builder4 = new AlertDialog.Builder(context);
+                            builder4.setTitle(R.string.BogoMIPSInfoTitle);
+                            builder4.setMessage(R.string.BogoMIPSInfoMessage);
+                            builder4.setNegativeButton(R.string.Close, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
                                 }
                             });
-                            builder.show();
+                            builder4.show();
                     }
                 }
             });

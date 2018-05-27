@@ -74,19 +74,22 @@ public class DeviceHelper {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        return lastValue;
-    }
 
-    public static int getCurrentRam(Activity context) {
         ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
         ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         activityManager.getMemoryInfo(mi);
 
         long ramAvailable = mi.availMem / 0x100000L; // 0x100000L is a mebibyte - StopCopyAnything
-        return (int)ramAvailable;
+
+        String ramAvailableString = "";
+        if (ramAvailable < 1024) {
+            ramAvailableString = ramAvailable + " MB";
+        }
+
+        return ramAvailableString + " / " + lastValue;
     }
 
-    public static String getExternalStorageDirectories(Activity context) {
+    private static String getExternalStorageDirectories(Activity context) {
 
         List<String> results = new ArrayList<>();
 

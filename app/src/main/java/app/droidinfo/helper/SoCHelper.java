@@ -44,8 +44,8 @@ public class SoCHelper {
         return String.valueOf(getMinCPUFreq(0)) + " - " + String.valueOf(getMaxCPUFreq(0)) + " MHz";
     }
 
-    private static int getCurCPUFreq(int core) {
-        int minFreq = -1;
+    public static String getCurrentCPUFreq(int core) {
+        int currentFreq = -1;
         try {
             RandomAccessFile randomAccessFile = new RandomAccessFile("/sys/devices/system/cpu/cpu" + core + "/cpufreq/scaling_cur_freq", "r");
             boolean done = false;
@@ -58,15 +58,15 @@ public class SoCHelper {
                 int timeInState = Integer.parseInt(line);
                 if (timeInState > 0) {
                     int freq = timeInState / 1000;
-                    if (freq > minFreq) {
-                        minFreq = freq;
+                    if (freq > currentFreq) {
+                        currentFreq = freq;
                     }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return minFreq;
+        return String.valueOf(currentFreq);
     }
 
     private static int getMinCPUFreq(int core) {
@@ -120,15 +120,13 @@ public class SoCHelper {
     }
 
     public static String getCPUGovernor(int core) {
-        StringBuffer sb = new StringBuffer();
+        String governor = "";
         String file = "/sys/devices/system/cpu/cpu" + core + "/cpufreq/scaling_governor";
 
         if (new File(file).exists()) {
             try {
                 BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(file)));
-                String aLine;
-                while ((aLine = bufferedReader.readLine()) != null)
-                    sb.append(aLine + "\n");
+                governor = bufferedReader.readLine();
 
                 if (bufferedReader != null)
                     bufferedReader.close();
@@ -137,8 +135,7 @@ public class SoCHelper {
                 e.printStackTrace();
             }
         }
-        System.out.println(sb.toString());
-        return sb.toString();
+        return governor;
     }
 
     public static String getBogoMIPS() {
