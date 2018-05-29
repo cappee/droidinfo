@@ -139,4 +139,6 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="CPUGovernor" translatable="false">CPU Governor</string>
     <string name="CPUFreqCurrent">CPU Freq current</string>
     <string name="Brightness">Brightness</string>
+    <string name="Sensor">Sensor</string>
+    <string name="Root" translatable="false">Root</string>
 </resources>
