@@ -2,9 +2,9 @@
 
 A powerful and material design, phone status checker!
 
-## Download Nightly!
+## Download
 
-Use [this link](https://k4ppaj.github.io/DroidInfo/download.html) for download latest, (Very highly unstable) apk!
+[Apk](droidinfo.app/download.html). It may be unstable.
 
 ## License
 
@@ -12,4 +12,7 @@ The project is under ```MIT LICENSE```
 
 ## Support 
 
-For support, open an issue or write an email to: support@droidinfo.app
+For support, open an issue or write an email to: support@droidinfo.app / bug@droidinfo.app
+_Also [donations](paypal.me/k4ppaj) are good :D_ 
+
+Release date may be 07/04/2018
