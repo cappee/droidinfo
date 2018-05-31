@@ -4,7 +4,7 @@ A powerful and material design, phone status checker!
 
 ## Download
 
-[Apk](droidinfo.app/download.html). It may be unstable.
+[Apk](https://droidinfo.app/download.html). It may be unstable.
 
 ## License
 
@@ -13,6 +13,6 @@ The project is under ```MIT LICENSE```
 ## Support 
 
 For support, open an issue or write an email to: support@droidinfo.app / bug@droidinfo.app
-_Also [donations](paypal.me/k4ppaj) are good :D_ 
+_Also [donations](https://paypal.me/k4ppaj) are good :D_ 
 
 Release date may be 07/04/2018
