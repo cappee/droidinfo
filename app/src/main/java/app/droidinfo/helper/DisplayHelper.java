@@ -59,7 +59,7 @@ public class DisplayHelper {
         return String.format(Locale.ENGLISH, "%.2f", refreshValue) + "Hz";
     }
 
-    public static String getCurrentBrightness() {
+    /*public static String getCurrentBrightness() {
         int currentBrighness = 0;
         int maxBrighness = 0;
         try {
@@ -87,7 +87,7 @@ public class DisplayHelper {
             e.printStackTrace();
         }
         return String.valueOf((currentBrighness*100)/maxBrighness) + "% (" + currentBrighness + " / " + maxBrighness +")";
-    }
+    }*/
 
 
 }

@@ -114,4 +114,11 @@
     <string name="CPUFreqCurrent">Frequenza corrente della CPU</string>
     <string name="Brightness">Luminosità</string>
     <string name="Sensor">Sensori</string>
+    <string name="Accelerometer">Accellerometro</string>
+    <string name="Proximity">Prossimità</string>
+    <string name="Near">Vicino</string>
+    <string name="Far">Lontano</string>
+    <string name="Gyroscope">Giroscopio</string>
+    <string name="Magnetometer">Magnetometro</string>
+    <string name="ThereAreNothing">Non c\'è nulla qui, per il momento, torna fra un po\'.</string>
 </resources>

@@ -15,6 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import java.text.DecimalFormat;
+import java.util.Locale;
+
 import app.droidinfo.R;
 import app.droidinfo.adapter.SimpleAdapter;
 
@@ -23,8 +26,30 @@ public class SensorFragment extends Fragment implements SensorEventListener{
     private Activity activity;
 
     private SensorManager mSensorManager;
+    private Sensor mSensorAccelerometer;
+    private Sensor mSensorMagnetometer;
+    private Sensor mSensorGyroscope;
+    private Sensor mSensorProximity;
 
+    private float mAccelerometerX;
+    private float mAccelerometerY;
+    private float mAccelerometerZ;
+    private String mProximity;
+    private float mGyroscopeX;
+    private float mGyroscopeY;
+    private float mGyroscopeZ;
+    private float mMagnetometerX;
+    private float mMagnetometerY;
+    private float mMagnetometerZ;
+
+    private SharedPreferences sharedPreferences;
     private String USE_DEFAULT_INFORMATION = "USE_DEFAULT_INFORMATION";
+
+    private ListView listView;
+    private DecimalFormat decimalFormat = new DecimalFormat(".##");
+
+    private String[] stringInformation;
+    private String[] stringValues;
 
     @Override
     public void onAttach(Activity activity) {
@@ -40,7 +65,11 @@ public class SensorFragment extends Fragment implements SensorEventListener{
     @Override
     public void onResume() {
         super.onResume();
-        //mSensorManager.registerListener();
+        //SENSOR_NORMAL_DELAY=3 but it's too short, so 10 is a good delay ~gabrielecappellaro
+        mSensorManager.registerListener(this, mSensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(this, mSensorMagnetometer, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(this, mSensorGyroscope, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(this, mSensorProximity, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
@@ -54,42 +83,78 @@ public class SensorFragment extends Fragment implements SensorEventListener{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View layoutView = inflater.inflate(R.layout.fragment_sensor, container, false);
 
-        SharedPreferences sharedPreferences = activity.getSharedPreferences("DroidInfo", Context.MODE_PRIVATE);
+        sharedPreferences = activity.getSharedPreferences("DroidInfo", Context.MODE_PRIVATE);
 
-        mSensorManager =(SensorManager) activity.getSystemService(Context.SENSOR_SERVICE);
+        mSensorManager = (SensorManager) activity.getSystemService(Context.SENSOR_SERVICE);
+        if (mSensorManager != null) {
+            mSensorAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+            mSensorMagnetometer = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+            mSensorGyroscope = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+            mSensorProximity = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+            mSensorManager.registerListener(this, mSensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+            mSensorManager.registerListener(this, mSensorMagnetometer, SensorManager.SENSOR_DELAY_NORMAL);
+            mSensorManager.registerListener(this, mSensorGyroscope, SensorManager.SENSOR_DELAY_NORMAL);
+            mSensorManager.registerListener(this, mSensorProximity, SensorManager.SENSOR_DELAY_NORMAL);
+        }
 
-        ListView listView = layoutView.findViewById(R.id.listViewSensor);
+        listView = layoutView.findViewById(R.id.listViewSensor);
 
-        String[] stringInformation = new String[] {
-
+        stringInformation = new String[] {
+                getString(R.string.Accelerometer),
+                getString(R.string.Magnetometer),
+                getString(R.string.Gyroscope),
+                getString(R.string.Proximity)
         };
-        String[] stringValues;
 
+        return layoutView;
+    }
+
+    private void getSensorData() {
         if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
             stringValues = new String[] {
-
+                    "x: " + String.format(Locale.ENGLISH, "%.2f", mAccelerometerX) + " m/s2 / y: " + String.format(Locale.ENGLISH, "%.2f", mAccelerometerY) + " m/s2 / z: " + String.format(Locale.ENGLISH, "%.2f", mAccelerometerZ) + " m/s2",
+                    "x: " + String.format(Locale.ENGLISH, "%.2f", mMagnetometerX) + " μT / y: " + String.format(Locale.ENGLISH, "%.2f", mMagnetometerY) + " μT / z: " + String.format(Locale.ENGLISH, "%.2f", mMagnetometerZ) + " μT",
+                    "x: " + String.format(Locale.ENGLISH, "%.2f", mGyroscopeX) + " rad/s / y: " + String.format(Locale.ENGLISH, "%.2f", mGyroscopeY) + " rad/s / z: " + String.format(Locale.ENGLISH, "%.2f", mGyroscopeZ) + " rad/s",
+                    mProximity
             };
         } else {
             stringValues = new String[] {
-                    "1440x2880",
-                    "538 dpi",
-                    "6.00\"",
-                    "60Hz"
+                    //TODO: Insert value for default device
             };
         }
 
         SimpleAdapter adapter = new SimpleAdapter(activity, stringInformation, stringValues);
-        //listView.setAdapter(adapter);
-        return layoutView;
+        listView.setAdapter(adapter);
     }
 
     @Override
-    public void onSensorChanged(SensorEvent event) {
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        Sensor sensor = sensorEvent.sensor;
 
+        if (sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+            mAccelerometerX = sensorEvent.values[0];
+            mAccelerometerY = sensorEvent.values[1];
+            mAccelerometerZ = sensorEvent.values[2];
+        } else if (sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
+            mMagnetometerX = sensorEvent.values[0];
+            mMagnetometerY = sensorEvent.values[1];
+            mMagnetometerZ = sensorEvent.values[2];
+        } else if (sensor.getType() == Sensor.TYPE_GYROSCOPE) {
+            mGyroscopeX = sensorEvent.values[0];
+            mGyroscopeY = sensorEvent.values[1];
+            mGyroscopeZ = sensorEvent.values[2];
+        } else if (sensor.getType() == Sensor.TYPE_PROXIMITY) {
+            if (sensorEvent.values[0] < mSensorProximity.getMaximumRange()) {
+                mProximity = getString(R.string.Near) + " (" + sensorEvent.values[0] + ")";
+            } else {
+                mProximity = getString(R.string.Far) + " (" + sensorEvent.values[0] + ")";
+            }
+        }
+        getSensorData();
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
+        getSensorData();
     }
 }

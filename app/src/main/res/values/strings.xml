@@ -141,4 +141,12 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="Brightness">Brightness</string>
     <string name="Sensor">Sensor</string>
     <string name="Root" translatable="false">Root</string>
+    <string name="Accelerometer">Accelerometer</string>
+    <string name="Proximity">Proximity</string>
+    <string name="Near">Near</string>
+    <string name="Far">Far</string>
+    <string name="Gyroscope">Gyroscope</string>
+    <string name="Magnetometer">Magnetometer</string>
+    <string name="ThereAreNothing">There\'s nothing here for now, come back in a bit.</string>
+    <string name="BuildID" translatable="false">Build ID</string>
 </resources>

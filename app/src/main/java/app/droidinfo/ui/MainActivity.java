@@ -23,6 +23,7 @@ import app.droidinfo.fragment.AndroidFragment;
 import app.droidinfo.fragment.BatteryFragment;
 import app.droidinfo.fragment.DeviceFragment;
 import app.droidinfo.fragment.DisplayFragment;
+import app.droidinfo.fragment.RootFragment;
 import app.droidinfo.fragment.SensorFragment;
 import app.droidinfo.fragment.SoCFragment;
 import app.droidinfo.fragment.TelephonyFragment;
@@ -123,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         viewPagerAdapter.addFragment(new BatteryFragment(), "Battery");
         viewPagerAdapter.addFragment(new TelephonyFragment(), "Telephony");
         viewPagerAdapter.addFragment(new SensorFragment(), "Sensor");
-        viewPagerAdapter.addFragment(new SensorFragment(), "Root");
+        viewPagerAdapter.addFragment(new RootFragment(), "Root");
         viewPager.setAdapter(viewPagerAdapter);
     }
 

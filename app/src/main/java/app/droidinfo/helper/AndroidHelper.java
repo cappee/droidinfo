@@ -39,6 +39,10 @@ public class AndroidHelper {
         return Build.VERSION.SECURITY_PATCH;
     }
 
+    public static String getBuildID() {
+        return Build.DISPLAY;
+    }
+
     public static String getKernelVersion() {
         return "Linux " + System.getProperty("os.version");
     }

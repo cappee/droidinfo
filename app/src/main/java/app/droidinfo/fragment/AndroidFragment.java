@@ -51,6 +51,7 @@ public class AndroidFragment extends Fragment {
                         getString(R.string.AndroidVersion),
                         getString(R.string.APILevel),
                         getString(R.string.SecurityPatch),
+                        getString(R.string.BuildID),
                         getString(R.string.KernelVersion),
                         getString(R.string.KernelArch)
                 };
@@ -59,6 +60,7 @@ public class AndroidFragment extends Fragment {
                         AndroidHelper.getAndroidVersion(),
                         AndroidHelper.getAPILevel(),
                         AndroidHelper.getSecurityPatch(),
+                        AndroidHelper.getBuildID(),
                         AndroidHelper.getKernelVersion(),
                         AndroidHelper.getKernelArch()
                 };
@@ -66,6 +68,7 @@ public class AndroidFragment extends Fragment {
                 stringInformation = new String[] {
                         getString(R.string.AndroidVersion),
                         getString(R.string.APILevel),
+                        getString(R.string.BuildID),
                         getString(R.string.KernelVersion),
                         getString(R.string.KernelArch)
                 };
@@ -73,6 +76,7 @@ public class AndroidFragment extends Fragment {
                 stringValues = new String[] {
                         AndroidHelper.getAndroidVersion(),
                         AndroidHelper.getAPILevel(),
+                        AndroidHelper.getBuildID(),
                         AndroidHelper.getKernelVersion(),
                         AndroidHelper.getKernelArch()
                 };
