@@ -26,6 +26,9 @@ public class AndroidHelper {
             case 26:
                 versionName = "Oreo";
                 break;
+            case 27:
+                versionName = "Oreo";
+                break;
         }
         return versionName + " (" + Build.VERSION.RELEASE + ")";
     }

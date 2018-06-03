@@ -33,7 +33,11 @@ public class SoCHelper {
     }
 
     public static String getCPUModel() {
-        return getCPUInfoMap().get("Hardware");
+        String cpu = getCPUInfoMap().get("Hardware");
+        if (cpu == null) {
+            cpu = getCPUInfoMap().get("model name");
+        }
+        return cpu;
     }
 
     public static String getCPUCores() {
@@ -139,7 +143,7 @@ public class SoCHelper {
     }
 
     public static String getBogoMIPS() {
-        return String.valueOf(getCPUInfoMap().get("BogoMIPS"));
+        return String.valueOf(getCPUInfoMap().get("bogomips"));
     }
 
     public static String getGPUVendor(GL10 gl10) {
