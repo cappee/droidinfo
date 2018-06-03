@@ -6,12 +6,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
 import app.droidinfo.R;
+import app.droidinfo.adapter.RecyclerViewAdapter;
 import app.droidinfo.adapter.SimpleAdapter;
 
 public class BatteryFragment extends Fragment {
@@ -44,7 +46,7 @@ public class BatteryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View layoutView = inflater.inflate(R.layout.fragment_battery, container, false);
-        ListView listViewBattery = layoutView.findViewById(R.id.listViewBattery);
+        RecyclerView recyclerView = layoutView.findViewById(R.id.recyclerViewBattery);
 
         SharedPreferences sharedPreferences = context.getSharedPreferences("DroidInfo", Context.MODE_PRIVATE);
 
@@ -84,8 +86,8 @@ public class BatteryFragment extends Fragment {
             };
         }
 
-        SimpleAdapter adapter = new SimpleAdapter(context, stringInformation, stringValues);
-        listViewBattery.setAdapter(adapter);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(stringInformation, stringValues);
+        recyclerView.setAdapter(recyclerViewAdapter);
         return layoutView;
     }
 

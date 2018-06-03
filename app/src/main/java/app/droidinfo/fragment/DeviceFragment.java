@@ -6,12 +6,14 @@ import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
 import app.droidinfo.R;
+import app.droidinfo.adapter.RecyclerViewAdapter;
 import app.droidinfo.adapter.SimpleAdapter;
 import app.droidinfo.helper.DeviceHelper;
 
@@ -39,11 +41,12 @@ public class DeviceFragment extends Fragment {
 
         SharedPreferences sharedPreferences = context.getSharedPreferences("DroidInfo", Context.MODE_PRIVATE);
 
-        ListView listView = layoutView.findViewById(R.id.listViewDevice);
+        RecyclerView recyclerView = layoutView.findViewById(R.id.recyclerViewDevice);
 
         String[] stringInformation = new String[] {
                 getString(R.string.Model),
                 getString(R.string.Manufacturer),
+                getString(R.string.Codename),
                 getString(R.string.RAM),
                 getString(R.string.InternalStorage),
                 getString(R.string.ExternalStorage),
@@ -56,6 +59,7 @@ public class DeviceFragment extends Fragment {
             stringValues = new String[] {
                     DeviceHelper.getModel(),
                     DeviceHelper.getManufacturer(),
+                    DeviceHelper.getCodename(),
                     DeviceHelper.getRAM(context),
                     DeviceHelper.getInternalStorage(),
                     DeviceHelper.getExternalStorage(context),
@@ -74,8 +78,8 @@ public class DeviceFragment extends Fragment {
             };
         }
 
-        SimpleAdapter simpleAdapter = new SimpleAdapter(context, stringInformation, stringValues);
-        listView.setAdapter(simpleAdapter);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(stringInformation, stringValues);
+        recyclerView.setAdapter(recyclerViewAdapter);
         return layoutView;
     }
 }

@@ -6,12 +6,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
 import app.droidinfo.R;
+import app.droidinfo.adapter.RecyclerViewAdapter;
 import app.droidinfo.adapter.SimpleAdapter;
 import app.droidinfo.helper.DisplayHelper;
 
@@ -42,7 +44,7 @@ public class DisplayFragment extends Fragment {
 
         SharedPreferences sharedPreferences = activity.getSharedPreferences("DroidInfo", Context.MODE_PRIVATE);
 
-        ListView listView = layoutView.findViewById(R.id.listViewDisplay);
+        RecyclerView recyclerView = layoutView.findViewById(R.id.recyclerViewDisplay);
 
         String[] stringInformation = new String[] {
                 getString(R.string.Resolution),
@@ -72,8 +74,8 @@ public class DisplayFragment extends Fragment {
 
 
 
-        SimpleAdapter adapter = new SimpleAdapter(activity, stringInformation, stringValues);
-        listView.setAdapter(adapter);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(stringInformation, stringValues);
+        recyclerView.setAdapter(recyclerViewAdapter);
         return layoutView;
     }
 }

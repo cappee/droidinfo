@@ -31,7 +31,11 @@ public class TelephonyHelper {
     @SuppressLint("MissingPermission")
     public static String getIMEI(Activity context) {
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        return telephonyManager.getDeviceId();
+        if (telephonyManager.getDeviceId().equals("000000000000000")) {
+            return context.getString(R.string.Unknown);
+        } else {
+            return telephonyManager.getDeviceId();
+        }
     }
 
     public static String getStatus(Activity activity) {

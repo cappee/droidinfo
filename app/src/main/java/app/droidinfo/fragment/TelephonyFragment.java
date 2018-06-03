@@ -6,12 +6,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
 import app.droidinfo.R;
+import app.droidinfo.adapter.RecyclerViewAdapter;
 import app.droidinfo.adapter.SimpleAdapter;
 import app.droidinfo.helper.TelephonyHelper;
 
@@ -43,7 +45,7 @@ public class TelephonyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View layoutView = inflater.inflate(R.layout.fragment_telephony, container, false);
-        ListView listView = layoutView.findViewById(R.id.listViewTelephony);
+        RecyclerView recyclerView = layoutView.findViewById(R.id.recyclerViewTelephony);
 
         SharedPreferences sharedPreferences = context.getSharedPreferences("DroidInfo", Context.MODE_PRIVATE);
 
@@ -95,8 +97,8 @@ public class TelephonyFragment extends Fragment {
             };
         }
 
-        SimpleAdapter simpleAdapter = new SimpleAdapter(activity, stringInformation, stringValues);
-        listView.setAdapter(simpleAdapter);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(stringInformation, stringValues);
+        recyclerView.setAdapter(recyclerViewAdapter);
 
         return layoutView;
     }

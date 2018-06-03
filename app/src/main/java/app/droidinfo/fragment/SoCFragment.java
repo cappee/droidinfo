@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import app.droidinfo.R;
+import app.droidinfo.adapter.RecyclerViewAdapter;
 import app.droidinfo.adapter.SimpleAdapter;
 import app.droidinfo.helper.SoCHelper;
 
@@ -54,7 +56,7 @@ public class SoCFragment extends Fragment {
 
         SharedPreferences sharedPreferences = activity.getSharedPreferences("DroidInfo", Context.MODE_PRIVATE);
 
-        ListView listView = layoutView.findViewById(R.id.listViewSoC);
+        RecyclerView recyclerView = layoutView.findViewById(R.id.recyclerViewSoC);
 
         String[] stringInformation = new String[] {
                 getString(R.string.CPUModel),
@@ -92,11 +94,11 @@ public class SoCFragment extends Fragment {
             };
         }
 
-        SimpleAdapter simpleAdapter = new SimpleAdapter(activity, stringInformation, stringValues);
-        listView.setAdapter(simpleAdapter);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(stringInformation, stringValues);
+        recyclerView.setAdapter(recyclerViewAdapter);
 
         if (sharedPreferences.getBoolean(CLICKONITEM, false)) {
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            /*recyclerView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     System.out.println(position);
@@ -150,7 +152,7 @@ public class SoCFragment extends Fragment {
                             builder4.show();
                     }
                 }
-            });
+            });*/
         }
 
         return layoutView;

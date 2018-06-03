@@ -31,6 +31,10 @@ public class DeviceHelper {
         return Build.MODEL;
     }
 
+    public static String getCodename() {
+        return Build.DEVICE;
+    }
+
     public static String getManufacturer() {
         return Build.MANUFACTURER;
     }

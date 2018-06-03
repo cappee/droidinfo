@@ -10,6 +10,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import java.text.DecimalFormat;
 import java.util.Locale;
 
 import app.droidinfo.R;
+import app.droidinfo.adapter.RecyclerViewAdapter;
 import app.droidinfo.adapter.SimpleAdapter;
 
 public class SensorFragment extends Fragment implements SensorEventListener{
@@ -45,8 +47,7 @@ public class SensorFragment extends Fragment implements SensorEventListener{
     private SharedPreferences sharedPreferences;
     private String USE_DEFAULT_INFORMATION = "USE_DEFAULT_INFORMATION";
 
-    private ListView listView;
-    private DecimalFormat decimalFormat = new DecimalFormat(".##");
+    private RecyclerView recyclerView;
 
     private String[] stringInformation;
     private String[] stringValues;
@@ -97,7 +98,7 @@ public class SensorFragment extends Fragment implements SensorEventListener{
             mSensorManager.registerListener(this, mSensorProximity, SensorManager.SENSOR_DELAY_NORMAL);
         }
 
-        listView = layoutView.findViewById(R.id.listViewSensor);
+        recyclerView = layoutView.findViewById(R.id.recyclerViewSensor);
 
         stringInformation = new String[] {
                 getString(R.string.Accelerometer),
@@ -123,8 +124,8 @@ public class SensorFragment extends Fragment implements SensorEventListener{
             };
         }
 
-        SimpleAdapter adapter = new SimpleAdapter(activity, stringInformation, stringValues);
-        listView.setAdapter(adapter);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(stringInformation, stringValues);
+        recyclerView.setAdapter(recyclerViewAdapter);
     }
 
     @Override

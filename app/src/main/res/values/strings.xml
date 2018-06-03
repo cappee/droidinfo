@@ -149,4 +149,5 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="Magnetometer">Magnetometer</string>
     <string name="ThereAreNothing">There\'s nothing here for now, come back in a bit.</string>
     <string name="BuildID" translatable="false">Build ID</string>
+    <string name="Codename">Codename</string>
 </resources>
