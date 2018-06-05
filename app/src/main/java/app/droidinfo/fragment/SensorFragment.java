@@ -10,22 +10,24 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
-import java.text.DecimalFormat;
 import java.util.Locale;
 
 import app.droidinfo.R;
 import app.droidinfo.adapter.RecyclerViewAdapter;
-import app.droidinfo.adapter.SimpleAdapter;
+import app.droidinfo.helper.RecyclerViewDataHelper;
 
 public class SensorFragment extends Fragment implements SensorEventListener{
 
     private Activity activity;
+    private Context context;
+    private RecyclerViewAdapter recyclerViewAdapter;
 
     private SensorManager mSensorManager;
     private Sensor mSensorAccelerometer;
@@ -56,6 +58,7 @@ public class SensorFragment extends Fragment implements SensorEventListener{
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         this.activity = activity;
+        this.context = activity;
     }
 
     @Override
@@ -67,6 +70,7 @@ public class SensorFragment extends Fragment implements SensorEventListener{
     public void onResume() {
         super.onResume();
         //SENSOR_NORMAL_DELAY=3 but it's too short, so 10 is a good delay ~gabrielecappellaro
+        // LEL - STOCOPYANYTHING
         mSensorManager.registerListener(this, mSensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
         mSensorManager.registerListener(this, mSensorMagnetometer, SensorManager.SENSOR_DELAY_NORMAL);
         mSensorManager.registerListener(this, mSensorGyroscope, SensorManager.SENSOR_DELAY_NORMAL);
@@ -107,6 +111,11 @@ public class SensorFragment extends Fragment implements SensorEventListener{
                 getString(R.string.Proximity)
         };
 
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context.getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration(new DividerItemDecoration(context.getApplicationContext(), LinearLayoutManager.VERTICAL));
+
         return layoutView;
     }
 
@@ -120,11 +129,11 @@ public class SensorFragment extends Fragment implements SensorEventListener{
             };
         } else {
             stringValues = new String[] {
-                    //TODO: Insert value for default device
+                    // TODO: Insert value for default device
             };
         }
 
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(stringInformation, stringValues);
+        recyclerViewAdapter = new RecyclerViewAdapter(RecyclerViewDataHelper.recyclerViewFragment(stringInformation, stringValues));
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
@@ -151,9 +160,9 @@ public class SensorFragment extends Fragment implements SensorEventListener{
                 mProximity = getString(R.string.Far) + " (" + sensorEvent.values[0] + ")";
             }
         }
+
         getSensorData();
     }
-
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
         getSensorData();

@@ -89,7 +89,7 @@ public class DeviceHelper {
         if (ramAvailable < 1024) {
             ramAvailableString = ramAvailable + " MB";
         } else if (ramAvailable > 1024) {
-            ramAvailableString = ramAvailable + " GB";
+            ramAvailableString = (ramAvailable / 1024) + " GB";
         }
 
         return ramAvailableString + " / " + lastValue;

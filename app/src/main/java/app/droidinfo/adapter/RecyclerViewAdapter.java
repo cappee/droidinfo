@@ -7,11 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 import app.droidinfo.R;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
-    private String[] stringInformation, stringValues;
+    private List<Item> listItemAdapter;
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView textViewInformation, textViewValues;
@@ -23,29 +25,28 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
-
-    public RecyclerViewAdapter(String[] stringInformation, String[] stringValues) {
-        this.stringInformation = stringInformation;
-        this.stringValues = stringValues;
+    public RecyclerViewAdapter(List<Item> listItemAdapter) {
+        this.listItemAdapter = listItemAdapter;
     }
+
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.layout_listview, parent, false);
-
         return new MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.textViewInformation.setText(stringInformation[position]);
-        holder.textViewValues.setText(stringValues[position]);
+        Item item = this.listItemAdapter.get(position);
+        holder.textViewInformation.setText(item.getTitle());
+        holder.textViewValues.setText(item.getSummary());
     }
 
     @Override
     public int getItemCount() {
-        return stringInformation.length;
+        return listItemAdapter.size();
     }
 }

@@ -6,15 +6,16 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import app.droidinfo.R;
 import app.droidinfo.adapter.RecyclerViewAdapter;
-import app.droidinfo.adapter.SimpleAdapter;
+import app.droidinfo.helper.RecyclerViewDataHelper;
 
 public class BatteryFragment extends Fragment {
 
@@ -86,7 +87,11 @@ public class BatteryFragment extends Fragment {
             };
         }
 
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(stringInformation, stringValues);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(RecyclerViewDataHelper.recyclerViewFragment(stringInformation, stringValues));
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context.getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration(new DividerItemDecoration(context.getApplicationContext(), LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(recyclerViewAdapter);
         return layoutView;
     }
