@@ -133,7 +133,7 @@ public class SensorFragment extends Fragment implements SensorEventListener{
             };
         }
 
-        recyclerViewAdapter = new RecyclerViewAdapter(RecyclerViewDataHelper.recyclerViewFragment(stringInformation, stringValues));
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(RecyclerViewDataHelper.recyclerViewFragment(stringInformation, stringValues), context);
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 

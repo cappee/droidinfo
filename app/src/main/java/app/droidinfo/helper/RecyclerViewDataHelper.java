@@ -6,6 +6,7 @@ import java.util.List;
 import app.droidinfo.adapter.Item;
 
 public class RecyclerViewDataHelper {
+
     public static List<Item> recyclerViewFragment(String[] string1, String[] string2) {
         List<Item> list = new ArrayList<>();
         Item item;

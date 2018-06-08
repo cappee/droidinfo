@@ -1,5 +1,8 @@
 package app.droidinfo.adapter;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,9 +14,14 @@ import java.util.List;
 
 import app.droidinfo.R;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
+    private Context context;
     private List<Item> listItemAdapter;
+
+    private String FONT = "FONT";
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView textViewInformation, textViewValues;
@@ -25,8 +33,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
-    public RecyclerViewAdapter(List<Item> listItemAdapter) {
+    public RecyclerViewAdapter(List<Item> listItemAdapter, Context context) {
         this.listItemAdapter = listItemAdapter;
+        this.context = context;
     }
 
 
@@ -40,8 +49,28 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("DroidInfo", MODE_PRIVATE);
+
+        Typeface typeface;
+
+        if (sharedPreferences.getString(FONT, "Roboto").equals("Google Sans")) {
+            typeface = Typeface.createFromAsset(context.getAssets(), "fonts/" + "GoogleSans" + ".ttf");
+        } else {
+            typeface = Typeface.createFromAsset(context.getAssets(), "fonts/" + sharedPreferences.getString(FONT, "Roboto") + ".ttf");
+        }
+
+        Typeface typefaceBold;
+
+        if (sharedPreferences.getString(FONT, "Roboto").equals("Google Sans")) {
+            typefaceBold = Typeface.createFromAsset(context.getAssets(), "fonts/" + "GoogleSans" + "-Bold.ttf");
+        } else {
+            typefaceBold = Typeface.createFromAsset(context.getAssets(), "fonts/" + sharedPreferences.getString(FONT, "Roboto") + "-Bold.ttf");
+        }
+
         Item item = this.listItemAdapter.get(position);
+        holder.textViewInformation.setTypeface(typeface);
         holder.textViewInformation.setText(item.getTitle());
+        holder.textViewValues.setTypeface(typefaceBold);
         holder.textViewValues.setText(item.getSummary());
     }
 
