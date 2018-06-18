@@ -3,10 +3,10 @@
     <Preference
         android:key="preferenceAuthor"
         android:title="@string/Author"
-        android:summary="k4ppaj" />
+        android:summary="K4ppaj and Stopx" />
     <Preference
         android:title="@string/Version"
-        android:summary="0.2 (Helium)" />
+        android:summary="1.0 (Litium)" />
     <Preference
         android:key="preferencePackageName"
         android:title="Package Name" />
