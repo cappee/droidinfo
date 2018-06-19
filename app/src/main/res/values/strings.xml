@@ -150,4 +150,8 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="ThereAreNothing">There\'s nothing here for now, come back in a bit.</string>
     <string name="BuildID" translatable="false">Build ID</string>
     <string name="Codename">Codename</string>
+    <string name="AmbientTemperature">Ambient Temperature</string>
+    <string name="Light">Light</string>
+    <string name="Pressure">Pressure</string>
+    <string name="Humidity">Humidity</string>
 </resources>

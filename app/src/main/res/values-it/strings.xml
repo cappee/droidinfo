@@ -122,4 +122,8 @@
     <string name="Magnetometer">Magnetometro</string>
     <string name="ThereAreNothing">Non c\'è nulla qui, per il momento, torna fra un po\'.</string>
     <string name="Codename">Nome in codice</string>
+    <string name="AmbientTemperature">Temperatura Ambientale</string>
+    <string name="Light">Luce ambientale</string>
+    <string name="Pressure">Pressione</string>
+    <string name="Humidity">Umidità</string>
 </resources>
