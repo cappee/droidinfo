@@ -154,4 +154,5 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="Light">Light</string>
     <string name="Pressure">Pressure</string>
     <string name="Humidity">Humidity</string>
+    <string name="PermissionDenied">Oh no! You must grant permission else \nyou can\'t use this tab.</string>
 </resources>

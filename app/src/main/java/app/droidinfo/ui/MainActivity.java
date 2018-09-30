@@ -4,16 +4,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.tabs.TabLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ import app.droidinfo.fragment.TelephonyFragment;
 @SuppressWarnings("static-access")
 public class MainActivity extends AppCompatActivity {
 
-    private int[] intTabIcons = new int[] { R.drawable.ic_android_white_24dp, R.drawable.ic_memory_white_24dp, R.drawable.ic_smartphone_white_24dp, R.drawable.ic_display_white_24dp, R.drawable.ic_battery_charging_full_white_24dp, R.drawable.ic_sim_card_white_24dp, R.drawable.ic_screen_rotation_white_24dp, R.drawable.ic_root_white_24dp};
+    private int[] intTabIcons = new int[] { R.drawable.ic_android_white_24dp, R.drawable.ic_memory_white_24dp, R.drawable.ic_smartphone_white_24dp, R.drawable.ic_display_white_24dp, R.drawable.ic_battery_charging_full_white_24dp, R.drawable.ic_sim_card_white_24dp/*, R.drawable.ic_screen_rotation_black_24dp, R.drawable.ic_root_white_24dp*/};
 
     private String[] stringTitleToolbar = new String[] {};
 
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         //Window window = getWindow();
         //window.setNavigationBarColor(getResources().getColor(android.R.color.background_dark));
 
-        stringTitleToolbar = new String[] { "Android", getString(R.string.SoC), getString(R.string.Device), getString(R.string.Display), getString(R.string.Battery), getString(R.string.Telephony), getString(R.string.Sensor), getString(R.string.Root) };
+        stringTitleToolbar = new String[] { "Android", getString(R.string.SoC), getString(R.string.Device), getString(R.string.Display), getString(R.string.Battery), getString(R.string.Telephony)/*, getString(R.string.Sensor), getString(R.string.Root)*/};
 
         sharedPreferences = getSharedPreferences("DroidInfo", MODE_PRIVATE);
 
@@ -111,8 +112,8 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(3).setIcon(intTabIcons[3]);
         tabLayout.getTabAt(4).setIcon(intTabIcons[4]);
         tabLayout.getTabAt(5).setIcon(intTabIcons[5]);
-        tabLayout.getTabAt(6).setIcon(intTabIcons[6]);
-        tabLayout.getTabAt(7).setIcon(intTabIcons[7]);
+        //tabLayout.getTabAt(6).setIcon(intTabIcons[6]);
+        //tabLayout.getTabAt(7).setIcon(intTabIcons[7]);
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -123,8 +124,8 @@ public class MainActivity extends AppCompatActivity {
         viewPagerAdapter.addFragment(new DisplayFragment(), "Display");
         viewPagerAdapter.addFragment(new BatteryFragment(), "Battery");
         viewPagerAdapter.addFragment(new TelephonyFragment(), "Telephony");
-        viewPagerAdapter.addFragment(new SensorFragment(), "Sensor");
-        viewPagerAdapter.addFragment(new RootFragment(), "Root");
+        //viewPagerAdapter.addFragment(new SensorFragment(), "Sensor");
+        //viewPagerAdapter.addFragment(new RootFragment(), "Root");
         viewPager.setAdapter(viewPagerAdapter);
     }
 

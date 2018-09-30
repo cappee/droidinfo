@@ -16,9 +16,10 @@
 
     <style name="WhiteToolbarTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="android:textColorPrimary">#727272</item>
-        <item name="actionMenuTextColor">#727272</item>
-        <item name="android:textColorSecondary">#727272</item>
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+        <item name="actionMenuTextColor">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/googlesans</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

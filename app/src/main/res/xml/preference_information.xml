@@ -2,8 +2,8 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <Preference
         android:key="preferenceAuthor"
-        android:title="@string/Author"
-        android:summary="K4ppaj and Stopx" />
+        android:summary="Gabriele Cappellaro \nSimone Pandolfi"
+        android:title="@string/Author" />
     <Preference
         android:title="@string/Version"
         android:summary="1.0 (Litium)" />

@@ -1,7 +1,7 @@
 package app.droidinfo.helper;
 
 import android.os.Build;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 
 public class AndroidHelper {
 
@@ -29,6 +29,8 @@ public class AndroidHelper {
             case 27:
                 versionName = "Oreo";
                 break;
+            case 28:
+                versionName = "Pie";
         }
         return versionName + " (" + Build.VERSION.RELEASE + ")";
     }

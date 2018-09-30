@@ -1,17 +1,24 @@
 package app.droidinfo.fragment;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import app.droidinfo.R;
 import app.droidinfo.adapter.RecyclerViewAdapter;
@@ -22,6 +29,9 @@ public class TelephonyFragment extends Fragment {
 
     private Activity activity;
     private Context context;
+
+    private RecyclerView recyclerView;
+    private SharedPreferences sharedPreferences;
 
     private String USE_DEFAULT_INFORMATION = "USE_DEFAULT_INFORMATION";
 
@@ -46,9 +56,9 @@ public class TelephonyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View layoutView = inflater.inflate(R.layout.fragment_telephony, container, false);
-        RecyclerView recyclerView = layoutView.findViewById(R.id.recyclerViewTelephony);
+        recyclerView = layoutView.findViewById(R.id.recyclerViewTelephony);
 
-        SharedPreferences sharedPreferences = context.getSharedPreferences("DroidInfo", Context.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences("DroidInfo", Context.MODE_PRIVATE);
 
         String[] stringInformation = new String[] {
                 getString(R.string.DualSIM),
@@ -62,40 +72,78 @@ public class TelephonyFragment extends Fragment {
         };
         String[] stringValues;
 
-        if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
-            if (TelephonyHelper.getStatus(activity).equals(activity.getString(R.string.Absent))) {
-                stringValues = new String[] {
-                        TelephonyHelper.getDualSIM(context),
-                        TelephonyHelper.getIMEI(activity),
-                        TelephonyHelper.getStatus(activity),
-                        getString(R.string.Unknown),
-                        getString(R.string.Unknown),
-                        getString(R.string.Unknown),
-                        getString(R.string.Unknown),
-                        //TelephonyHelper.getSisgnalStength(activity)
-                };
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
+                if (TelephonyHelper.getStatus(activity).equals(activity.getString(R.string.Absent))) {
+                    stringValues = new String[] {
+                            TelephonyHelper.getDualSIM(context),
+                            TelephonyHelper.getIMEI(activity),
+                            TelephonyHelper.getStatus(activity),
+                            getString(R.string.Unknown),
+                            getString(R.string.Unknown),
+                            getString(R.string.Unknown),
+                            getString(R.string.Unknown),
+                            //TelephonyHelper.getSisgnalStength(activity)
+                    };
+                } else {
+                    stringValues = new String[]{
+                            TelephonyHelper.getDualSIM(context),
+                            TelephonyHelper.getIMEI(activity),
+                            TelephonyHelper.getStatus(activity),
+                            TelephonyHelper.getPhoneType(activity),
+                            TelephonyHelper.getOperator(context),
+                            TelephonyHelper.getPhoneNumber(activity),
+                            TelephonyHelper.getNetworkType(activity),
+                            //TelephonyHelper.getSisgnalStength(activity)
+                    };
+                }
             } else {
-                stringValues = new String[]{
-                        TelephonyHelper.getDualSIM(context),
-                        TelephonyHelper.getIMEI(activity),
-                        TelephonyHelper.getStatus(activity),
-                        TelephonyHelper.getPhoneType(activity),
-                        TelephonyHelper.getOperator(context),
-                        TelephonyHelper.getPhoneNumber(activity),
-                        TelephonyHelper.getNetworkType(activity),
-                        //TelephonyHelper.getSisgnalStength(activity)
+                stringValues = new String[] {
+                        "No",
+                        getString(R.string.Unknown),
+                        getString(R.string.NotReady),
+                        "GSM",
+                        getString(R.string.Unknown),
+                        getString(R.string.Unknown),
+                        getString(R.string.Unknown)
                 };
             }
         } else {
-            stringValues = new String[] {
-                    "No",
-                    getString(R.string.Unknown),
-                    getString(R.string.NotReady),
-                    "GSM",
-                    getString(R.string.Unknown),
-                    getString(R.string.Unknown),
-                    getString(R.string.Unknown)
-            };
+            if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
+                if (TelephonyHelper.getStatus(activity).equals(activity.getString(R.string.Absent))) {
+                    stringValues = new String[] {
+                            TelephonyHelper.getDualSIM(context),
+                            TelephonyHelper.getIMEI(activity),
+                            TelephonyHelper.getStatus(activity),
+                            getString(R.string.Unknown),
+                            getString(R.string.Unknown),
+                            getString(R.string.Unknown),
+                            getString(R.string.Unknown),
+                            //TelephonyHelper.getSisgnalStength(activity)
+                    };
+                } else {
+                    stringValues = new String[]{
+                            TelephonyHelper.getDualSIM(context),
+                            TelephonyHelper.getIMEI(activity),
+                            TelephonyHelper.getStatus(activity),
+                            TelephonyHelper.getPhoneType(activity),
+                            getString(R.string.Unknown),
+                            getString(R.string.Unknown),
+                            TelephonyHelper.getNetworkType(activity),
+                            //TelephonyHelper.getSisgnalStength(activity)
+                    };
+                }
+            } else {
+                stringValues = new String[] {
+                        "No",
+                        getString(R.string.Unknown),
+                        getString(R.string.NotReady),
+                        "GSM",
+                        getString(R.string.Unknown),
+                        getString(R.string.Unknown),
+                        getString(R.string.Unknown)
+                };
+            }
         }
 
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(RecyclerViewDataHelper.recyclerViewFragment(stringInformation, stringValues), context);
@@ -104,6 +152,7 @@ public class TelephonyFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.addItemDecoration(new DividerItemDecoration(context.getApplicationContext(), LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(recyclerViewAdapter);
+
         return layoutView;
     }
 

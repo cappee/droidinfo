@@ -126,4 +126,5 @@
     <string name="Light">Luce ambientale</string>
     <string name="Pressure">Pressione</string>
     <string name="Humidity">Umidità</string>
+    <string name="PermissionDenied">Oh no! Tu devi concedere il permesso \nper usare la tab telefonia.</string>
 </resources>
