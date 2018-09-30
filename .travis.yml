@@ -6,18 +6,17 @@ jdk:
 android:
   components:
     - tools
-    - build-tools-26.0.0
-    - android-26
-    - build-tools-27.0.3
-    - android-27
+    - build-tools-28.0.3
+    - android-28
     - extra-android-support
     - extra-google-google_play_services
     - extra-android-m2repository
     - extra-google-m2repository
-    - addon-google_apis-google-27
+    - addon-google_apis-google-28
 
 before_install:
 - mkdir "$ANDROID_HOME/licenses" || true
+- echo yes | sdkmanager "build-tools;28.0.3"
 - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
 - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
  - chmod +x gradlew
