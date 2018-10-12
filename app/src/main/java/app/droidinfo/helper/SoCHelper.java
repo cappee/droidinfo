@@ -3,6 +3,7 @@ package app.droidinfo.helper;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ConfigurationInfo;
+import android.os.Build;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -30,6 +31,28 @@ public class SoCHelper {
             e.printStackTrace();
         }
         return map;
+    }
+
+    public static String getIfIs64bit() {
+        boolean isArm64Method1 = false;
+        boolean isArm64Method2;
+
+        try {
+            BufferedReader localBufferedReader = new BufferedReader(new FileReader("/proc/cpuinfo"));
+            if (localBufferedReader.readLine().contains("aarch64")) {
+                isArm64Method1 = true;
+            }
+            localBufferedReader.close();
+        } catch (IOException ignored) {
+        }
+
+        isArm64Method2 = Build.SUPPORTED_64_BIT_ABIS.length > 0;
+
+        if (isArm64Method1 || isArm64Method2) {
+            return "64bit";
+        } else {
+            return "32bit";
+        }
     }
 
     public static String getCPUModel() {
@@ -143,7 +166,11 @@ public class SoCHelper {
     }
 
     public static String getBogoMIPS() {
-        return String.valueOf(getCPUInfoMap().get("bogomips"));
+        String bogomips = String.valueOf(getCPUInfoMap().get("bogomips"));
+        if (bogomips.equals("null")) {
+            bogomips = String.valueOf(getCPUInfoMap().get("BogoMIPS"));
+        }
+        return bogomips;
     }
 
     public static String getGPUVendor(GL10 gl10) {

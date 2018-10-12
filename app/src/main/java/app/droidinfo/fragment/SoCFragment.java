@@ -58,6 +58,7 @@ public class SoCFragment extends Fragment {
 
         String[] stringInformation = new String[] {
                 getString(R.string.CPUModel),
+                getString(R.string.LenghtOfBit),
                 getString(R.string.CPUCores),
                 getString(R.string.CPUFreq),
                 getString(R.string.CPUGovernor),
@@ -71,6 +72,7 @@ public class SoCFragment extends Fragment {
         if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
             stringValues = new String[] {
                     SoCHelper.getCPUModel(),
+                    SoCHelper.getIfIs64bit(),
                     SoCHelper.getCPUCores(),
                     SoCHelper.getCPUFreq() /*+ " (min - MAX)"*/,
                     SoCHelper.getCPUGovernor(0),
@@ -82,6 +84,7 @@ public class SoCFragment extends Fragment {
         } else {
             stringValues = new String[] {
                     "Qualcomm® Snapdragon™ 835",
+                    "64bit",
                     "8 cores",
                     "1.9 - 2.35 Ghz",
                     "interactive",

@@ -224,7 +224,7 @@ public class DeviceHelper {
         }
     }
 
-    public static boolean isSELinuxEnforcing() {
+    private static boolean isSELinuxEnforcing() {
         StringBuffer output = new StringBuffer();
         Process process;
         try {
