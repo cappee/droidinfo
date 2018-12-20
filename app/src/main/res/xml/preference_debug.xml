@@ -9,4 +9,9 @@
         android:title="@string/DefaultInformation"
         android:summaryOff="@string/DefaultInformationOff"
         android:summaryOn="@string/DefaultInformationOn"/>
+    <SwitchPreference
+        android:enabled="false"
+        android:key="preferenceDevsMode"
+        android:title="@string/DevsMode"
+        android:summary="@string/DevsModeInfo" />
 </PreferenceScreen>

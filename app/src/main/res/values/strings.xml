@@ -54,7 +54,7 @@ processor architecture, RAM available, GPU Model)</string>
 
     <string name="AndroidVersion">Android Version</string>
     <string name="APILevel">API Level</string>
-    <string name="SecurityPatch">Security Patch</string>
+    <string name="SecurityPatch">Security patch</string>
     <string name="KernelVersion">Kernel Version</string>
     <string name="KernelArch">Kernel Arch</string>
 
@@ -156,4 +156,13 @@ processor architecture, RAM available, GPU Model)</string>
     <string name="Humidity">Humidity</string>
     <string name="PermissionDenied">Oh no! You must grant permission else \nyou can\'t use this tab.</string>
     <string name="LenghtOfBit">Lenght of bit</string>
+    <string name="Supported">Supported</string>
+    <string name="Unsupported">Unsupported</string>
+    <string name="Enabled">Enabled</string>
+    <string name="Disabled">Disabled</string>
+    <string name="SignalStrength">Signal strenght</string>
+    <string name="RequiredAPI22">Required API 22</string>
+    <string name="StockFirmware">Stock firmware</string>
+    <string name="DevsMode">Devs mode</string>
+    <string name="DevsModeInfo">Skip all time loses</string>
 </resources>

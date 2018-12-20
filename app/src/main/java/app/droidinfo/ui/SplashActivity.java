@@ -38,6 +38,7 @@ public class SplashActivity extends AppCompatActivity implements GLSurfaceView.R
     private GLSurfaceView glSurfaceView;
 
     private String FONT = "FONT";
+    private String DEVS_MODE = "DEVS_MODE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,14 +81,16 @@ public class SplashActivity extends AppCompatActivity implements GLSurfaceView.R
                 .apply();
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
+                != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.READ_PHONE_STATE}, 0);
-        } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED){
-            Timer timer = new Timer();
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
+                    new String[]{Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_COARSE_LOCATION}, 0);
+        } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            if (!sharedPreferences.getBoolean(DEVS_MODE, false)) {
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
                 /*boolean firstRun = sharedPreferences.getBoolean("FIRST_RUN", true);
                 if (firstRun) {
                     startActivity(new Intent(SplashActivity.this, IntroActivity.class));
@@ -96,10 +99,15 @@ public class SplashActivity extends AppCompatActivity implements GLSurfaceView.R
                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
                     finish();
                 }*/
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                    finish();
-                }
-            }, 2000);
+                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                        finish();
+                    }
+                }, 2000);
+            } else {
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                finish();
+            }
+
         }
 
     }

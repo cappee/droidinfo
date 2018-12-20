@@ -136,7 +136,6 @@ public class BatteryHelper {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(batteryCapacity);
         if (batteryCapacity == 1000.0) {
             return activity.getString(R.string.Unknown);
         } else {

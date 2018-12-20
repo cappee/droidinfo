@@ -3,6 +3,8 @@ package app.droidinfo.helper;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.nfc.NfcAdapter;
+import android.nfc.NfcManager;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
@@ -216,40 +218,15 @@ public class DeviceHelper {
         }
     }
 
-    public static String getSELinuxStatus() {
-        if (isSELinuxEnforcing()) {
-            return "Enforcing";
+    public static String getIfNFCIsPresent(Context context) {
+        NfcManager nfcManager = (NfcManager) context.getSystemService(Context.NFC_SERVICE);
+        NfcAdapter nfcAdapter = nfcManager.getDefaultAdapter();
+        if (nfcAdapter != null && nfcAdapter.isEnabled()) {
+            return context.getString(R.string.Enabled);
+        } else if (nfcAdapter != null && !nfcAdapter.isEnabled()) {
+            return context.getString(R.string.Disabled);
         } else {
-            return "Permissive";
-        }
-    }
-
-    private static boolean isSELinuxEnforcing() {
-        StringBuffer output = new StringBuffer();
-        Process process;
-        try {
-            process = Runtime.getRuntime().exec("getenforce");
-            process.waitFor();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line = "";
-            while ((line = reader.readLine())!= null) {
-                output.append(line);
-            }
-        } catch (Exception e) {
-            Log.e(TAG, "OS does not support getenforce");
-            // If getenforce is not available to the device, assume the device is not enforcing
-            e.printStackTrace();
-            return false;
-        }
-        String response = output.toString();
-        if ("Enforcing".equals(response)) {
-            return true;
-        } else if ("Permissive".equals(response)) {
-            return false;
-        } else {
-            Log.e(TAG, "getenforce returned unexpected value, unable to determine selinux!");
-            // If getenforce is modified on this device, assume the device is not enforcing
-            return false;
+            return context.getString(R.string.Unsupported);
         }
     }
 

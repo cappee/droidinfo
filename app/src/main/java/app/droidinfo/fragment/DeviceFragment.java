@@ -17,6 +17,7 @@ import app.droidinfo.R;
 import app.droidinfo.adapter.RecyclerViewAdapter;
 import app.droidinfo.helper.DeviceHelper;
 import app.droidinfo.helper.RecyclerViewDataHelper;
+import app.droidinfo.helper.TelephonyHelper;
 
 public class DeviceFragment extends Fragment {
 
@@ -51,8 +52,8 @@ public class DeviceFragment extends Fragment {
                 getString(R.string.RAM),
                 getString(R.string.InternalStorage),
                 getString(R.string.ExternalStorage),
-                getString(R.string.RootAccess),
-                getString(R.string.SELinux)
+                "NFC",
+                getString(R.string.RootAccess)
         };
         String[] stringValues;
 
@@ -64,8 +65,8 @@ public class DeviceFragment extends Fragment {
                     DeviceHelper.getRAM(context),
                     DeviceHelper.getInternalStorage(),
                     DeviceHelper.getExternalStorage(context),
-                    DeviceHelper.getRootAccess(context),
-                    DeviceHelper.getSELinuxStatus()
+                    DeviceHelper.getIfNFCIsPresent(context),
+                    DeviceHelper.getRootAccess(context)
             };
         } else {
             stringValues = new String[] {

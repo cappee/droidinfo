@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import app.droidinfo.R;
 import app.droidinfo.adapter.RecyclerViewAdapter;
 import app.droidinfo.helper.AndroidHelper;
+import app.droidinfo.helper.DeviceHelper;
 import app.droidinfo.helper.RecyclerViewDataHelper;
 
 public class AndroidFragment extends Fragment {
@@ -56,8 +57,11 @@ public class AndroidFragment extends Fragment {
                         getString(R.string.APILevel),
                         getString(R.string.SecurityPatch),
                         getString(R.string.BuildID),
+                        "Treble",
+                        "Custom Rom",
                         getString(R.string.KernelVersion),
-                        getString(R.string.KernelArch)
+                        getString(R.string.KernelArch),
+                        getString(R.string.SELinux)
                 };
 
                 stringValues = new String[] {
@@ -65,8 +69,11 @@ public class AndroidFragment extends Fragment {
                         AndroidHelper.getAPILevel(),
                         AndroidHelper.getSecurityPatch(),
                         AndroidHelper.getBuildID(),
+                        AndroidHelper.getTreble(context),
+                        AndroidHelper.getCustomRomName(context),
                         AndroidHelper.getKernelVersion(),
-                        AndroidHelper.getKernelArch()
+                        AndroidHelper.getKernelArch(),
+                        AndroidHelper.getSELinuxStatus()
                 };
             } else {
                 stringInformation = new String[] {
@@ -74,7 +81,8 @@ public class AndroidFragment extends Fragment {
                         getString(R.string.APILevel),
                         getString(R.string.BuildID),
                         getString(R.string.KernelVersion),
-                        getString(R.string.KernelArch)
+                        getString(R.string.KernelArch),
+                        getString(R.string.SELinux)
                 };
 
                 stringValues = new String[] {
@@ -82,7 +90,8 @@ public class AndroidFragment extends Fragment {
                         AndroidHelper.getAPILevel(),
                         AndroidHelper.getBuildID(),
                         AndroidHelper.getKernelVersion(),
-                        AndroidHelper.getKernelArch()
+                        AndroidHelper.getKernelArch(),
+                        AndroidHelper.getSELinuxStatus()
                 };
             }
         } else {

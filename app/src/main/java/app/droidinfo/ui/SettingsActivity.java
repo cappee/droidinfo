@@ -366,6 +366,7 @@ public class SettingsActivity extends AppCompatActivity {
     public static class DebugPreferenceFragment extends PreferenceActivity {
 
         private String USE_DEFAULT_INFORMATION = "USE_DEFAULT_INFORMATION";
+        private String DEVS_MODE = "DEVS_MODE";
         private boolean IS_UNLOCKED = false;
 
         @Override
@@ -376,9 +377,11 @@ public class SettingsActivity extends AppCompatActivity {
             final SharedPreferences sharedPreferences = getSharedPreferences("DroidInfo", MODE_PRIVATE);
 
             final SwitchPreference switchPreferenceDefaultInformation = (SwitchPreference) findPreference("preferenceDefaultInformation");
+            final SwitchPreference switchPreferenceDevsMode = (SwitchPreference) findPreference("preferenceDevsMode");
             Preference preferenceUnlockDebug = findPreference("preferenceUnlockDebug");
 
             switchPreferenceDefaultInformation.setChecked(sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false));
+            switchPreferenceDevsMode.setChecked(sharedPreferences.getBoolean(DEVS_MODE, false));
 
             preferenceUnlockDebug.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
@@ -408,11 +411,13 @@ public class SettingsActivity extends AppCompatActivity {
                                 }
                                 if (SHA256Hash.equals(computeSHAHash(editTextPIN.getText().toString()))) {
                                     switchPreferenceDefaultInformation.setEnabled(true);
+                                    switchPreferenceDevsMode.setEnabled(true);
                                     IS_UNLOCKED = true;
                                     dialog.dismiss();
                                 } else {
                                     Toast.makeText(DebugPreferenceFragment.this, R.string.PINIsIncorrect, Toast.LENGTH_SHORT).show();
                                     switchPreferenceDefaultInformation.setEnabled(false);
+                                    switchPreferenceDevsMode.setEnabled(false);
                                     IS_UNLOCKED = false;
                                     dialog.dismiss();
                                 }
@@ -427,6 +432,7 @@ public class SettingsActivity extends AppCompatActivity {
                         builder.show();
                     } else {
                         switchPreferenceDefaultInformation.setEnabled(false);
+                        switchPreferenceDevsMode.setEnabled(false);
                         IS_UNLOCKED = false;
                         Toast.makeText(DebugPreferenceFragment.this, R.string.OptionsLocked, Toast.LENGTH_SHORT).show();
                     }
@@ -440,6 +446,17 @@ public class SettingsActivity extends AppCompatActivity {
                     sharedPreferences
                             .edit()
                             .putBoolean(USE_DEFAULT_INFORMATION, switchPreferenceDefaultInformation.isChecked())
+                            .apply();
+                    return false;
+                }
+            });
+
+            switchPreferenceDevsMode.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    sharedPreferences
+                            .edit()
+                            .putBoolean(DEVS_MODE, switchPreferenceDevsMode.isChecked())
                             .apply();
                     return false;
                 }

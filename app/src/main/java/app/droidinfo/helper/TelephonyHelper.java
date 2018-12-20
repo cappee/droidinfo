@@ -3,30 +3,20 @@ package app.droidinfo.helper;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.telephony.SubscriptionInfo;
-import android.telephony.SubscriptionManager;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
+import android.os.Build;
+import android.telephony.CellInfoCdma;
+import android.telephony.CellInfoGsm;
+import android.telephony.CellInfoLte;
+import android.telephony.CellSignalStrengthCdma;
+import android.telephony.CellSignalStrengthGsm;
+import android.telephony.CellSignalStrengthLte;
 import android.telephony.TelephonyManager;
 
-import java.util.List;
-
 import app.droidinfo.R;
-import app.droidinfo.util.DualSIMInfo;
 
 public class TelephonyHelper {
-
-    public static String getDualSIM(Context context) {
-        Activity activity = (Activity) context;
-        DualSIMInfo dualSIMInfo = DualSIMInfo.getInstance(context);
-        if (dualSIMInfo != null) {
-            if (dualSIMInfo.isDualSIM()) {
-                return activity.getString(R.string.Yes);
-            } else {
-                return activity.getString(R.string.No);
-            }
-        } else {
-            return activity.getString(R.string.No);
-        }
-    }
 
     @SuppressLint("MissingPermission")
     public static String getIMEI(Activity context) {
@@ -82,13 +72,23 @@ public class TelephonyHelper {
     }
 
     public static String getOperator(Context context) {
-        String operator = "";
-        SubscriptionManager subscriptionManager = SubscriptionManager.from(context);
-        List<SubscriptionInfo> activeSubscruptionInfo = subscriptionManager.getActiveSubscriptionInfoList();
-        for (SubscriptionInfo subscriptionInfo : activeSubscruptionInfo) {
-            operator = String.valueOf(subscriptionInfo.getCarrierName());
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            //String operator = "";
+            //SubscriptionManager subscriptionManager = SubscriptionManager.from(context);
+            //if (getDualSIM(context).equals(String.valueOf(R.string.Yes))) {
+            //    SubscriptionInfo sim1 = subscriptionManager.getActiveSubscriptionInfo(0);
+            //    SubscriptionInfo sim2 = subscriptionManager.getActiveSubscriptionInfo(1);
+            //    return sim1.getCarrierName() + " | " + sim2.getCarrierName();
+            //} else {
+            //    SubscriptionInfo sim1 = subscriptionManager.getActiveSubscriptionInfo(0);
+                //return sim1.getCarrierName() + " (" + sim1.getNumber() + ")";
+                return "Gesu";
+            //}
         }
-        return operator;
+        else {
+            return context.getString(R.string.RequiredAPI22);
+        }
+
     }
 
     public static String getPhoneNumber(Activity activity) {
@@ -130,30 +130,42 @@ public class TelephonyHelper {
                 return "LTE";
             case TelephonyManager.NETWORK_TYPE_UMTS:
                 return "UMTS";
-            case TelephonyManager.NETWORK_TYPE_UNKNOWN:
-                return activity.getString(R.string.Unknown);
             default:
                 return activity.getString(R.string.Unknown);
         }
     }
 
-    /*public static String getSisgnalStength(Activity activity) {
+    public static String getSignalStength(Activity activity) {
+        WifiManager wifiManager = (WifiManager) activity.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        if (wifiManager.isWifiEnabled()) {
+            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+            if (String.valueOf(wifiInfo.getSupplicantState()).equals("COMPLETED")) {
+                return String.valueOf(wifiInfo.getRssi() + " dBm");
+            }
+        }
+
         TelephonyManager telephonyManager = (TelephonyManager) activity.getSystemService(Context.TELEPHONY_SERVICE);
         String phoneType = getPhoneType(activity);
         switch (phoneType) {
             case "CDMA":
                 CellInfoCdma cellInfoCdma = (CellInfoCdma) telephonyManager.getAllCellInfo().get(0);
                 CellSignalStrengthCdma cellSignalStrengthCdma = cellInfoCdma.getCellSignalStrength();
-                return cellSignalStrengthCdma.getDbm() + " / " + cellSignalStrengthCdma.getAsuLevel();
+                return cellSignalStrengthCdma.getDbm() + " / " + cellSignalStrengthCdma.getAsuLevel() + " asu";
             case "GSM":
-                CellInfoGsm cellInfoGsm = (CellInfoGsm) telephonyManager.getAllCellInfo().get(0);
-                CellSignalStrengthGsm cellSignalStrengthGsm = cellInfoGsm.getCellSignalStrength();
-                return cellSignalStrengthGsm.getDbm() + " dBm";
+                if (telephonyManager.getNetworkType() == TelephonyManager.NETWORK_TYPE_LTE) {
+                    CellInfoLte cellInfoLte = (CellInfoLte) telephonyManager.getAllCellInfo().get(0);
+                    CellSignalStrengthLte cellSignalStrengthLte = cellInfoLte.getCellSignalStrength();
+                    return cellSignalStrengthLte.getDbm() + " dBm / " + cellSignalStrengthLte.getAsuLevel() + " asu";
+                } else if (telephonyManager.getNetworkType() != 0){
+                    CellInfoGsm cellInfoGsm = (CellInfoGsm) telephonyManager.getAllCellInfo().get(0);
+                    CellSignalStrengthGsm cellSignalStrengthGsm = cellInfoGsm.getCellSignalStrength();
+                    return cellSignalStrengthGsm.getDbm() + " dBm / " + cellSignalStrengthGsm.getAsuLevel() + "asu";
+                }
             default:
                 activity.getString(R.string.Unknown);
                 break;
         }
         return activity.getString(R.string.Unknown);
-    }*/
+    }
 
 }

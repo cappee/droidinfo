@@ -1,25 +1,20 @@
 package app.droidinfo.fragment;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import app.droidinfo.R;
 import app.droidinfo.adapter.RecyclerViewAdapter;
 import app.droidinfo.helper.RecyclerViewDataHelper;
@@ -61,14 +56,14 @@ public class TelephonyFragment extends Fragment {
         sharedPreferences = context.getSharedPreferences("DroidInfo", Context.MODE_PRIVATE);
 
         String[] stringInformation = new String[] {
-                getString(R.string.DualSIM),
                 getString(R.string.IMEI),
                 getString(R.string.Status),
+                "NFC",
                 getString(R.string.PhoneType),
                 getString(R.string.Operator),
                 getString(R.string.PhoneNumber),
                 getString(R.string.NetworkType),
-                //getString(R.string.SignalStrength)
+                getString(R.string.SignalStrength)
         };
         String[] stringValues;
 
@@ -76,25 +71,23 @@ public class TelephonyFragment extends Fragment {
             if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
                 if (TelephonyHelper.getStatus(activity).equals(activity.getString(R.string.Absent))) {
                     stringValues = new String[] {
-                            TelephonyHelper.getDualSIM(context),
                             TelephonyHelper.getIMEI(activity),
                             TelephonyHelper.getStatus(activity),
                             getString(R.string.Unknown),
                             getString(R.string.Unknown),
                             getString(R.string.Unknown),
                             getString(R.string.Unknown),
-                            //TelephonyHelper.getSisgnalStength(activity)
+                            TelephonyHelper.getSignalStength(activity)
                     };
                 } else {
                     stringValues = new String[]{
-                            TelephonyHelper.getDualSIM(context),
                             TelephonyHelper.getIMEI(activity),
                             TelephonyHelper.getStatus(activity),
                             TelephonyHelper.getPhoneType(activity),
                             TelephonyHelper.getOperator(context),
                             TelephonyHelper.getPhoneNumber(activity),
                             TelephonyHelper.getNetworkType(activity),
-                            //TelephonyHelper.getSisgnalStength(activity)
+                            TelephonyHelper.getSignalStength(activity)
                     };
                 }
             } else {
@@ -102,7 +95,9 @@ public class TelephonyFragment extends Fragment {
                         "No",
                         getString(R.string.Unknown),
                         getString(R.string.NotReady),
+                        "Enabled",
                         "GSM",
+                        getString(R.string.Unknown),
                         getString(R.string.Unknown),
                         getString(R.string.Unknown),
                         getString(R.string.Unknown)
@@ -112,25 +107,23 @@ public class TelephonyFragment extends Fragment {
             if (!sharedPreferences.getBoolean(USE_DEFAULT_INFORMATION, false)) {
                 if (TelephonyHelper.getStatus(activity).equals(activity.getString(R.string.Absent))) {
                     stringValues = new String[] {
-                            TelephonyHelper.getDualSIM(context),
                             TelephonyHelper.getIMEI(activity),
                             TelephonyHelper.getStatus(activity),
                             getString(R.string.Unknown),
                             getString(R.string.Unknown),
                             getString(R.string.Unknown),
                             getString(R.string.Unknown),
-                            //TelephonyHelper.getSisgnalStength(activity)
+                            TelephonyHelper.getSignalStength(activity)
                     };
                 } else {
                     stringValues = new String[]{
-                            TelephonyHelper.getDualSIM(context),
                             TelephonyHelper.getIMEI(activity),
                             TelephonyHelper.getStatus(activity),
                             TelephonyHelper.getPhoneType(activity),
                             getString(R.string.Unknown),
                             getString(R.string.Unknown),
                             TelephonyHelper.getNetworkType(activity),
-                            //TelephonyHelper.getSisgnalStength(activity)
+                            TelephonyHelper.getSignalStength(activity)
                     };
                 }
             } else {
@@ -138,6 +131,7 @@ public class TelephonyFragment extends Fragment {
                         "No",
                         getString(R.string.Unknown),
                         getString(R.string.NotReady),
+                        "Enabled",
                         "GSM",
                         getString(R.string.Unknown),
                         getString(R.string.Unknown),

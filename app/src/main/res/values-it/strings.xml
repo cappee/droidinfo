@@ -60,7 +60,7 @@
     <string name="ScreenSize">Dimensione dello schermo</string>
     <string name="SecondIntroDescription">Questa applicazione ti da\' delle specifiche tecniche, ad esempio l\'architettura del processore, la RAM installata, il modello della GPU…</string>
     <string name="SecondIntroTitle">Cosa fa quest\'app?</string>
-    <string name="SecurityPatch">Livello della Patch di sicurezza</string>
+    <string name="SecurityPatch">Livello della patch di sicurezza</string>
     <string name="Settings">Impostazioni</string>
     <string name="Status">Stato</string>
     <string name="Technology">Tecnologia</string>
@@ -128,4 +128,11 @@
     <string name="Humidity">Umidità</string>
     <string name="PermissionDenied">Oh no! Tu devi concedere il permesso \nper usare la tab telefonia.</string>
     <string name="LenghtOfBit">Lungezza del bit</string>
+    <string name="Supported">Supportato</string>
+    <string name="Unsupported">Non supportato</string>
+    <string name="Enabled">Abilitato</string>
+    <string name="Disabled">Disabilitato</string>
+    <string name="SignalStrength">Forza del segnale</string>
+    <string name="RequiredAPI22">Richiesto API 22</string>
+    <string name="StockFirmware">Firmware originale</string>
 </resources>
