@@ -44,6 +44,8 @@ public class AndroidHelper {
                 break;
             case 28:
                 versionName = "Pie";
+            case 29:
+                versionName = "Q";
         }
         return versionName + " (" + Build.VERSION.RELEASE + ")";
     }

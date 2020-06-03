@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DroidInfo.iml" filepath="$PROJECT_DIR$/DroidInfo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/DroidInfo-app.iml" filepath="$PROJECT_DIR$/app/DroidInfo-app.iml" group="DroidInfo/app" />
+      <module fileurl="file://$PROJECT_DIR$/Studio Projects-DroidInfo.iml" filepath="$PROJECT_DIR$/Studio Projects-DroidInfo.iml" group="DroidInfo" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
